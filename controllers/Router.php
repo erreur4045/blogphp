@@ -30,11 +30,7 @@ class Router
 
             if(file_exists($controllerFile)){
                 require_once($controllerFile);
-                echo '---------------------------------------------------------------------------------';
-                var_dump($controllerFile);
-                echo '---------------------------------------------------------------------------------';
                 $this->_ctrl = new $controllerClass($url);
-                var_dump($controllerFile);
             }
             else
                 throw new Exception('Page introuvable');
