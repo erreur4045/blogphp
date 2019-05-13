@@ -3,36 +3,52 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="style/style.css">
-    <!------ Include the above in your HEAD tag ---------->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <div class="container-fluid">
         <nav class="navbar navbar-inverse">
             <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-4">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar-collapse-4">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Brand</a>
+                    <a class="navbar-brand" href="index.php">Home</a>
                 </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse-4">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">CV</a></li>
-                        <li><a href="#">Réseaux sociaux</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Portfolio</a></li>
-                        <li><a href="#">Se connecter</a></li>
-
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container -->
+                        <!-- <li><a href="index.php">Home</a></li>-->
+                        <li><a href="index.php?action=CV">CV</a></li>
+                        <?php if (!isset($_SESSION['username'])) : ?>
+                        <li><a href="index.php?action=inscription">Inscription</a></li>
+                        <?php endif; ?>
+                        <li><a href="index.php?action=contact">Contact</a></li>
+                        <li><a href="index.php?action=testmail">test_mail</a></li>
+                        <?php if (!isset($_SESSION['username'])) : ?>
+                            <li><a href="index.php?action=connectionadmin">Se connecter</a></li>
+                        <?php else: ?>
+                            <li>
+                                <button type="button" class="btn btn-default btn-sm">
+                                    <a href="index.php?action=dashboard" class="usersessionicon">
+                                        <span class="glyphicon glyphicon-user"><?= " " . $_SESSION['username'] ?></span>
+                                    </a>
+                                </button>
+                            </li>
+                            <li><a href="index.php?action=deconnection">Se deconnecter</a></li>
+                        <?php endif; ?>
+                </div>
+            </div>
         </nav>
     </div>
-
-
 </header>
+<?php if (isset($_SESSION['message'])): ?>
+<div class="container">
+    <div class="row">
+        <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
+    </div>
+</div>
+<?php unset($_SESSION['message']); ?>
+<?php endif; ?>
