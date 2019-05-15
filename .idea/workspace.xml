@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="57cb7396-0fc8-4062-88fb-2437c3046232" name="Default" comment="passage de la connection a la base de donnee par une methode statique de la classe databaseconnection">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/php.xml" />
+    <list default="true" id="57cb7396-0fc8-4062-88fb-2437c3046232" name="Default" comment="ajout de la fonction dashboard pour page de connection utilisateur">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bloc/header.php" afterPath="$PROJECT_DIR$/bloc/header.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controleurs/ControleursUsers.php" afterPath="$PROJECT_DIR$/controleurs/ControleursUsers.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controleurs/controller.php" afterPath="$PROJECT_DIR$/controleurs/controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
     </list>
+    <ignored path=".idea/" />
+    <ignored path=".idea/dataSources/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,58 +36,61 @@
           <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/index.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="295">
-                  <caret line="33" column="21" lean-forward="false" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
+                <state relative-caret-position="176">
+                  <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ContactView.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/view/ContactView.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="482">
-                  <caret line="30" column="36" lean-forward="false" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ControleursUsers.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ControleursUsers.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/controleurs/ControleursUsers.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="304">
+                <state relative-caret-position="442">
                   <caret line="31" column="52" lean-forward="false" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="CvView.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/view/CvView.php">
+          <file leaf-file-name="ControleursPost.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/controleurs/ControleursPost.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="408">
-                  <caret line="24" column="36" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+                <state relative-caret-position="153">
+                  <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Deconnection.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/view/Deconnection.php">
+          <file leaf-file-name="Post.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/models/Post.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="15" column="18" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+                <state relative-caret-position="279">
+                  <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+                  <folding>
+                    <marker date="1557954000802" expanded="true" signature="344:500" ph="SELECT numbe... post" />
+                    <marker date="1557954000802" expanded="true" signature="667:821" ph="SELECT numbe... post" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="AccueilView.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/view/AccueilView.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="357">
+                  <caret line="21" column="142" lean-forward="false" selection-start-line="21" selection-start-column="142" selection-end-line="21" selection-end-column="142" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="IncriptionView.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/view/IncriptionView.php">
+          <file leaf-file-name="header.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/bloc/header.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="442">
-                  <caret line="26" column="36" lean-forward="false" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+                <state relative-caret-position="136">
+                  <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -153,7 +153,7 @@
           <file leaf-file-name="controller.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/controleurs/controller.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="250">
+                <state relative-caret-position="403">
                   <caret line="65" column="18" lean-forward="false" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
                   <folding />
                 </state>
@@ -251,13 +251,9 @@
         <option value="$PROJECT_DIR$/model/User.php" />
         <option value="$PROJECT_DIR$/controller.php" />
         <option value="$PROJECT_DIR$/models/model.php" />
-        <option value="$PROJECT_DIR$/controleurs/ControleursPost.php" />
         <option value="$PROJECT_DIR$/models/Comment.php" />
         <option value="$PROJECT_DIR$/models/Model.php" />
-        <option value="$PROJECT_DIR$/models/Post.php" />
         <option value="$PROJECT_DIR$/models/User.php" />
-        <option value="$PROJECT_DIR$/bloc/header.php" />
-        <option value="$PROJECT_DIR$/view/AccueilView.php" />
         <option value="$PROJECT_DIR$/view/Co_error.php" />
         <option value="$PROJECT_DIR$/view/ConnectionUserView.php" />
         <option value="$PROJECT_DIR$/view/ContactView.php" />
@@ -271,6 +267,10 @@
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/controleurs/ControleursUsers.php" />
         <option value="$PROJECT_DIR$/controleurs/controller.php" />
+        <option value="$PROJECT_DIR$/controleurs/ControleursPost.php" />
+        <option value="$PROJECT_DIR$/models/Post.php" />
+        <option value="$PROJECT_DIR$/view/AccueilView.php" />
+        <option value="$PROJECT_DIR$/bloc/header.php" />
       </list>
     </option>
   </component>
@@ -318,6 +318,11 @@
             <path>
               <item name="blogphp2" type="b2602c69:ProjectViewProjectNode" />
               <item name="blogphp2" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bloc" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="blogphp2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="blogphp2" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="models" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -342,8 +347,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Ignored.Files" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.idea/dataSources" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -384,7 +389,7 @@
       <workItem from="1556548233826" duration="40175000" />
       <workItem from="1557137622972" duration="38552000" />
       <workItem from="1557736018902" duration="1123000" />
-      <workItem from="1557936673394" duration="4782000" />
+      <workItem from="1557936673394" duration="7400000" />
     </task>
     <task id="LOCAL-00001" summary="passage de la connection a la base de donnee par une methode statique de la classe databaseconnection">
       <created>1557938977717</created>
@@ -400,11 +405,39 @@
       <option name="project" value="LOCAL" />
       <updated>1557953359074</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="ajout de la fonction dashboard pour page de connection utilisateur">
+      <created>1557953476819</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1557953476819</updated>
+    </task>
+    <task id="LOCAL-00004" summary="ajout balise pour site responsive dans le header">
+      <created>1557955164223</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1557955164223</updated>
+    </task>
+    <task id="LOCAL-00005" summary="ajout auteur dans la vue d'accueil">
+      <created>1557955799087</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1557955799087</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Correction majuscules">
+      <created>1557955991021</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1557955991021</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160398000" />
+    <option name="totallyTimeSpent" value="163016000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -443,7 +476,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="passage de la connection a la base de donnee par une methode statique de la classe databaseconnection" />
     <MESSAGE value="changement de l'emplacement du fichier templete.php + modif des chemins ou le fichier est appele" />
-    <option name="LAST_COMMIT_MESSAGE" value="changement de l'emplacement du fichier templete.php + modif des chemins ou le fichier est appele" />
+    <MESSAGE value="ajout de la fonction dashboard pour page de connection utilisateur" />
+    <MESSAGE value="ajout balise pour site responsive dans le header" />
+    <MESSAGE value="ajout auteur dans la vue d'accueil" />
+    <MESSAGE value="Correction majuscules" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correction majuscules" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -666,17 +703,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/Post.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="23" column="14" lean-forward="false" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
-          <folding>
-            <marker date="1557937345612" expanded="true" signature="344:492" ph="SELECT numbe... post" />
-            <marker date="1557937345612" expanded="true" signature="659:813" ph="SELECT numbe... post" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/Model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -696,22 +722,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bloc/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="23" column="69" lean-forward="true" selection-start-line="23" selection-start-column="69" selection-end-line="23" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controleurs/ControleursPost.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="18" column="9" lean-forward="false" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
@@ -724,14 +734,6 @@
             <marker date="1557937345628" expanded="true" signature="2018:2061" ph="SELECT * FRO... membre" />
             <marker date="1557937345628" expanded="true" signature="2461:2526" ph="SELECT * FRO... commentt" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/AccueilView.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="38" column="6" lean-forward="false" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -815,17 +817,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="45" column="21" lean-forward="false" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controleurs/ControleursUsers.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
+        <state relative-caret-position="442">
           <caret line="31" column="52" lean-forward="false" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
           <folding />
         </state>
@@ -833,8 +827,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controleurs/controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
+        <state relative-caret-position="403">
           <caret line="65" column="18" lean-forward="false" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controleurs/ControleursPost.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Post.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+          <folding>
+            <marker date="1557954000802" expanded="true" signature="344:500" ph="SELECT numbe... post" />
+            <marker date="1557954000802" expanded="true" signature="667:821" ph="SELECT numbe... post" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/AccueilView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="142" lean-forward="false" selection-start-line="21" selection-start-column="142" selection-end-line="21" selection-end-column="142" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bloc/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
