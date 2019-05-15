@@ -11,14 +11,14 @@ require_once ('models/Comment.php');
 
 function listPosts()
 {
-    $postss = new post();
+    $postss = new Post();
     $posts = $postss->GetArticles();
     require('view/AccueilView.php');
 }
 
 function post()
 {
-    $postt = new post();
+    $postt = new Post();
     $commentss = new Comment();
 
     if (!empty($_SESSION)){
