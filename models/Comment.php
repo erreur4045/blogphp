@@ -14,9 +14,14 @@ class Comment
     private $text;
     private $comment_date;
 
+    public function __construct()
+    {
+
+    }
+
     public function GetComments($postid)
     {
-        $db = dbConnect();
+        $db = DatabaseConnection::dbConnect();
         $comments = $db->prepare('SELECT id, autor, text, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM commentt WHERE post_id = ? ORDER BY comment_date_fr DESC');
         $comments->execute(array($postid));
 
@@ -25,7 +30,7 @@ class Comment
     public function AddComment($postid, $author, $comment_date)
     {
         try {
-            $db = dbConnect();
+            $db = DatabaseConnection::dbConnect();
             $addcom = $db->prepare('INSERT INTO commentt (post_id,autor,text,comment_date) VALUES (:idpost, :autor, :comment, NOW()) ');
             $addcom->execute(array(':idpost' => $postid, ':autor' => $author, ':comment' => $comment_date));
         } catch (Exception $e) {
@@ -36,7 +41,7 @@ class Comment
     public function UpdateComment($id, $postid, $newcom)
     {
         try {
-            $db = dbConnect();
+            $db = DatabaseConnection::dbConnect();
             $update = $db->prepare('UPDATE `commentt` SET `text` = :newcom, `comment_date` = NOW()  WHERE `commentt`.`id` = :id AND `commentt`.`post_id` = :idpost ');
             $update->execute(array(':newcom' => $newcom, ':idpost' => $postid, ':id' => $id));
         } catch (Exception $e) {

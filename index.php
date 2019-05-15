@@ -9,6 +9,7 @@ session_start();
 require_once ('controleurs/controller.php');
 require_once ('controleurs/ControleursUsers.php');
 require_once ('controleurs/ControleursPost.php');
+require_once ('models/DatabaseConnection.php');
 
 $maintenance = 0;
 if ($maintenance == 0) {

@@ -1,7 +1,7 @@
 <?php
 function getPosts()
 {
-    $db = dbConnect();
+    $db = DatabaseConnection::dbConnect();
     $req = $db->query('SELECT number, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM post ORDER BY creation_date_fr DESC LIMIT 0, 5');
 
     return $req;
@@ -9,7 +9,7 @@ function getPosts()
 
 function getPost($postId)
 {
-    $db = dbConnect();
+    $db = DatabaseConnection::dbConnect();
     $req = $db->prepare('SELECT number, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM post WHERE number = ? ORDER BY creation_date_fr DESC');
     $req->execute(array($postId));
     $post = $req->fetch();
@@ -19,7 +19,7 @@ function getPost($postId)
 
 function getComments($postId)
 {
-    $db = dbConnect();
+    $db = DatabaseConnection::dbConnect();
     $comments = $db->prepare('SELECT id, autor, text, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM commentt WHERE post_id = ? ORDER BY comment_date_fr DESC');
     $comments->execute(array($postId));
 
@@ -46,7 +46,7 @@ function addcom($idpost, $author, $comment)
 {
 
     try {
-        $db = dbConnect();
+        $db = DatabaseConnection::dbConnect();
         $addcom = $db->prepare('INSERT INTO commentt (post_id,autor,text,comment_date) VALUES (:idpost, :autor, :comment, NOW()) ');
         $addcom->execute(array(':idpost' => $idpost, ':autor' => $author, ':comment' => $comment));
     } catch (Exception $e) {
@@ -57,7 +57,7 @@ function addcom($idpost, $author, $comment)
 function updatecomment($id, $idpost, $newcom)
 {
     try {
-        $db = dbConnect();
+        $db = DatabaseConnection::dbConnect();
         //$update = $db->exec('UPDATE `commentt` SET `text` = \'kikoui lol\' WHERE `commentt`.`id` = 1') ;
         $update = $db->prepare('UPDATE `commentt` SET `text` = :newcom, `comment_date` = NOW()  WHERE `commentt`.`id` = :id AND `commentt`.`post_id` = :idpost ');
         $update->execute(array(':newcom' => $newcom, ':idpost' => $idpost, ':id' => $id));
@@ -70,7 +70,7 @@ function addmember($pseudo, $pass, $email)
 {
 
     try {
-        $db = dbConnect();
+        $db = DatabaseConnection::dbConnect();
         $verrifname = $db->prepare('SELECT * FROM membre WHERE pseudo=:pseudo ');
         $verrifname->execute(array(':pseudo' => $pseudo));
         $isname = $verrifname->rowCount();
@@ -98,7 +98,7 @@ function addmember($pseudo, $pass, $email)
 
 function verrifauteur(){
     try {
-        $db = dbConnect();
+        $db = DatabaseConnection::dbConnect();
         $recup = $db->prepare('SELECT * FROM commentt WHERE autor = :autor AND post_id= :post_id');
         $recup->execute(array(':pseudo' => $_SESSION['username'], ':post_id' => $_SESSION['username'] ));
         $result = $recup->fetch();
@@ -114,7 +114,7 @@ function verrifauteur(){
 
 function isadmin($username){
     try{
-        $db = dbConnect();
+        $db = DatabaseConnection::dbConnect();
         $recup = $db->prepare('SELECT * FROM membre WHERE pseudo = :username');
         $recup->execute(array(':username' => $username));
         $result = $recup->fetch();

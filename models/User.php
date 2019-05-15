@@ -18,7 +18,7 @@ class User
 
     function isadmin($username){
         try{
-            $db = dbConnect();
+            $db = DatabaseConnection::dbConnect();
             $recup = $db->prepare('SELECT * FROM membre WHERE pseudo = :username');
             $recup->execute(array(':username' => $username));
             $result = $recup->fetch();
@@ -34,7 +34,7 @@ class User
         //echo "<pre>";
         //var_dump($pseudo, $pass, $email);
         try {
-            $db = dbConnect();
+            $db = DatabaseConnection::dbConnect();
             $verrifname = $db->prepare('SELECT * FROM membre WHERE pseudo=:pseudo ');
             $verrifname->execute(array(':pseudo' => $pseudo));
             $isname = $verrifname->rowCount();
@@ -63,7 +63,7 @@ class User
     public function ConnectionUser($pseudo, $pass)
     {
         try {
-            $db = dbConnect();
+            $db = DatabaseConnection::dbConnect();
             $recup = $db->prepare('SELECT * FROM membre WHERE pseudo = :pseudo');
             $recup->execute(array(':pseudo' => $pseudo));
             $result = $recup->fetch();
@@ -76,7 +76,7 @@ class User
     public function VerrifAutor()
     {
         try {
-            $db = dbConnect();
+            $db = DatabaseConnection::dbConnect();
             $recup = $db->prepare('SELECT * FROM commentt WHERE autor = :autor AND post_id= :post_id');
             $recup->execute(array(':pseudo' => $_SESSION['username'], ':post_id' => $_SESSION['username'] ));
             $result = $recup->fetch();

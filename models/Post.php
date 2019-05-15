@@ -21,7 +21,7 @@ class post
 
     public function GetArticles()
     {
-        $db = dbConnect();
+        $db = DatabaseConnection::dbConnect();
         $req = $db->query('SELECT number, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM post ORDER BY creation_date_fr DESC LIMIT 0, 5');
 
         return $req;
@@ -29,7 +29,7 @@ class post
 
     public static function GetArticlesById($postId)
     {
-        $db = dbConnect();
+        $db = DatabaseConnection::dbConnect();
         $req = $db->prepare('SELECT number, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM post WHERE number = ? ORDER BY creation_date_fr DESC');
         $req->execute(array($postId));
         $post = $req->fetch();
