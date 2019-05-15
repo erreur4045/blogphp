@@ -19,7 +19,7 @@ while ($data = $posts->fetch()) {
                 <h3 class="titlenews">
                     <?= htmlspecialchars($data['title']) ?>
                 </h3>
-                <h4 class="titlenews"><em>le <?= $data['creation_date_fr'] = date('j-m-y') ?></em></h4>
+                <h4 class="titlenews"><em>le <?= $data['creation_date_fr'] = date('j-m-y') ?></em><em> Ecrit par <?= ucfirst($data['author']) ?></em></h4>
 
                 <p class="articleindex">
                     <?= nl2br(htmlspecialchars($data['content'])) ?>

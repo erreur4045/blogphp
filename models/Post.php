@@ -22,7 +22,7 @@ class post
     public function GetArticles()
     {
         $db = DatabaseConnection::dbConnect();
-        $req = $db->query('SELECT number, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM post ORDER BY creation_date_fr DESC LIMIT 0, 5');
+        $req = $db->query('SELECT number, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, author FROM post ORDER BY creation_date_fr DESC LIMIT 0, 5');
 
         return $req;
     }
