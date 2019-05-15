@@ -29,7 +29,7 @@ function connectionuser()
     if ($user->ConnectionUser($_POST['username'], $_POST['mdp'])) {
         $_SESSION['username'] = $_POST['username'];
         $_SESSION['message'] = "vous êtes bien connecté";
-        header('Location: index.php?action=test');
+        header('Location: index.php?action=dashboard');
     } else {
         $_SESSION['message'] = "Error MDP/pseudo";
         header('Location: index.php?action=connection');

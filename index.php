@@ -42,8 +42,8 @@ if ($maintenance == 0) {
             incription();
         } elseif ($_GET['action'] == 'deconnection') {
             deconnection();
-        } elseif ($_GET['action'] == 'test') {
-            test();
+        } elseif ($_GET['action'] == 'dashboard') {
+            dashboard();
         } elseif ($_GET['action'] == 'validinscription') {
             validincription();
         }elseif ($_GET['action'] == 'testmail') {

@@ -63,7 +63,7 @@ var_dump(mail('maximethi@hotmail.fr', 'Mon Sujet', $message));
 echo "ok";
 }
 
-function test()
+function dashboard()
 {
     if (isset($_SESSION['username'])) {
         $username = $_SESSION['username'];

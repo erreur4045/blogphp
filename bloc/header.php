@@ -23,7 +23,7 @@
                         <!-- <li><a href="index.php">Home</a></li>-->
                         <li><a href="index.php?action=CV">CV</a></li>
                         <?php if (!isset($_SESSION['username'])) : ?>
-                        <li><a href="index.php?action=inscription">Inscription</a></li>
+                            <li><a href="index.php?action=inscription">Inscription</a></li>
                         <?php endif; ?>
                         <li><a href="index.php?action=contact">Contact</a></li>
                         <li><a href="index.php?action=testmail">test_mail</a></li>
@@ -45,10 +45,10 @@
     </div>
 </header>
 <?php if (isset($_SESSION['message'])): ?>
-<div class="container">
-    <div class="row">
-        <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
+    <div class="container">
+        <div class="row">
+            <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
+        </div>
     </div>
-</div>
-<?php unset($_SESSION['message']); ?>
+    <?php unset($_SESSION['message']); ?>
 <?php endif; ?>
