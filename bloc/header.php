@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
     <div class="container-fluid">
         <nav class="navbar navbar-inverse">
             <div class="container">
