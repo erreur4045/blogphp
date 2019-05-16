@@ -11,8 +11,8 @@ require_once ('models/Comment.php');
 
 function listPosts()
 {
-    $postss = new Post();
-    $posts = $postss->GetArticles();
+    $managepost = new PostManager();
+    $posts = $managepost->selectPosts();
     require('view/LastPostView.php');
 }
 

@@ -12,7 +12,24 @@ class post
     private $title;
     private $content;
     private $date;
+    private $author;
 
+    public function __construct()
+    {
+
+    }
+
+    public function hydrate(array $donnees)
+    {
+        foreach ($donnees as $key => $values)
+        {
+            $method = 'set' . ucfirst($key);
+            if(method_exists($this, $method)){
+              $this->$method($values);
+            }
+        }
+        
+    }
 
     public function AddNewPost()
     {
@@ -36,6 +53,8 @@ class post
 
         return $post;
     }
+
+    /*------------------------------getters-------------------------------------------*/
 
     /**
      * @return mixed
@@ -68,13 +87,32 @@ class post
     {
         return $this->title;
     }
+    /**
+     * @return mixed
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
 
+
+    /*------------------------------setters-------------------------------------------*/
     /**
      * @param mixed $content
      */
     public function setContent($content)
     {
         $this->content = $content;
+    }
+
+    /**
+     * @param mixed $author
+     */
+    public function setAuthor($author)
+    {
+        if (is_string($author) && strlen($author) <= 255) {
+            $this->content = (string)$author;
+        }
     }
 
     /**
@@ -90,7 +128,7 @@ class post
      */
     public function setId($id)
     {
-        $this->id = $id;
+        $this->id = (int)$id;
     }
 
     /**
@@ -98,7 +136,9 @@ class post
      */
     public function setTitle($title)
     {
-        $this->title = $title;
+        if (is_string($title) && strlen($title) <= 255) {
+            $this->title = (string)$title;
+        }
     }
 
 }
