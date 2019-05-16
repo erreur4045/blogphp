@@ -12,11 +12,11 @@
                     <input type="text" name="username" id="username" class="username_in" placeholder="Nom Prénom">
                     <?php endif; ?>
                     <div class="form_in">
-                        <label for="mdp" class="mdp_in">Mail:</label><br>
+                        <label for="mail" class="mdp_in">Mail:</label><br>
                         <input type="email" name="mail" id="mail" class="mdp_in"  placeholder="mail@gmail.com">
                     </div>
                     <div class="form_in">
-                        <label for="mdp" class="mdp_in">Message :</label><br>
+                        <label for="message" class="message_in">Message :</label><br>
                         <textarea class="form-control" placeholder="Votre message" required></textarea>
                         <br>
                         <input type="submit" value="Envoyer" class="btn btn-info btn-block rounded-0 py-2">

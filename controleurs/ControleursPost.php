@@ -13,7 +13,7 @@ function listPosts()
 {
     $postss = new Post();
     $posts = $postss->GetArticles();
-    require('view/AccueilView.php');
+    require('view/LastPostView.php');
 }
 
 function post()
