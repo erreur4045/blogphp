@@ -41,9 +41,8 @@
             <div class="accueil">
                 <h1>Vous pouvez me suivre sur GitHub et LinkedIn</a></h1>
                 <div class="container">
-                <i class="fa fa-github" style="font-size:24px"><a href="google.com"></a></i>
-                    <a href="#" ><i style="font-size:24px" class=" fa fa-github"></i></a>
-                <i class="fa fa-linkedin-square" style="font-size:24px"></i>
+                    <a href="https://github.com/erreur4045" target="_blank"><i style="font-size:48px" class=" fa fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/maxime-thierry-93870a97/" target="_blank"><i style="font-size:48px" class=" fa fa-linkedin-square"></i></a>
                 </div>
                 </div>
         </div>

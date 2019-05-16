@@ -46,7 +46,7 @@
     color: var(--color-one);
 }
 
-.form_con, .form_contact, .error_co, .deconnection {
+.form_con, .form_contact, .error_co, .deconnection, .form_acceuil{
     text-align: center;
     border: 10px solid var(--color-four);
     border-radius: 20px;
