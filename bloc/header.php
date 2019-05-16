@@ -4,9 +4,8 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <div class="container-fluid">
         <nav class="navbar navbar-inverse">
             <div class="container">
@@ -27,6 +26,7 @@
                         <?php if (!isset($_SESSION['username'])) : ?>
                             <li><a href="index.php?action=inscription">Inscription</a></li>
                         <?php endif; ?>
+                        <li><a href="index.php?action=listPosts">Articles</a></li>
                         <li><a href="index.php?action=contact">Contact</a></li>
                         <li><a href="index.php?action=testmail">test_mail</a></li>
                         <?php if (!isset($_SESSION['username'])) : ?>
