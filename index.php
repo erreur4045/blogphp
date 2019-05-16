@@ -50,7 +50,7 @@ if ($maintenance == 0) {
             testmail();
         }
     } else {
-        listPosts();
+        accueil();
     }
 } else {
     include_once('bloc/maintenance.php');

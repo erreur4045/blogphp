@@ -5,6 +5,11 @@ require_once('models/Post.php');
 require_once('models/Comment.php');
 require_once('models/User.php');
 
+function accueil()
+{
+    require('view/AccueilView.php');
+}
+
 function comment()
 {
 
