@@ -8,39 +8,63 @@
 
 class PostManager
 {
-    public function __construct()
+    public function addPost(Post $post)
     {
-
+        $db = DatabaseConnection::dbConnect();
+        $recup = $db->prepare('INSERT INTO `post` (`title`, `content`, `date`, `author`) VALUES (:title, :content, NOW(), :author)');
+        $recup->execute(array(
+            ':title'=>$post->getTitle(),
+            ':content'=>$post->getContent(),
+            ':author'=>$post->getAuthor()
+        ));
+        return 1;
     }
 
-    public function addPost()
+    public function updatePost(Post $post)
     {
-        
+        $db = DatabaseConnection::dbConnect();
+        $recup = $db->prepare('UPDATE `post` SET `title` = :newtitle, `content` = :newcontent WHERE `post`.`number` = 20');
+        $recup->execute(array(
+            ':newtitle' => $post->getTitle(),
+            'newcontnent'=>$post->getContent()
+        ));
     }
 
-    public function updatePost()
+    public function deletePost(Post $post)
     {
-
+        $req = DatabaseConnection::dbConnect()->prepare('DELETE FROM `post` WHERE `post`.`number` = :idpost');
+        $req->execute(array(
+            ':idpost' => $post->getNumber()
+        ));
     }
 
-    public function deletePost()
+    public function selectLastPosts()
     {
-        
-    }
-
-    public function selectPosts()
-    {
-        $req = DatabaseConnection::dbConnect()->query('SELECT number, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, author FROM post ORDER BY creation_date_fr DESC LIMIT 0, 5');
-
+        $req = DatabaseConnection::dbConnect()->query('SELECT number, title, content, date, author FROM post ORDER BY date DESC LIMIT 0, 5');
         return $req;
     }
 
-    public function selectPostById($postId)
+    public function selectAllPosts()
     {
-        $req = DatabaseConnection::dbConnect()->prepare('SELECT number, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM post WHERE number = ? ORDER BY creation_date_fr DESC');
-        $req->execute(array($postId));
+        $req = DatabaseConnection::dbConnect()->query('SELECT number, title, content, date, author FROM post ORDER BY date DESC');
+        return $req;
+    }
+    public function selectPostById(Post $post)
+    {
+        $req = DatabaseConnection::dbConnect()->prepare('SELECT number, title, content, date FROM post WHERE number = ? ORDER BY date DESC');
+        $req->execute(array($post->getNumber()));
         $post = $req->fetch();
 
         return $post;
+    }
+    public function selectPostByAuthorSession(Post $post)
+    {
+        $req = DatabaseConnection::dbConnect()->prepare('SELECT * FROM post WHERE author = :author ORDER BY date DESC');
+        $req->execute(array(
+            ':author' => $post->getAuthor()
+        ));
+        $result = $req->fetchAll();
+        var_dump($result);
+        return $req;
     }
 }

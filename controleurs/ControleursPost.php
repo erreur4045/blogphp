@@ -6,24 +6,24 @@
  * Time: 16:03
  */
 
-require_once ('models/Post.php');
+require_once ('models/PostManager.php');
 require_once ('models/Comment.php');
 
 function listPosts()
 {
     $managepost = new PostManager();
-    $posts = $managepost->selectPosts();
+    $posts = $managepost->selectLastPosts();
     require('view/LastPostView.php');
 }
 
 function post()
 {
-    $postt = new Post();
+    $postt = new PostManager();
     $commentss = new Comment();
 
     if (!empty($_SESSION)){
         if ($_SESSION['username']) {
-            $post = $postt->GetArticlesById($_GET['id']);
+            $post = $postt->selectPostById($_GET['id']);
             $comments = $commentss->GetComments($_GET['id']);
             require('view/PostViewco.php');
         }
@@ -33,4 +33,11 @@ function post()
         $comments = $commentss->GetComments($_GET['id']);
         require('view/PostViewnotco.php');
     }
+}
+
+function allPost()
+{
+    $managepost = new PostManager();
+    $posts = $managepost->selectAllPosts();
+    require('view/AllPostView.php');
 }
