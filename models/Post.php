@@ -6,17 +6,17 @@
  * Time: 12:15
  */
 
-class post
+class Post
 {
-    private $id;
+    private $number;
     private $title;
     private $content;
     private $date;
     private $author;
 
-    public function __construct()
+    public function __construct($donnees)
     {
-
+        $this->hydrate($donnees);
     }
 
     public function hydrate(array $donnees)
@@ -25,36 +25,13 @@ class post
         {
             $method = 'set' . ucfirst($key);
             if(method_exists($this, $method)){
-              $this->$method($values);
+                $this->$method($values);
             }
         }
-        
-    }
-
-    public function AddNewPost()
-    {
-
-    }
-
-    public function GetArticles()
-    {
-        $db = DatabaseConnection::dbConnect();
-        $req = $db->query('SELECT number, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, author FROM post ORDER BY creation_date_fr DESC LIMIT 0, 5');
-
-        return $req;
-    }
-
-    public static function GetArticlesById($postId)
-    {
-        $db = DatabaseConnection::dbConnect();
-        $req = $db->prepare('SELECT number, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM post WHERE number = ? ORDER BY creation_date_fr DESC');
-        $req->execute(array($postId));
-        $post = $req->fetch();
-
-        return $post;
     }
 
     /*------------------------------getters-------------------------------------------*/
+
 
     /**
      * @return mixed
@@ -75,9 +52,9 @@ class post
     /**
      * @return mixed
      */
-    public function getId()
+    public function getNumber()
     {
-        return $this->id;
+        return $this->number;
     }
 
     /**
@@ -106,29 +83,28 @@ class post
     }
 
     /**
-     * @param mixed $author
-     */
-    public function setAuthor($author)
-    {
-        if (is_string($author) && strlen($author) <= 255) {
-            $this->content = (string)$author;
-        }
-    }
-
-    /**
      * @param mixed $date
      */
-    public function setDate($date)
+    private function setDate($date)
     {
         $this->date = $date;
     }
 
     /**
-     * @param mixed $id
+     * @param mixed $content
      */
-    public function setId($id)
+    private function setNumber($number)
     {
-        $this->id = (int)$id;
+        $this->number = $number;
+    }
+    /**
+     * @param mixed $author
+     */
+    public function setAuthor($author)
+    {
+        if (is_string($author) && strlen($author) <= 255) {
+            $this->author = (string)$author;
+        }
     }
 
     /**
