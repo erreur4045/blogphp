@@ -14,9 +14,20 @@ class Comment
     private $text;
     private $comment_date;
 
-    public function __construct()
+    public function __construct($donnees)
     {
+        $this->hydrate($donnees);
+    }
 
+    public function hydrate(array $donnees)
+    {
+        foreach ($donnees as $key => $values)
+        {
+            $method = 'set' . ucfirst($key);
+            if(method_exists($this, $method)){
+                $this->$method($values);
+            }
+        }
     }
 
     public function GetComments($postid)
@@ -48,21 +59,14 @@ class Comment
             die('Erreur : ' . $e->getMessage());
         }
     }
-    
-    /**
-     * @return mixed
-     */
+
+    /*---------------------------------------getteurs-------------------------------/*
+        /**
+         * @return mixed
+         */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     /**
@@ -74,27 +78,11 @@ class Comment
     }
 
     /**
-     * @param mixed $postid
-     */
-    public function setPostid($postid)
-    {
-        $this->postid = $postid;
-    }
-
-    /**
      * @return mixed
      */
     public function getAutor()
     {
         return $this->autor;
-    }
-
-    /**
-     * @param mixed $autor
-     */
-    public function setAutor($autor)
-    {
-        $this->autor = $autor;
     }
 
     /**
@@ -106,6 +94,38 @@ class Comment
     }
 
     /**
+     * @return mixed
+     */
+    public function getComment_date()
+    {
+        return $this->comment_date;
+    }
+/*---------------------------------------setteurs-------------------------------/*
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param mixed $postid
+     */
+    public function setPostid($postid)
+    {
+        $this->postid = $postid;
+    }
+
+    /**
+     * @param mixed $autor
+     */
+    public function setAutor($autor)
+    {
+        $this->autor = $autor;
+    }
+
+    /**
      * @param mixed $text
      */
     public function setText($text)
@@ -114,20 +134,11 @@ class Comment
     }
 
     /**
-     * @return mixed
-     */
-    public function getCommentDate()
-    {
-        return $this->comment_date;
-    }
-
-    /**
      * @param mixed $comment_date
      */
-    public function setCommentDate($comment_date)
+    public function setComment_date($comment_date)
     {
         $this->comment_date = $comment_date;
     }
 
-    
 }

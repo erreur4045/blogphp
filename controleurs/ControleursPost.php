@@ -29,7 +29,7 @@ function post()
         }
     }
     else {
-        $post = $postt->GetArticlesById($_GET['id']);
+        $post = $postt->selectPostById($_GET['id']);
         $comments = $commentss->GetComments($_GET['id']);
         require('view/PostViewnotco.php');
     }
