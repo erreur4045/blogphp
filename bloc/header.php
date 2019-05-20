@@ -21,14 +21,15 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse-4">
                     <ul class="nav navbar-nav navbar-right">
-                        <!-- <li><a href="index.php">Home</a></li>-->
                         <li><a href="index.php?action=CV">CV</a></li>
+
+                        <li><a href="index.php?action=listPosts">Articles</a></li>
+                        <li><a href="index.php?action=testfunction">test function</a></li>
+                        <li><a href="index.php?action=contact">Contact</a></li>
+                        <li><a href="index.php?action=testmail">test_mail</a></li>
                         <?php if (!isset($_SESSION['username'])) : ?>
                             <li><a href="index.php?action=inscription">Inscription</a></li>
                         <?php endif; ?>
-                        <li><a href="index.php?action=listPosts">Articles</a></li>
-                        <li><a href="index.php?action=contact">Contact</a></li>
-                        <li><a href="index.php?action=testmail">test_mail</a></li>
                         <?php if (!isset($_SESSION['username'])) : ?>
                             <li><a href="index.php?action=connectionadmin">Se connecter</a></li>
                         <?php else: ?>
