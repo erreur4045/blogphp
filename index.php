@@ -21,8 +21,7 @@ if ($maintenance == 0) {
             listPosts();
         } elseif ($_GET['action'] == 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                testfunction();
-                //post();
+                post();
             } else {
                 echo 'Erreur : aucun identifiant de billet envoyé';
             }

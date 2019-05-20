@@ -1,4 +1,4 @@
-<?php $title = 'Mon blog'; ?>
+<?php $title = $post->getTitle(); ?>
 <?php ob_start(); ?>
 
 <div class="container">
@@ -27,7 +27,7 @@
                 <p class=" author"><strong><?= htmlspecialchars($comment['autor']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
                 <p><?= nl2br(htmlspecialchars($comment['text'])) ?></p>
                 <?php if($_SESSION['username'] == $comment['autor']) : ?>
-                    <em><a href="index.php?action=modifcomment&id=<?= $comment['id'] . '&' . 'idpost=' . $post['number'] ?>">Modifier</a></em>
+                    <em><a href="index.php?action=modifcomment&id=<?= $comment['id'] . '&' . 'idpost=' . $post->getNumber()?>">Modifier</a></em>
                 <?php endif; ?>
                 <br>
                 <br>
@@ -42,7 +42,7 @@
     <div class="row">
         <div class="col-md-6">
             <h3>Ajouter un commentaire</h3>
-            <form action="index.php?<?php echo 'idpost=' . $post['number']; ?>&action=comment" method="post">
+            <form action="index.php?<?php echo 'idpost='.$post->getNumber() ?>&action=comment" method="post">
                 <div class="d-flex justify-content-center">
                     <textarea class="form-control" name="comments" placeholder="Votre message"></textarea>
                 </div>

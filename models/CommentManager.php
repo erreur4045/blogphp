@@ -11,8 +11,10 @@ class CommentManager
     public function GetComments(Comment $comment)
     {
         $db = DatabaseConnection::dbConnect();
-        $comments = $db->prepare('SELECT id, autor, text, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM commentt WHERE post_id = ? ORDER BY comment_date_fr DESC');
-        $comments->execute(array($postid));
+        $comments = $db->prepare('SELECT id, autor, text, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM commentt WHERE post_id = :idpost ORDER BY comment_date_fr DESC');
+        $comments->execute(array(
+            ':idpost' => $comment->getPostid()
+        ));
 
         return $comments;
     }

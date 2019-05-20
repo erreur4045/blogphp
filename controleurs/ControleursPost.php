@@ -16,25 +16,6 @@ function listPosts()
     require('view/LastPostView.php');
 }
 
-function post()
-{
-    $postt = new PostManager();
-    $commentss = new Comment();
-
-    if (!empty($_SESSION)){
-        if ($_SESSION['username']) {
-            $post = $postt->selectPostById($_GET['id']);
-            $comments = $commentss->GetComments($_GET['id']);
-            require('view/PostViewco.php');
-        }
-    }
-    else {
-        $post = $postt->selectPostById($_GET['id']);
-        $comments = $commentss->GetComments($_GET['id']);
-        require('view/PostViewnotco.php');
-    }
-}
-
 function allPost()
 {
     $managepost = new PostManager();
@@ -66,5 +47,29 @@ function validpost()
         $_SESSION['message'] = "Vous devez etre connecter pour ajouter un article";
         header('Location: index.php?action=connectionadmin');
     }
+
+}
+
+function post()
+{
+    /*preparation du tableau pour contruction de OBJ post et creation OBJ*/
+    $donnees = array('number' => $_GET['id']);
+    $post_for_data = new Post($donnees);
+
+    /*creation post manager avec OBJ post*/
+    $post_manager = new PostManager($post_for_data);
+
+    /*Creation OBJ post pour recuperer toutes les donees du post lier a l'ID du post envoyer*/
+    $post = new Post($post_manager->selectPostById($post_for_data));
+
+    /*Preparation des donn2es pour creation de OBJ Comment*/
+    $data_for_com = array('postid' => $_GET['id']);
+    $comment_for_data = new Comment($data_for_com);
+    /*Creation de OBJ manager*/
+    $com_manager = new CommentManager($comment_for_data);
+    /* Passage des commentaire a la vue */
+    $comments = $com_manager->GetComments($comment_for_data);
+
+    require ('view/PostViewco.php');
 
 }
