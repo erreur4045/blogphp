@@ -7,12 +7,12 @@
 
         <div class="news">
             <h3 class="titrefull">
-                <?= htmlspecialchars($post['title']) ?>
-                <em> le <?= $post['creation_date_fr'] ?></em>
+                <?= htmlspecialchars($post->getTitle()) ?>
+                <em> le <?= $post->getDate() ?></em>
             </h3>
 
             <p class="articlefull">
-                <?= nl2br(htmlspecialchars($post['content'])) ?>
+                <?= nl2br(htmlspecialchars($post->getContent())) ?>
             </p>
         </div>
 

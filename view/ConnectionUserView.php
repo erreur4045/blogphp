@@ -1,6 +1,7 @@
 <?php $title = 'Mon blog'; ?>
 
 <?php ob_start(); ?>
+    <h2 class="text-center">Connection</h2>
     <div class="container">
         <div class="row">
             <form action="index.php?action=connectionuser" class="form_con" method="post">
@@ -13,8 +14,12 @@
                     </div>
                     <br>
                     <div><input type="submit" name="submit" class="btn btn-primary" value="submit"></div>
-
             </form>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <h3 class="">Vous n'etes pas inscrit ?<span><a href="index.php?action=inscription" class="small"> Incription</a></span></h3>
         </div>
     </div>
 <?php $content = ob_get_clean(); ?>

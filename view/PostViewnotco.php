@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<?php $title = 'Mon blog'; ?>
+<?php ob_start(); ?>
 <html>
 <body>
 <div class="container">
@@ -36,23 +37,8 @@ while ($comment = $comments->fetch()) {
     <?php
 }
 ?>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <h3>Pour ajouter une commentaire connectez vous </h3>
-            <!--<form action="index.php?<?php /*echo 'idpost=' . $post['number']; */?>&action=comment" method="post">
-                <div class="d-flex justify-content-center">
-                    <label for="name">Votre nom</label>
-                    <input id="name" name="name" type="text" value="<?php /*echo $value; */?>" class="form-control"
-                           required>
-                    <br>
-                    <textarea class="form-control" name="comments" placeholder="Votre message"></textarea>
-                </div>
-                <input type="submit" value="Submit">
-            </form>
-        </div>
-    </div>
-</div>-->
 
-</body>
-</html>
+<?php $content = ob_get_clean(); ?>
+<?php //var_dump($content )?>
+
+<?php require('style/template.php'); ?>

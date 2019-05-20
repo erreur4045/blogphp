@@ -19,7 +19,7 @@ while ($data = $posts->fetch()) {
                 <h3 class="titlenews">
                     <?= htmlspecialchars($data['title']) ?>
                 </h3>
-                <h4 class="titlenews"><em>le <?= $data['creation_date_fr'] = date('j-m-y') ?></em><em> Ecrit par <?= ucfirst($data['author']) ?></em></h4>
+                <h4 class="titlenews"><em>le <?= $data['date']=date("d-m-Y")?></em><em> Ecrit par <?= ucfirst($data['author']) ?></em></h4>
 
                 <p class="articleindex">
                     <?= nl2br(htmlspecialchars($data['content'])) ?>
@@ -34,6 +34,26 @@ while ($data = $posts->fetch()) {
 }
 $posts->closeCursor();
 ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="row align-items-center">
+                <a href="index.php?action=listAllPosts">Voir tout les articles</a>
+            </div>
+        </div>
+    </div>
+<?php if (isset($_SESSION['username'])) : ?>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="row align-items-center">
+                <a href="index.php?action=addnewpost">Ajouter un article</a>
+            </div>
+        </div>
+    </div>
+    </div>
+<?php endif; ?>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('style/template.php'); ?>
