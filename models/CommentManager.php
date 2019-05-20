@@ -24,7 +24,7 @@ class CommentManager
             $db = DatabaseConnection::dbConnect();
             $addcom = $db->prepare('INSERT INTO commentt (post_id,autor,text,comment_date) VALUES (:idpost, :autor, :comment, NOW()) ');
             $addcom->execute(array(
-                ':idpost' => $comment->getId(),
+                ':idpost' => $comment->getPostid(),
                 ':autor' => $comment->getAutor(),
                 ':comment' => $comment->getText()
             ));
@@ -38,9 +38,26 @@ class CommentManager
         try {
             $db = DatabaseConnection::dbConnect();
             $update = $db->prepare('UPDATE `commentt` SET `text` = :newcom, `comment_date` = NOW()  WHERE `commentt`.`id` = :id AND `commentt`.`post_id` = :idpost ');
-            $update->execute(array(':newcom' => $newcom, ':idpost' => $postid, ':id' => $id));
+            $update->execute(array(
+                ':newcom' => $comment->getText(),
+                ':idpost' => $comment->getPostid(),
+                ':id' => $comment->getId()
+            ));
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
+    }
+
+    public function GetComment(Comment $comment)
+    {
+        $db = DatabaseConnection::dbConnect();
+        $thecomment = $db->prepare('SELECT text FROM commentt WHERE post_id = :idpost AND id= :id AND autor = :author');
+        $thecomment->execute(array(
+            ':idpost' => $comment->getPostid(),
+            ':id'     => $comment->getId(),
+            'author' => $comment->getAutor()
+        ));
+
+        return $thecomment;
     }
 }
