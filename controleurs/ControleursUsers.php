@@ -42,3 +42,13 @@ function deconnection()
     header('Location: index.php');
     session_destroy();
 }
+
+function incription()
+{
+    require('view/IncriptionView.php');
+}
+
+function connection()
+{
+    require('view/ConnectionUserView.php');
+}
