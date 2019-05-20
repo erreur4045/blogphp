@@ -16,117 +16,36 @@ class User
     private $isadmin;
 
 
-    function isadmin($username){
-        try{
-            $db = DatabaseConnection::dbConnect();
-            $recup = $db->prepare('SELECT * FROM membre WHERE pseudo = :username');
-            $recup->execute(array(':username' => $username));
-            $result = $recup->fetch();
-            return $result;
-        }
-        catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
+    public function __construct($donnees)
+    {
+        /*        echo '<pre>';
+                echo '<br>';
+                echo '<h1>Donnees du constructeur class user</h1>';
+                var_dump($donnees);
+                echo '</pre>';*/
+        if (isset($donnees))
+            $this->hydrate($donnees);
+        else
+            echo 'pas de donnees';
     }
 
-    public function AddUser($pseudo, $pass, $email)
+    public function hydrate(array $donnees)
     {
-        //echo "<pre>";
-        //var_dump($pseudo, $pass, $email);
-        try {
-            $db = DatabaseConnection::dbConnect();
-            $verrifname = $db->prepare('SELECT * FROM membre WHERE pseudo=:pseudo ');
-            $verrifname->execute(array(':pseudo' => $pseudo));
-            $isname = $verrifname->rowCount();
-            $verrifmail = $db->prepare('SELECT * FROM membre WHERE email=:email ');
-            $verrifmail->execute(array(':email' => $email));
-            $ismail = $verrifmail->rowCount();
-            if ($isname > 0) {
-                return 1;
-            } elseif ($ismail > 0) {
-                return 2;
-            } else {
-                $pass_hache = password_hash($pass, PASSWORD_DEFAULT);
-                $req = $db->prepare('INSERT INTO membre(pseudo, pass, email, date_sub) VALUES(:pseudo, :pass, :email, CURDATE())');
-                $req->execute(array(
-                    ':pseudo' => $pseudo,
-                    ':pass' => $pass_hache,
-                    ':email' => $email
-                ));
+        foreach ($donnees as $key => $values)
+        {
+            $method = 'set' . ucfirst($key);
+            if(method_exists($this, $method)){
+                $this->$method($values);
             }
-
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
         }
     }
-
-    public function ConnectionUser($pseudo, $pass)
-    {
-        try {
-            $db = DatabaseConnection::dbConnect();
-            $recup = $db->prepare('SELECT * FROM membre WHERE pseudo = :pseudo');
-            $recup->execute(array(':pseudo' => $pseudo));
-            $result = $recup->fetch();
-            return password_verify($pass, $result['pass']);
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
-    }
-
-    public function VerrifAutor()
-    {
-        try {
-            $db = DatabaseConnection::dbConnect();
-            $recup = $db->prepare('SELECT * FROM commentt WHERE autor = :autor AND post_id= :post_id');
-            $recup->execute(array(':pseudo' => $_SESSION['username'], ':post_id' => $_SESSION['username'] ));
-            $result = $recup->fetch();
-            $isautor = $result->rowCount();
-            if ($isautor = 0)
-                return 0;
-            else
-                return 1;
-            return 1;
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
-    }
-
-/*    public function IsAdmin($username)
-    {
-        try{
-            $db = dbConnect();
-            $recup = $db->prepare('SELECT * FROM membre WHERE pseudo = :username');
-            $recup->execute(array(':username' => $username));
-            $result = $recup->fetch();
-            return $result;
-        }
-        catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
-    }*/
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
+    /*------------------------------setters-------------------------------------------*/
     /**
      * @param mixed $id
      */
     public function setId($id)
     {
         $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPseudo()
-    {
-        return $this->pseudo;
     }
 
     /**
@@ -138,27 +57,11 @@ class User
     }
 
     /**
-     * @return mixed
-     */
-    public function getPass()
-    {
-        return $this->pass;
-    }
-
-    /**
      * @param mixed $pass
      */
     public function setPass($pass)
     {
         $this->pass = $pass;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->email;
     }
 
     /**
@@ -170,14 +73,6 @@ class User
     }
 
     /**
-     * @return mixed
-     */
-    public function getDatesub()
-    {
-        return $this->datesub;
-    }
-
-    /**
      * @param mixed $datesub
      */
     public function setDatesub($datesub)
@@ -186,19 +81,60 @@ class User
     }
 
     /**
-     * @return mixed
-     */
-    public function getIsadmin()
-    {
-        return $this->isadmin;
-    }
-
-    /**
      * @param mixed $isadmin
      */
     public function setIsadmin($isadmin)
     {
         $this->isadmin = $isadmin;
+    }
+
+    /*------------------------------getters-------------------------------------------*/
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPseudo()
+    {
+        return $this->pseudo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPass()
+    {
+        return $this->pass;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDatesub()
+    {
+        return $this->datesub;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsadmin()
+    {
+        return $this->isadmin;
     }
 
 
