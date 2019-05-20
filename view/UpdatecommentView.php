@@ -1,24 +1,31 @@
-<!DOCTYPE html>
-<html>
-
-
-<body>
-<?php $id = $_GET['id'];
-$idpost = $_GET['idpost']; ?>
-<h3>Modifier un commentaire</h3>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <form action="index.php?idpost=<?php echo $_GET['idpost'] ?>&action=comment" method="post">
-                <div class="d-flex justify-content-center">
-                    <label for="name">Votre nom</label>
-                    <input id="name" name="name" type="text" class="form-control" required>
-                    <br>
-                    <textarea class="form-control" name="comments" placeholder="Votre message"></textarea>
-                </div>
-                <input type="submit" value="Submit">
-            </form>
+<?php $title = 'Mon blog'; ?>
+<?php ob_start(); ?>
+    <body>
+    <?php if (!isset($_SESSION['username'])) : ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Vous devez etre connecter pour utilisez cette fonctionalite</h3>
+            </div>
         </div>
     </div>
-</div>
-</body>
+        <?php else: ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Modifier un commentaire</h3>
+                    <form action="index.php?idpost=<?php echo $_GET['idpost'] . '&id=' . $_GET['id'] ?>&action=updatecomment" method="post">
+                        <div class="d-flex justify-content-center">
+                            <p class="">Ancien commentaire : </p>
+                            <p><?php echo $old_com_for_view->getText() ?></p>
+                            <textarea class="form-control" name="comments" placeholder="Votre nouveau commentaire"></textarea>
+                        </div>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php endif;?>
+    </body>
+<?php $content = ob_get_clean(); ?>
+<?php require('style/template.php'); ?>
