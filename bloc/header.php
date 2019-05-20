@@ -31,7 +31,7 @@
                             <li><a href="index.php?action=inscription">Inscription</a></li>
                         <?php endif; ?>
                         <?php if (!isset($_SESSION['username'])) : ?>
-                            <li><a href="index.php?action=connectionadmin">Se connecter</a></li>
+                            <li><a href="index.php?action=connection">Se connecter</a></li>
                         <?php else: ?>
                             <li>
                                 <button type="button" class="btn btn-default btn-sm">
