@@ -10,6 +10,8 @@ require_once ('controleurs/controller.php');
 require_once ('controleurs/ControleursUsers.php');
 require_once ('controleurs/ControleursPost.php');
 require_once ('models/DatabaseConnection.php');
+require_once ('models/CommentManager.php');
+require_once ('models/Comment.php');
 require_once ('models/PostManager.php');
 
 $maintenance = 0;
@@ -19,10 +21,13 @@ if ($maintenance == 0) {
             listPosts();
         } elseif ($_GET['action'] == 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                post();
+                testfunction();
+                //post();
             } else {
                 echo 'Erreur : aucun identifiant de billet envoyé';
             }
+        } elseif ($_GET['action'] == 'listAllPosts') {
+            allPost();
         } elseif ($_GET['action'] == 'mention') {
             mention();
         } elseif ($_GET['action'] == 'comment') {
@@ -45,8 +50,14 @@ if ($maintenance == 0) {
             deconnection();
         } elseif ($_GET['action'] == 'dashboard') {
             dashboard();
+        } elseif ($_GET['action'] == 'addnewpost') {
+            addnewpost();
+        } elseif ($_GET['action'] == 'validpost') {
+            validpost();
         } elseif ($_GET['action'] == 'validinscription') {
             validincription();
+        } elseif ($_GET['action'] == 'testfunction') {
+            testfunction();
         }elseif ($_GET['action'] == 'testmail') {
             testmail();
         }
