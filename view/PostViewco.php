@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="row">
-        <p><a href="index.php">Retour à la liste des billets</a></p>
+        <p><a href="index.php?action=listAllPosts">Retour à la liste des billets</a></p>
 
         <div class="news">
             <h3 class="titrefull">
@@ -26,8 +26,10 @@
                 <div class="articleco" style="border: 3px solid var(--color-tree);>
                 <p class=" author"><strong><?= htmlspecialchars($comment['autor']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
                 <p><?= nl2br(htmlspecialchars($comment['text'])) ?></p>
-                <?php if($_SESSION['username'] == $comment['autor']) : ?>
-                    <em><a href="index.php?action=modifcomment&id=<?= $comment['id'] . '&' . 'idpost=' . $post->getNumber()?>">Modifier</a></em>
+                <?php if(!isset($_SESSION['username'])) : ?>
+                    <em></em>
+                <?php elseif($_SESSION['username'] == $comment['autor']):  ?>
+                    <em><a href="index.php?action=modifcomment&id=<?= $comment['id'] . '&idpost=' . $post->getNumber()?>">Modifier</a></em>
                 <?php endif; ?>
                 <br>
                 <br>
@@ -38,6 +40,7 @@
     </div>
     </div>
 <?php endwhile; ?>
+<?php if (isset($_SESSION['username'])) : ?>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -51,7 +54,15 @@
         </div>
     </div>
 </div>
+    <?php elseif(!isset($_SESSION['username'])) : ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Pour ajoutez un commentaire connectez vous</h3>
+                <em><a href="index.php?action=connectionadmin">Connection</a></em>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 <?php $content = ob_get_clean(); ?>
-<?php //var_dump($content )?>
-
 <?php require('style/template.php'); ?>

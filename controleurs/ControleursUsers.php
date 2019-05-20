@@ -7,14 +7,36 @@
  */
 
 require_once ('models/User.php');
+require_once ('models/UserManager.php');
+
+function dashboard()
+{
+    if (!isset($_SESSION['username']))
+        require ('view/Co_error.php');
+    else{
+        $data = array(
+            'pseudo' => $_SESSION['username'],
+        );
+        $user = new User($data);
+        $manage_user = new UserManager($user);
+        $result = $manage_user->GetAllPostsByUser($user);
+        require('view/DashboardView.php');
+    }
+}
 
 function validincription()
 {
-    $Objincription = new User();
-    if ($Objincription->AddUser($_POST['username'], $_POST['mdp'], $_POST['mail']) == 1) {
+    $data = array(
+        'pseudo' => $_POST['username'],
+        'pass' => $_POST['mdp'],
+        'email' => $_POST['mail']
+    );
+    $user = new User($data);
+    $manage_user = new UserManager($user);
+    if ($manage_user->AddUser($user) == 1) {
         $_SESSION['message'] = "Le pseudo choisi est déjà utilisé, veuillez vous incrire en utilisant un autre pseudo";
         header('Location: index.php?action=inscription');
-    } elseif ($Objincription->AddUser($_POST['username'], $_POST['mdp'], $_POST['mail']) == 2) {
+    } elseif ($manage_user->AddUser($user) == 2) {
         $_SESSION['message'] = "Le mail choisi est déjà utilisé, veuillez vous incrire en utilisant un autre mail";
         header('Location: index.php?action=inscription');
     } else {
@@ -25,13 +47,18 @@ function validincription()
 
 function connectionuser()
 {
-    $user = new User();
-    if ($user->ConnectionUser($_POST['username'], $_POST['mdp'])) {
+    $data = array(
+        'pseudo' => $_POST['username'],
+        'pass' => $_POST['mdp']
+    );
+    $user = new User($data);
+    $manage_user = new UserManager($user);
+    if ($manage_user->ConnectionUser($user) == TRUE) {
         $_SESSION['username'] = $_POST['username'];
         $_SESSION['message'] = "vous êtes bien connecté";
-        header('Location: index.php?action=dashboard');
+        header('Location: index.php');
     } else {
-        $_SESSION['message'] = "Error MDP/pseudo";
+        $_SESSION['message'] = "Error MDP ou pseudo";
         header('Location: index.php?action=connection');
     }
 }

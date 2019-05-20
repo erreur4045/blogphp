@@ -34,6 +34,14 @@ while ($data = $posts->fetch()) {
 }
 $posts->closeCursor();
 ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="row align-items-center">
+                <a href="index.php?action=addnewpost">Ajouter un article</a>
+            </div>
+        </div>
+    </div>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('style/template.php'); ?>

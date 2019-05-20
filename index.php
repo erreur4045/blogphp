@@ -9,6 +9,7 @@ session_start();
 require_once ('controleurs/controller.php');
 require_once ('controleurs/ControleursUsers.php');
 require_once ('controleurs/ControleursPost.php');
+require_once ('controleurs/ControleursComments.php');
 require_once ('models/DatabaseConnection.php');
 require_once ('models/CommentManager.php');
 require_once ('models/Comment.php');
@@ -31,15 +32,15 @@ if ($maintenance == 0) {
             mention();
         } elseif ($_GET['action'] == 'comment') {
             comment();
+        } elseif ($_GET['action'] == 'modifcomment') {
+            modifcomment();
         } elseif ($_GET['action'] == 'connection') {
             connection();
-        } elseif ($_GET['action'] == 'connectionadmin') {
-            connectionadmin();
         } elseif ($_GET['action'] == 'connectionuser') {
             connectionuser();
         } elseif ($_GET['action'] == 'contact') {
             contact();
-        } elseif ($_GET['action'] == 'modifcomment') {
+        } elseif ($_GET['action'] == 'updatecomment') {
             updatecomm();
         } elseif ($_GET['action'] == 'CV') {
             CV();
