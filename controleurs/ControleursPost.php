@@ -41,3 +41,30 @@ function allPost()
     $posts = $managepost->selectAllPosts();
     require('view/AllPostView.php');
 }
+
+function addnewpost()
+{
+    require('view/AddnewpostView.php');
+}
+
+function validpost()
+{
+    if (isset($_SESSION['username'])) {
+        $donnees = array(
+            'title' => $_POST['title'],
+            'content' => $_POST['content'],
+            'author' => $_SESSION['username'],
+        );
+        $post = new Post($donnees);
+        $manager = new PostManager($post);
+        $manager->addPost($post);
+        $_SESSION['message'] = "Votre article a ete ajoute";
+        header('Location: index.php?action=listPosts');
+    }
+    else
+    {
+        $_SESSION['message'] = "Vous devez etre connecter pour ajouter un article";
+        header('Location: index.php?action=connectionadmin');
+    }
+
+}
