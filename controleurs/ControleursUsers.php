@@ -8,6 +8,8 @@
 
 require_once ('models/User.php');
 require_once ('models/UserManager.php');
+require_once ('models/Post.php');
+require_once ('models/PostManager.php');
 
 function dashboard()
 {
@@ -19,7 +21,16 @@ function dashboard()
         );
         $user = new User($data);
         $manage_user = new UserManager($user);
-        $result = $manage_user->GetAllPostsByUser($user);
+        $result_post = $manage_user->GetAllPostsByUser($user);
+
+        $data = array(
+            'autor' => $_SESSION['username'],
+        );
+        $com = new Comment($data);
+        echo $com->getAutor();
+        $manage_user = new CommentManager($com);
+        $result_com = $manage_user->GetCommentsByUser($com);
+
         require('view/DashboardView.php');
     }
 }

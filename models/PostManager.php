@@ -22,12 +22,16 @@ class PostManager
 
     public function updatePost(Post $post)
     {
+        echo $post->getNumber();
         $db = DatabaseConnection::dbConnect();
-        $recup = $db->prepare('UPDATE `post` SET `title` = :newtitle, `content` = :newcontent WHERE `post`.`number` = 20');
-        $recup->execute(array(
-            ':newtitle' => $post->getTitle(),
-            'newcontnent'=>$post->getContent()
-        ));
+        $recup = $db->prepare('UPDATE post SET title = :newtitle, content = :newcontent WHERE `post`.`number` = :number AND author = :author');
+        $result = $recup->execute(array(
+        ':newtitle' => $post->getTitle(),
+        ':number' => $post->getNumber(),
+        'newcontent'=>$post->getContent(),
+        'author'=>$post->getAuthor()
+    ));
+        var_dump($result);
     }
 
     public function deletePost(Post $post)

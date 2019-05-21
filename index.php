@@ -34,6 +34,10 @@ if ($maintenance == 0) {
             comment();
         } elseif ($_GET['action'] == 'modifcomment') {
             modifcomment();
+        } elseif ($_GET['action'] == 'modifpost') {
+            modifpost();
+        } elseif ($_GET['action'] == 'validupdatepost') {
+            validupdatepost();
         } elseif ($_GET['action'] == 'connection') {
             connection();
         } elseif ($_GET['action'] == 'connectionuser') {

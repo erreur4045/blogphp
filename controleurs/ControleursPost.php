@@ -50,6 +50,49 @@ function validpost()
 
 }
 
+function validupdatepost()
+{
+    if (isset($_SESSION['username'])) {
+        $donnees = array(
+            'content' => $_POST['content'],
+            'title' => $_POST['title'],
+            'number' => $_GET['id'],
+            'author' => $_SESSION['username']
+        );
+        $post = new Post($donnees);
+        $manager = new PostManager($post);
+        $manager->updatePost($post);
+        $_SESSION['message'] = "Votre article a ete modifier";
+        $str = 'Location: index.php?id='.$_GET['id'].'&action=post';
+        header($str);
+    }
+    else
+    {
+        $_SESSION['message'] = "Vous devez etre connecter pour ajouter un article";
+         header('Location: index.php?action=connectionuser');
+    }
+}
+
+function modifpost()
+{
+    if (isset($_SESSION['username'])) {
+        $donnees = array(
+            'number' => $_GET['id'],
+        );
+        $post = new Post($donnees);
+        echo $post->getNumber();
+        $manager = new PostManager($post);
+        $data_view = $manager->selectPostById($post);
+
+    }
+    else
+    {
+        $_SESSION['message'] = "Vous devez etre connecter pour ajouter un article";
+        header('Location: index.php?action=connectionadmin');
+    }
+    require('view/UpdatepostView.php');
+}
+
 function post()
 {
     /*preparation du tableau pour contruction de OBJ post et creation OBJ*/
