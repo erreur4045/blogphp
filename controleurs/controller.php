@@ -1,35 +1,73 @@
 <?php
+require_once ('models/PostManager.php');
+require_once ('models/Comment.php');
+require_once ('models/Post.php');
+require_once ('models/CommentManager.php');
+function testfunction()
+{
+    //pour la classe post
+/*    $donnees_a_envoyer_a_la_classe = [
+        'number' => 22,
+        'title' => 'Vyk12',
+        'content' => 'ceciestducontenue',
+        'author' => $_SESSION['username']
+    ];*/
 
-require_once('models/model.php');
-require_once('models/Post.php');
-require_once('models/Comment.php');
-require_once('models/User.php');
+//pour la classe comment
+/*    $donnees_a_envoyer_a_la_classe = [
+        'id' => 1,
+        'postid' => 2,
+        'autor' => 'maxime',
+        'text' => 'je suis le commentaire',
+        'comment_date' => '2019-04-01 07:00:00'
+    ];
+    $nbid = $_GET['id'];
+    $data = array('number' => $nbid);
+    $post = new Post($data);
+    $post_manager = new PostManager($post);
+    $com = new Comment($donnees_a_envoyer_a_la_classe);
+    $manager = new CommentManager($com);
+    $post->getNumber();*/
+
+    /*preparation du tableau pour contruction de OBJ post et creation OBJ*/
+    $donnees = array('number' => $_GET['id']);
+    $post_for_data = new Post($donnees);
+
+    /*creation post manager avec OBJ post*/
+    $post_manager = new PostManager($post_for_data);
+
+    /*Creation OBJ post pour recuperer toutes les donees du post lier a l'ID du post envoyer*/
+    $post = new Post($post_manager->selectPostById($post_for_data));
+
+    /*Preparation des donn2es pour creation de OBJ Comment*/
+    $data_for_com = array('postid' => $_GET['id']);
+    $comment_for_data = new Comment($data_for_com);
+    /*Creation de OBJ manager*/
+    $com_manager = new CommentManager($comment_for_data);
+    /* Passage des commentaire a la vue */
+    $comments = $com_manager->GetComments($comment_for_data);
+
+
+    require ('view/PostViewco.php');
+
+    //test pour post
+/*    $postaajouter = new Post($donnees_a_envoyer_a_la_classe);
+    $manager = new PostManager();
+    $manager->selectPostByAuthorSession($postaajouter);
+    echo '<pre>';
+    var_dump($manager->selectPostByAuthorSession($postaajouter));
+    echo 'cest good';*/
+    /* $manager->addPost($postaajouter);*/
+}
 
 function accueil()
 {
     require('view/AccueilView.php');
 }
 
-function comment()
-{
-
-    $idpost = $_GET['idpost'];
-    addcom($idpost, $_SESSION['username'], $_POST['comments']);
-    header('Location: index.php?id=' . $idpost . '&action=post');
-}
 function mention()
 {
     require('view/MentionsView.php');
-}
-
-function connection()
-{
-    require('view/ConnectionUserView.php');
-}
-
-function connectionadmin()
-{
-    require('view/ConnectionUserView.php');
 }
 
 function CV()
@@ -40,47 +78,4 @@ function CV()
 function contact()
 {
     require('view/ContactView.php');
-}
-
-function incription()
-{
-    require('view/IncriptionView.php');
-}
-
-function updatecomm()
-{
-
-    var_dump($_GET['id'], $_GET['idposts']);
-    require('view/UpdatecommentView.php');
-}
-
-
-function testmail(){
-
-// Le message
-$message = "Line 1\r\nLine 2\r\nLine 3";
-
-// Dans le cas où nos lignes comportent plus de 70 caractères, nous les coupons en utilisant wordwrap()
-$message = wordwrap($message, 70, "\r\n");
-
-// Envoi du mail
-var_dump(mail('maximethi@hotmail.fr', 'Mon Sujet', $message));
-echo "ok";
-}
-
-function dashboard()
-{
-    if (isset($_SESSION['username'])) {
-        $username = $_SESSION['username'];
-        $result = isadmin($username);
-        /*        echo "<pre>";
-                var_dump($result);*/
-        if ($result['is_admin'] == 1) {
-            require('view/pageadmin.php');
-        } elseif ($result['is_admin'] == null) {
-            header('Location: index.php');
-        }
-    } else {
-        require('view/Co_error.php');
-    }
 }

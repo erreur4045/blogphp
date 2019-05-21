@@ -59,7 +59,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h3>Pour ajoutez un commentaire connectez vous</h3>
-                <em><a href="index.php?action=connectionadmin">Connection</a></em>
+                <em><a href="index.php?action=connection">Connection</a></em>
             </div>
         </div>
     </div>
