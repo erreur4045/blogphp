@@ -18,6 +18,19 @@ class CommentManager
 
         return $comments;
     }
+
+    public function GetCommentsByUser(Comment $comment)
+    {
+        $reqest = 'SELECT id, autor, text, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM commentt WHERE autor =' . '\'' . $comment->getAutor() . '\' ORDER BY comment_date_fr DESC' ;
+        $req = DatabaseConnection::dbConnect()->query($reqest);
+        /*$db = DatabaseConnection::dbConnect();
+        $comments = $db->prepare('SELECT id, autor, text, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM commentt WHERE author = :author ORDER BY comment_date_fr DESC');
+        $comments->execute(array(
+            ':author' => $comment->getAutor()
+        ));*/
+        return $req;
+    }
+
     public function AddComment(Comment $comment)
     {
         try {
