@@ -32,7 +32,7 @@
     <div class="container">
         <div class="row">
             <div class="accueil">
-                <h1>Vous trouverais un lien vers mon CV <a href="index.php?action=CV"> ici</a></h1>
+                <h1>Vous pouvez trouver un lien vers mon CV  <a href="index.php?action=CV"> ici</a></h1>
             </div>
         </div>
     </div>

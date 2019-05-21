@@ -45,11 +45,13 @@ class UserManager
 
         try {
             $db = DatabaseConnection::dbConnect();
+
             $verrifname = $db->prepare('SELECT * FROM membre WHERE pseudo=:pseudo ');
             $verrifname->execute(array(
                 ':pseudo' => $user->getPseudo()
             ));
             $isname = $verrifname->rowCount();
+
             $verrifmail = $db->prepare('SELECT * FROM membre WHERE email=:email ');
             $verrifmail->execute(array(
                 ':email' => $user->getEmail()
