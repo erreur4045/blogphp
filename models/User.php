@@ -18,15 +18,10 @@ class User
 
     public function __construct($donnees)
     {
-        /*        echo '<pre>';
-                echo '<br>';
-                echo '<h1>Donnees du constructeur class user</h1>';
-                var_dump($donnees);
-                echo '</pre>';*/
         if (isset($donnees))
             $this->hydrate($donnees);
         else
-            echo 'pas de donnees';
+            echo 'pas de donnees dans le construct';
     }
 
     public function hydrate(array $donnees)
@@ -136,6 +131,4 @@ class User
     {
         return $this->isadmin;
     }
-
-
 }
