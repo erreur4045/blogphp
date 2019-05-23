@@ -1,5 +1,6 @@
 <?php $title = 'Mon blog'; ?>
 <?php ob_start(); ?>
+    <div class="main">
     <div class="container">
         <div class="row">
             <h1 class="titleindex">Mon super blog !</h1>
@@ -15,7 +16,8 @@ while ($data = $posts->fetch()) {
     ?>
     <div class="container">
         <div class="row">
-            <div class="news">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start ">
                 <h3 class="titlenews">
                     <?= htmlspecialchars($data['title']) ?>
                 </h3>
@@ -26,7 +28,7 @@ while ($data = $posts->fetch()) {
                 </p>
                 <p class="hrefindex"><a class="hrefindex" href="index.php?id=<?= $data['number'] ?>&action=post">Commentaires</a>
                 </p>
-
+            </div>
             </div>
         </div>
     </div>
@@ -41,6 +43,7 @@ $posts->closeCursor();
                 <a href="index.php?action=addnewpost">Ajouter un article</a>
             </div>
         </div>
+    </div>
     </div>
 <?php $content = ob_get_clean(); ?>
 

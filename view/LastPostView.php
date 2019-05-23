@@ -1,5 +1,6 @@
 <?php $title = 'Mon blog'; ?>
 <?php ob_start(); ?>
+    <div class="main">
     <div class="container">
         <div class="row">
             <h1 class="titleindex">Mon super blog !</h1>
@@ -19,7 +20,8 @@ while ($data = $posts->fetch()) {
                 <h3 class="titlenews">
                     <?= htmlspecialchars($data['title']) ?>
                 </h3>
-                <h4 class="titlenews"><em>le <?= $data['date']=date("d-m-Y")?></em><em> Ecrit par <?= ucfirst($data['author']) ?></em></h4>
+                <h4 class="titlenews"><em>le <?= $data['date'] = date("d-m-Y") ?></em><em> Ecrit
+                        par <?= ucfirst($data['author']) ?></em></h4>
 
                 <p class="articleindex">
                     <?= nl2br(htmlspecialchars($data['content'])) ?>
@@ -51,6 +53,7 @@ $posts->closeCursor();
                 <a href="index.php?action=addnewpost">Ajouter un article</a>
             </div>
         </div>
+    </div>
     </div>
     </div>
 <?php endif; ?>

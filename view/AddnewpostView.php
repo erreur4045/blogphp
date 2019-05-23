@@ -3,6 +3,7 @@
 
 <?php ob_start(); ?>
 <?php if (isset($_SESSION['username'])): ?>
+<div class="main">
 <div class="container">
     <div class="row">
         <div class="addnewpost">
@@ -28,6 +29,7 @@
         <div class="row">
             <h1 class="">Vous devez etre connecte pour ajouter un article</h1>
         </div>
+    </div>
     </div>
 <?php endif; ?>
 <?php $content = ob_get_clean(); ?>

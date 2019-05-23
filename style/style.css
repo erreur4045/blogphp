@@ -1,20 +1,28 @@
 
 :root{
-    --color-one: #75b9be;
-    --color-two: #97f9f9;
-    --color-tree: #ccc9a1;
-    --color-four: #dceab2;
-    --color-five: #c7d66d;
+    --color-one: #E28413;
+    --color-two: #000022;
+    --color-tree: #2E294E;
+    --color-four: #9055A2;
+    --color-five: #E28413;
 }
 
 .hrefindex{
     text-align: center;
 }
 
-.articleco{
-    border: 2px solid var(--color-one);
-
+.line-accueil{
+    text-decoration: underline;
 }
+.btn{
+    margin: 1px;
+}
+
+.blog-header, .py-3{
+    padding-bottom: 2px !important;
+    padding-top: 0px;
+}
+
 .navbar-inverse, .navbar-collapse, .navbar{
     background-color: var(--color-five);
     border-color: var(--color-five);
@@ -22,6 +30,23 @@
 }
 .datesize{
     font-size: 12px;
+}
+.pseudo, .nav-bar-inscription{
+    margin-right: 5px;
+
+}
+header {
+    z-index: 2;
+    background-color: whitesmoke;
+    overflow: hidden;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
+
+.main{
+    z-index: 1;
+    margin-top: 119px; /* Add a top margin to avoid content overlay */
 }
 
 .news, .articlefull{
@@ -46,7 +71,7 @@
     color: var(--color-one);
 }
 
-.form_con, .form_contact, .error_co, .deconnection, .form_acceuil{
+.form_con, .form_contact, .error_co, .deconnection, .form_acceuil, .author, .articleco{
     text-align: center;
     border: 10px solid var(--color-four);
     border-radius: 20px;
@@ -64,6 +89,10 @@
     text-align: center;
     border: 10px solid var(--color-tree);
     border-radius: 20px;
+}
+
+.view_all_articles{
+    text-align: center;
 }
 
 .glyphicon, .glyphicon-user {
