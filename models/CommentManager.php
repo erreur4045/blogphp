@@ -73,4 +73,13 @@ class CommentManager
 
         return $thecomment;
     }
+    public function supprCom(Comment $com)
+    {
+        $db = DatabaseConnection::dbConnect();
+        $recup = $db->prepare('DELETE FROM commentt WHERE id = :id AND post_id = :postid');
+        $recup->execute(array(
+            ':id'=>$com->getId(),
+            ':postid'=>$com->getPostid()
+        ));
+    }
 }

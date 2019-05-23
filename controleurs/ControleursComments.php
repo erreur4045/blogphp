@@ -60,3 +60,21 @@ function updatecomm()
     $com_manager->UpdateComment($new_com);
     header('Location: index.php?id=' . $new_com->getPostid() . '&action=post');
 }
+
+function supprcom()
+{
+    if (isset($_SESSION['username'])) {
+        $data = array(
+            'id' => $_GET['id'],
+            'postid' => $_GET['idpost']
+        );
+
+        $com = new Comment($data);
+        $managepost = new CommentManager($com);
+        $managepost->supprCom($com);
+        $str = 'Location: index.php?action=post&id='.$com->getPostid();
+        echo $str;
+        header($str);
+        $_SESSION['message'] = "Votre commentaire a ete supprimer";
+    }
+}

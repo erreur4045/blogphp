@@ -8,6 +8,16 @@
 
 class PostManager
 {
+    public function suppr(Post $post)
+    {
+        $db = DatabaseConnection::dbConnect();
+        $recup = $db->prepare('DELETE FROM post WHERE number = :id AND author = :author');
+        $recup->execute(array(
+            ':id'=>$post->getNumber(),
+            ':author'=>$post->getAuthor()
+        ));
+        return 1;
+    }
     public function addPost(Post $post)
     {
         $db = DatabaseConnection::dbConnect();

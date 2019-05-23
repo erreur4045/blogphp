@@ -23,6 +23,21 @@ function allPost()
     require('view/AllPostView.php');
 }
 
+function supprPost()
+{
+    if (isset($_SESSION['username'])) {
+        $data = array(
+            'number' => $_GET['id'],
+            'author' => $_GET['author']
+        );
+        $post = new Post($data);
+        $managepost = new PostManager($post);
+        $managepost->suppr($post);
+        header('Location: index.php?action=dashboard');
+        $_SESSION['message'] = "Votre article a ete supprimer";
+    }
+}
+
 function addnewpost()
 {
     require('view/AddnewpostView.php');
@@ -34,7 +49,7 @@ function validpost()
         $donnees = array(
             'title' => $_POST['title'],
             'content' => $_POST['content'],
-            'author' => $_SESSION['username'],
+            'author' => $_SESSION['username']
         );
         $post = new Post($donnees);
         $manager = new PostManager($post);

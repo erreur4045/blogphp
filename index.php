@@ -56,8 +56,12 @@ if ($maintenance == 0) {
             dashboard();
         } elseif ($_GET['action'] == 'addnewpost') {
             addnewpost();
+        } elseif ($_GET['action'] == 'supprpost') {
+            supprpost();
         } elseif ($_GET['action'] == 'validpost') {
             validpost();
+        } elseif ($_GET['action'] == 'supprcom') {
+            supprcom();
         } elseif ($_GET['action'] == 'validinscription') {
             validincription();
         } elseif ($_GET['action'] == 'testfunction') {
