@@ -58,6 +58,8 @@ if ($maintenance == 0) {
             addnewpost();
         } elseif ($_GET['action'] == 'supprpost') {
             supprpost();
+        } elseif ($_GET['action'] == 'supprpostlistpost') {
+            supprpostlistpost();
         } elseif ($_GET['action'] == 'validpost') {
             validpost();
         } elseif ($_GET['action'] == 'supprcom') {
@@ -66,6 +68,8 @@ if ($maintenance == 0) {
             validincription();
         } elseif ($_GET['action'] == 'testfunction') {
             testfunction();
+        } elseif ($_GET['action'] == 'bio') {
+            bio();
         }elseif ($_GET['action'] == 'testmail') {
             testmail();
         }

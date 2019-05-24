@@ -14,12 +14,14 @@
                 </h3>
                 <h4 class="titlenews"><em>le <?= $data['date'] = date("d-m-Y") ?></em><em> Ecrit
                         par <?= ucfirst($data['author']) ?></em></h4>
-
+                <h6 class="font-italic">chapo :</h6>
                 <p class="articleindex">
                     <?= substr(nl2br(htmlspecialchars($data['content'])),0,90); ?>
                 </p>
-                <p><a class="btn btn-outline-info" href="index.php?id=<?= $data['number'] ?>&action=post">Article
-                        détaillé</a></p>
+                <p><a class="btn btn-outline-info" href="index.php?id=<?= $data['number'] ?>&action=post">Article détaillé</a>
+            <?php if (($_SESSION['username']) == $data['author']) : ?>
+                <em><a class="btn btn-outline-danger confirmation" href="index.php?action=supprpostlistpost&id=<?= $data['number'].'&author='.$data['author']?>" >Supprimer</a></em>
+            <?php endif; ?>
             </div>
         </div>
     <?php } $posts->closeCursor(); ?>

@@ -38,6 +38,21 @@ function supprPost()
     }
 }
 
+function supprpostlistpost()
+{
+    if (isset($_SESSION['username'])) {
+        $data = array(
+            'number' => $_GET['id'],
+            'author' => $_GET['author']
+        );
+        $post = new Post($data);
+        $managepost = new PostManager($post);
+        $managepost->suppr($post);
+        header('Location: index.php?action=listPosts');
+        $_SESSION['message'] = "Votre article a ete supprimer";
+    }
+}
+
 function addnewpost()
 {
     require('view/AddnewpostView.php');

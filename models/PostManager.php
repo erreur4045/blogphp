@@ -65,7 +65,7 @@ class PostManager
     }
     public function selectPostById(Post $post)
     {
-        $req = DatabaseConnection::dbConnect()->prepare('SELECT number, title, content, date FROM post WHERE number = :number');
+        $req = DatabaseConnection::dbConnect()->prepare('SELECT number, title, content, author, date FROM post WHERE number = :number');
         $req->execute(array(
             ':number' => $post->getNumber()
         ));
