@@ -34,7 +34,7 @@ class PostManager
     {
         echo $post->getNumber();
         $db = DatabaseConnection::dbConnect();
-        $recup = $db->prepare('UPDATE post SET title = :newtitle, content = :newcontent WHERE `post`.`number` = :number AND author = :author');
+        $recup = $db->prepare('UPDATE post SET title = :newtitle, content = :newcontent, date = NOW() WHERE `post`.`number` = :number AND author = :author');
         $result = $recup->execute(array(
         ':newtitle' => $post->getTitle(),
         ':number' => $post->getNumber(),
