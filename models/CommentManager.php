@@ -11,7 +11,7 @@ class CommentManager
     public function GetComments(Comment $comment)
     {
         $db = DatabaseConnection::dbConnect();
-        $comments = $db->prepare('SELECT id, autor, text, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM commentt WHERE post_id = :idpost ORDER BY comment_date_fr DESC');
+        $comments = $db->prepare('SELECT id, autor, approved, text, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM commentt WHERE post_id = :idpost ORDER BY comment_date_fr DESC');
         $comments->execute(array(
             ':idpost' => $comment->getPostid()
         ));
@@ -21,8 +21,8 @@ class CommentManager
 
     public function GetCommentsByUser(Comment $comment)
     {
-        $reqest = 'SELECT id, autor, text, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM commentt WHERE autor =' . '\'' . $comment->getAutor() . '\' ORDER BY comment_date_fr DESC' ;
-        $req = DatabaseConnection::dbConnect()->query($reqest);
+        $request = 'SELECT id, autor, text, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM commentt WHERE autor =' . '\'' . $comment->getAutor() . '\' ORDER BY comment_date_fr DESC' ;
+        $req = DatabaseConnection::dbConnect()->query($request);
         /*$db = DatabaseConnection::dbConnect();
         $comments = $db->prepare('SELECT id, autor, text, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM commentt WHERE author = :author ORDER BY comment_date_fr DESC');
         $comments->execute(array(
@@ -31,11 +31,18 @@ class CommentManager
         return $req;
     }
 
+    public function GetCommentsToBeApproved(Comment $comment)
+    {
+        $request = 'SELECT * FROM commentt, post WHERE author =' . '\'' . $comment->getAutor() . '\' AND approved = 0 AND autor != ' . '\''. $comment->getAutor() . '\'' ;
+        $req = DatabaseConnection::dbConnect()->query($request);
+        return $req;
+    }
+
     public function AddComment(Comment $comment)
     {
         try {
             $db = DatabaseConnection::dbConnect();
-            $addcom = $db->prepare('INSERT INTO commentt (post_id,autor,text,comment_date) VALUES (:idpost, :autor, :comment, NOW()) ');
+            $addcom = $db->prepare('INSERT INTO commentt (post_id,autor,text,comment_date,approved) VALUES (:idpost, :autor, :comment, NOW(),0) ');
             $addcom->execute(array(
                 ':idpost' => $comment->getPostid(),
                 ':autor' => $comment->getAutor(),
@@ -77,6 +84,15 @@ class CommentManager
     {
         $db = DatabaseConnection::dbConnect();
         $recup = $db->prepare('DELETE FROM commentt WHERE id = :id AND post_id = :postid');
+        $recup->execute(array(
+            ':id'=>$com->getId(),
+            ':postid'=>$com->getPostid()
+        ));
+    }
+    public function validCom(Comment $com)
+    {
+        $db = DatabaseConnection::dbConnect();
+        $recup = $db->prepare('UPDATE `commentt` SET `approved` = 1 WHERE id = :id AND post_id = :postid');
         $recup->execute(array(
             ':id'=>$com->getId(),
             ':postid'=>$com->getPostid()

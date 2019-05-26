@@ -27,11 +27,59 @@ function dashboard()
             'autor' => $_SESSION['username'],
         );
         $com = new Comment($data);
-        echo $com->getAutor();
+        //echo $com->getAutor();
         $manage_user = new CommentManager($com);
         $result_com = $manage_user->GetCommentsByUser($com);
 
         require('view/DashboardView.php');
+    }
+}
+
+function dashboard2()
+{
+    if (!isset($_SESSION['username']))
+        require ('view/Co_error.php');
+    else{
+        $data = array(
+            'pseudo' => $_SESSION['username'],
+        );
+        $user = new User($data);
+        $manage_user = new UserManager($user);
+        $result_post = $manage_user->GetAllPostsByUser($user);
+
+        $data = array(
+            'autor' => $_SESSION['username'],
+        );
+        $com = new Comment($data);
+        //echo $com->getAutor();
+        $manage_user = new CommentManager($com);
+        $result_com = $manage_user->GetCommentsByUser($com);
+
+        require('view/DashboardView2.php');
+    }
+}
+
+function dashboard3()
+{
+    if (!isset($_SESSION['username']))
+        require ('view/Co_error.php');
+    else{
+        $data = array(
+            'pseudo' => $_SESSION['username'],
+        );
+        $user = new User($data);
+        $manage_user = new UserManager($user);
+        $result_post = $manage_user->GetAllPostsByUser($user);
+
+        $data = array(
+            'autor' => $_SESSION['username'],
+        );
+        $com = new Comment($data);
+        //echo $com->getAutor();
+        $manage_user = new CommentManager($com);
+        $result_com = $manage_user->GetCommentsToBeApproved($com);
+
+        require('view/DashboardView3.php');
     }
 }
 

@@ -41,7 +41,7 @@ class PostManager
         'newcontent'=>$post->getContent(),
         'author'=>$post->getAuthor()
     ));
-        var_dump($result);
+       // var_dump($result);
     }
 
     public function deletePost(Post $post)

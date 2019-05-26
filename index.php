@@ -54,6 +54,10 @@ if ($maintenance == 0) {
             deconnection();
         } elseif ($_GET['action'] == 'dashboard') {
             dashboard();
+        } elseif ($_GET['action'] == 'dashboardcom') {
+            dashboard2();
+        } elseif ($_GET['action'] == 'dashboardcomtovalidated') {
+            dashboard3();
         } elseif ($_GET['action'] == 'addnewpost') {
             addnewpost();
         } elseif ($_GET['action'] == 'supprpost') {
@@ -62,6 +66,8 @@ if ($maintenance == 0) {
             supprpostlistpost();
         } elseif ($_GET['action'] == 'validpost') {
             validpost();
+        } elseif ($_GET['action'] == 'validcomment') {
+            validcomment();
         } elseif ($_GET['action'] == 'supprcom') {
             supprcom();
         } elseif ($_GET['action'] == 'validinscription') {

@@ -78,3 +78,21 @@ function supprcom()
         $_SESSION['message'] = "Votre commentaire a ete supprimer";
     }
 }
+
+function validcomment()
+{
+    if (isset($_SESSION['username'])) {
+        $data = array(
+            'id' => $_GET['id'],
+            'postid' => $_GET['idpost']
+        );
+
+        $com = new Comment($data);
+
+        $managepost = new CommentManager($com);
+        $managepost->validCom($com);
+        $str = 'Location: index.php?action=dashboardcomtovalidated';
+        header($str);
+        $_SESSION['message'] = "Le commentaire a ete valide";
+    }
+}
