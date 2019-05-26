@@ -1,6 +1,6 @@
 
-<footer class="footer">
-    <div class="container-fluid">
+<footer>
+    <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>

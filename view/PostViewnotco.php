@@ -1,6 +1,10 @@
 <?php $title = 'Mon blog'; ?>
 <?php ob_start(); ?>
     <div class="main">
+        <?php if (isset($_SESSION['message'])): ?>
+            <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
+            <?php unset($_SESSION['message']); ?>
+        <?php endif; ?>
         <div class="container">
             <div class="row">
                 <p><a href="index.php">Retour à la liste des billets</a></p>

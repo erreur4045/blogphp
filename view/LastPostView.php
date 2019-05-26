@@ -1,6 +1,10 @@
 <?php $title = 'Mon blog'; ?>
 <?php ob_start(); ?>
     <div class="main">
+<?php if (isset($_SESSION['message'])): ?>
+    <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
+    <?php unset($_SESSION['message']); ?>
+<?php endif; ?>
         <div class="row">
             <div class="col-md-4 "></div>
             <h2 class="">Derniers articles du blog :</h2>
@@ -37,6 +41,7 @@
 
             </div>
         </div>
+    </div>
     </div>
 <?php endif; ?>
 <?php $content = ob_get_clean(); ?>

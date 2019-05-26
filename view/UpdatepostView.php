@@ -1,8 +1,12 @@
-<?php $title = 'Mon blogggg'; ?>
+<?php $title = 'Mon blog'; ?>
 
 <?php ob_start(); ?>
 <?php if (isset($_SESSION['username'])): ?>
     <div class="main">
+    <?php if (isset($_SESSION['message'])): ?>
+        <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
+        <?php unset($_SESSION['message']); ?>
+    <?php endif; ?>
     <div class="container">
         <div class="row">
             <div class="addnewpost">

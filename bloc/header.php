@@ -1,4 +1,4 @@
-<header class="blog-header py-3">
+<header class="blog-header py-0">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    <meta name="viewport" content="width=device-width, user-scalable=no">
@@ -8,7 +8,7 @@
                 <a class="text-muted" href="#"></a>
             </div>
             <div class="col-4 text-center">
-                <a class="blog-header-logo text-dark line-accueil" href="index.php">Blog de Maxime</a>
+                <a class="blog-header-logo text-dark  line-accueil" href="index.php">Blog de Maxime</a>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
                 <?php if (!isset($_SESSION['username'])) : ?>
@@ -33,11 +33,3 @@
     </nav>
 </div>
 </header>
-<?php if (isset($_SESSION['message'])): ?>
-    <div class="container">
-        <div class="row">
-            <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
-        </div>
-    </div>
-    <?php unset($_SESSION['message']); ?>
-<?php endif; ?>
