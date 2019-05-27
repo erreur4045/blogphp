@@ -11,7 +11,7 @@ class UserManager
     function GetAllPostsByUser(User $user){
         try{
             //$db = DatabaseConnection::dbConnect();
-            $reqest = 'SELECT * FROM post WHERE author = ' .'\'' . $user->getPseudo(). '\'' ;
+            $reqest = 'SELECT * FROM blogphp_posts WHERE author = ' .'\'' . $user->getPseudo(). '\'' ;
             $req = DatabaseConnection::dbConnect()->query($reqest);
 /*            $recup = $db->prepare('SELECT * FROM post WHERE author = :username');
             $recup->execute(array(
@@ -28,7 +28,7 @@ class UserManager
     function IsAdmin(User $user){
         try{
             $db = DatabaseConnection::dbConnect();
-            $recup = $db->prepare('SELECT * FROM membre WHERE pseudo = :username');
+            $recup = $db->prepare('SELECT * FROM blogphp_membres WHERE pseudo = :username');
             $recup->execute(array(
                 ':username' => $user->getPseudo()
             ));
@@ -46,13 +46,13 @@ class UserManager
         try {
             $db = DatabaseConnection::dbConnect();
 
-            $verrifname = $db->prepare('SELECT * FROM membre WHERE pseudo=:pseudo ');
+            $verrifname = $db->prepare('SELECT * FROM blogphp_membres WHERE pseudo=:pseudo ');
             $verrifname->execute(array(
                 ':pseudo' => $user->getPseudo()
             ));
             $isname = $verrifname->rowCount();
 
-            $verrifmail = $db->prepare('SELECT * FROM membre WHERE email=:email ');
+            $verrifmail = $db->prepare('SELECT * FROM blogphp_membres WHERE email=:email ');
             $verrifmail->execute(array(
                 ':email' => $user->getEmail()
             ));
@@ -63,7 +63,7 @@ class UserManager
                 return 2;
             } else {
                 $pass_hache = password_hash($user->getPass(), PASSWORD_DEFAULT);
-                $req = $db->prepare('INSERT INTO membre(pseudo, pass, email, date_sub) VALUES(:pseudo, :pass, :email, CURDATE())');
+                $req = $db->prepare('INSERT INTO blogphp_membres(pseudo, pass, email, date_sub) VALUES(:pseudo, :pass, :email, CURDATE())');
                 $req->execute(array(
                     ':pseudo' => $user->getPseudo(),
                     ':pass' => $pass_hache,
@@ -80,7 +80,7 @@ class UserManager
     {
         try {
             $db = DatabaseConnection::dbConnect();
-            $recup = $db->prepare('SELECT * FROM membre WHERE pseudo = :pseudo');
+            $recup = $db->prepare('SELECT * FROM blogphp_membres WHERE pseudo = :pseudo');
             $recup->execute(array(
                 ':pseudo' => $user->getPseudo()));
             $result = $recup->fetch();
