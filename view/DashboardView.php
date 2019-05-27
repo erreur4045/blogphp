@@ -24,7 +24,7 @@
                         </ul>
                     </div>
                     <div class="card-body">
-                        <div class="col-md-12">
+                        <div class="col-md-8 col-md-offset-2">
                             <?php while ($posts = $result_post->fetch()) : ?>
                             <?php if (!isset($_SESSION['username'])) : ?>
                                 <em></em>
@@ -50,7 +50,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 <?php $content = ob_get_clean(); ?>
 <?php require('style/template.php'); ?>
