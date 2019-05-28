@@ -8,6 +8,16 @@
 
 class CommentManager
 {
+    public function VerrifAuthor(Comment $comment)
+    {
+        $db = DatabaseConnection::dbConnect();
+        $author = $db->prepare('SELECT id, autor, approved, text, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM blogphp_commentaire WHERE post_id = :idpost ORDER BY comment_date_fr DESC');
+        $author->execute(array(
+            ':idpost' => $comment->getPostid()
+        ));
+
+        return $author;
+    }
     public function GetComments(Comment $comment)
     {
         $db = DatabaseConnection::dbConnect();
@@ -33,16 +43,31 @@ class CommentManager
 
     public function GetCommentsToBeApproved(Comment $comment)
     {
-        $request = 'SELECT * FROM blogphp_commentaire, blogphp_posts WHERE author =' . '\'' . $comment->getAutor() . '\' AND approved = 0 AND autor != ' . '\''. $comment->getAutor() . '\'' ;
+        $request = 'SELECT * FROM blogphp_commentaire, blogphp_posts WHERE author =' . '\'' . $comment->getAutor() . '\' AND approved = 0 AND autor != ' . '\''. $comment->getAutor() . '\'  GROUP BY blogphp_commentaire.id' ;
         $req = DatabaseConnection::dbConnect()->query($request);
         return $req;
     }
 
-    public function AddComment(Comment $comment)
+    public function AddCommentWithVerrif(Comment $comment)
     {
         try {
             $db = DatabaseConnection::dbConnect();
             $addcom = $db->prepare('INSERT INTO blogphp_commentaire (post_id,autor,text,comment_date,approved) VALUES (:idpost, :autor, :comment, NOW(),0) ');
+            $addcom->execute(array(
+                ':idpost' => $comment->getPostid(),
+                ':autor' => $comment->getAutor(),
+                ':comment' => $comment->getText()
+            ));
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
+
+    public function AddCommentLessVerrif(Comment $comment)
+    {
+        try {
+            $db = DatabaseConnection::dbConnect();
+            $addcom = $db->prepare('INSERT INTO blogphp_commentaire (post_id,autor,text,comment_date,approved) VALUES (:idpost, :autor, :comment, NOW(),1) ');
             $addcom->execute(array(
                 ':idpost' => $comment->getPostid(),
                 ':autor' => $comment->getAutor(),

@@ -11,10 +11,14 @@ class PostManager
     public function suppr(Post $post)
     {
         $db = DatabaseConnection::dbConnect();
-        $recup = $db->prepare('DELETE FROM blogphp_posts WHERE number = :id AND author = :author');
-        $recup->execute(array(
+        $deletepost = $db->prepare('DELETE FROM blogphp_posts WHERE number = :id AND author = :author');
+        $deletepost->execute(array(
             ':id'=>$post->getNumber(),
             ':author'=>$post->getAuthor()
+        ));
+        $deletecom = $db->prepare('DELETE FROM blogphp_commentaire WHERE post_id = :id ');
+        $deletecom->execute(array(
+            ':id'=>$post->getNumber()
         ));
         return 1;
     }
@@ -46,7 +50,7 @@ class PostManager
 
     public function deletePost(Post $post)
     {
-        $req = DatabaseConnection::dbConnect()->prepare('DELETE FROM `blogphp_posts` WHERE `post`.`number` = :idpost');
+        $req = DatabaseConnection::dbConnect()->prepare('DELETE FROM `blogphp_posts` WHERE number = :idpost');
         $req->execute(array(
             ':idpost' => $post->getNumber()
         ));
@@ -55,6 +59,15 @@ class PostManager
     public function selectLastPosts()
     {
         $req = DatabaseConnection::dbConnect()->query('SELECT number, title, content, date, author FROM blogphp_posts ORDER BY date DESC LIMIT 0, 5');
+        return $req;
+    }
+
+    public function selectAuthorByNumberPost(Post $post)
+    {
+        $req = DatabaseConnection::dbConnect()->prepare('SELECT * FROM `blogphp_posts` WHERE number = :idpost');
+        $req->execute(array(
+            ':idpost' => $post->getNumber()
+        ));
         return $req;
     }
 

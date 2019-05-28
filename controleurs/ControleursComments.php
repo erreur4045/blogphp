@@ -17,9 +17,21 @@ function comment()
         'text' => $_POST['comments']
     );
 
+    $data = array(
+        'number' => $_GET['idpost']
+    );
+    $getdatapost = new Post($data);
+    echo $getdatapost->getNumber();
+    $getdatapostmanager = new PostManager($getdatapost);
+    $datapost = $getdatapostmanager->selectAuthorByNumberPost($getdatapost);
+    $dd = $datapost->fetch();
     $com = new Comment($idpost);
     $com_manager = new CommentManager($com);
-    $com_manager->AddComment($com);
+    if ($dd['author'] == $_SESSION{'username'}){
+        $com_manager->AddCommentLessVerrif($com);
+    }
+    else
+        $com_manager->AddCommentWithVerrif($com);
     $_SESSION['message'] = 'votre commentaire a ete ajoute';
     header('Location: index.php?id=' . $com->getPostid() . '&action=post');
 }
