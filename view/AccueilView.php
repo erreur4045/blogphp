@@ -51,7 +51,7 @@
                     </div>
             <div class="col-md-6">
                 <div>
-                    <iframe src="src/cv.pdf" style="width: 100%;height: 496px;border: none;"></iframe>
+                    <iframe src="src/cv.pdf" style="width: 100%;height: 585px;border: none;"></iframe>
                 </div>
             </div>
         </div>
