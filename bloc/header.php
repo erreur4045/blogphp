@@ -1,8 +1,4 @@
 <header class="blog-header py-0">
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
         <div class="row flex-nowrap justify-content-between align-items-center">
             <div class="col-4 pt-1">
                 <a class="text-muted" href="#"></a>
@@ -17,8 +13,18 @@
                 <?php if (!isset($_SESSION['username'])) : ?>
                     <a class="btn btn-sm btn-outline-secondary" href="index.php?action=connection">Se connecter</a>
                 <?php else: ?>
-                    <a class="btn btn-sm btn-outline-secondary pseudo" href="index.php?action=dashboard"><?= " " . ucfirst($_SESSION['username']) ?></a>
-                    <a class="btn btn-sm btn-outline-secondary" href="index.php?action=deconnection">Se deconnecter</a>
+<!--                    <a class="btn btn-sm btn-outline-secondary pseudo" href="index.php?action=dashboard"><?/*= " " . ucfirst($_SESSION['username']) */?></a>
+                    <a class="btn btn-sm btn-outline-secondary" href="index.php?action=deconnection">Se deconnecter</a>-->
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary pseudo dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <?= " " . ucfirst($_SESSION['username']) ?>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a class="boutonmenu" href="index.php?action=dashboard" ">Dashboard</a></li>
+                            <li><a class="boutonmenu" href="index.php?action=deconnection" >Se deconnecter</a></li>
+                        </ul>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>
