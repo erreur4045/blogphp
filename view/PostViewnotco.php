@@ -10,7 +10,7 @@
                 <p><a href="index.php">Retour à la liste des billets</a></p>
 
                 <div class="news">
-                    <h3 class="titrefull">
+                    <h3>
                         <?= htmlspecialchars($post['title']) ?>
                         <em> le <?= $post['creation_date_fr'] ?></em>
                     </h3>

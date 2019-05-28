@@ -33,11 +33,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5 col-md-offset-1">
-                    <a class="btn btn-outline-warning" href="index.php?action=listAllPosts">Voir tout les articles</a>
+                    <a class="btn btn-warning" href="index.php?action=listAllPosts">Voir tout les articles</a>
             </div>
             <?php if (isset($_SESSION['username'])) :  ?>
             <div class="col-md-6">
-                    <a class="btn btn-outline-warning" href="index.php?action=addnewpost">Ajouter un article</a>
+                    <a class="btn btn-warning" href="index.php?action=addnewpost">Ajouter un article</a>
 
             </div>
         </div>

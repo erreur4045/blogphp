@@ -72,7 +72,7 @@ function supprcom()
         $com = new Comment($data);
         $managepost = new CommentManager($com);
         $managepost->supprCom($com);
-        $str = 'Location: index.php?action=post&id='.$com->getPostid();
+        $str = 'Location: index.php?action=dashboardcom';
         echo $str;
         header($str);
         $_SESSION['message'] = "Votre commentaire a ete supprimer";

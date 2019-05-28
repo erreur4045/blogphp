@@ -6,22 +6,38 @@
     --color-four: #9055A2;
     --color-five: #E28413;
 }
-
-.hrefindex{
+.container{
+    padding-top: 10px;
+}
+.hrefindex, .textcenter, .titleindex, .view_all_articles, .hrefindex{
     text-align: center;
 }
 
-.line-accueil{
-    text-decoration: underline;
-}
-.btn{
-    margin: 1px;
+.card-body{
 }
 
-.blog-header, .py-3{
-    padding-bottom: 2px !important;
-    padding-top: 0px;
+.line-accueil{
+    font-family: Arial;
+    font-weight: bold ;
 }
+.btn{
+    margin: 5px;
+}
+.img-bio{
+    display: block;
+    margin-left: auto;
+    margin-right: auto }
+
+
+.py-3 {
+     padding-top: 0rem!important;
+}
+
+/* .py-3, .pb-3 ,.blog-header{
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    padding: 0px !important;
+}*/
 
 .navbar-inverse, .navbar-collapse, .navbar{
     background-color: var(--color-five);
@@ -31,42 +47,53 @@
 .datesize{
     font-size: 12px;
 }
-.pseudo, .nav-bar-inscription{
-    margin-right: 5px;
 
+.cvview{
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+
+}
+.margin-form{
+    margin-top: 2em;
+
+}
+.alert-info{
+    padding-top: 89px;
+    z-index: 3;
 }
 header {
     z-index: 2;
     background-color: whitesmoke;
     overflow: hidden;
-    position: fixed; /* Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 .main{
     z-index: 1;
-    margin-top: 119px; /* Add a top margin to avoid content overlay */
+    margin-top: 88px;
+    position: relative;
+    min-height: 100vh;
+}
+.boutonmenu{
+    color: #6c757d
 }
 
-.news, .articlefull{
-    border: inherit;
-    background-color: var(--color-four);
-    margin: 2px;
-    padding: 5px;
+
+.card-header{
+    min-width: 50%;
 }
-.titrefull
-{
-    margin: 2px;
-    padding: 5px;
+
+.dashboard{
+    padding-bottom: 10px;
 }
+
 .titlenews{
     color: var(--color-tree);
     display: inline-block;
 }
-.titleindex{
-    text-align: center;
-}
+
 .author{
     color: var(--color-one);
 }
@@ -78,47 +105,14 @@ header {
     padding: 12px;
 }
 
-.cvstyle, .cv_telechargement_style{
-    text-align: center;
-    border: 10px solid var(--color-tree);
-    background-color: var(--color-four);
-    border-radius: 10px;
-}
 
-.inscription{
-    text-align: center;
-    border: 10px solid var(--color-tree);
-    border-radius: 20px;
-}
-
-.view_all_articles{
-    text-align: center;
-}
-
-.glyphicon, .glyphicon-user {
-    color: var(--color-tree);
-}
-
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: var(--color-tree);
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 50px;
-}
-.hrefindex{
-    text-align: center;
-}
 .articleindex{
     text-align: left;
 }
 body{
     position: relative;
-    padding-bottom: 150px;
 }
-footer
-{
-    left: 0;
+
+.main {
+    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
 }
