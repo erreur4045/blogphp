@@ -24,7 +24,6 @@
                         </ul>
                     </div>
                     <div class="card-body">
-                        <div class="col-md-8 col-md-offset-2">
                         <?php while ($com = $result_com->fetch()) : ?>
                             <?php if (!isset($_SESSION['username'])) : ?>
                                 <em></em>
@@ -48,7 +47,6 @@
                                 </div>
                             <?php endif; ?>
                         <?php endwhile; ?>
-                    </div>
                     </div>
                 </div>
             </div>

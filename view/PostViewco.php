@@ -22,8 +22,6 @@
         </div>
 
         <h2>Commentaires</h2>
-        <div class="card flex-md-row mb-4 box-shadow h-md-250">
-            <div class="card-body d-flex flex-column align-items-start ">
         <?php while ($comment = $comments->fetch()) : ?>
 
         <div class="row">
@@ -31,7 +29,6 @@
             <div class="card flex-md-row mb-4 box-shadow h-md-250">
                 <div class="card-body d-flex flex-column align-items-start ">
             <div class="col-md-6">
-                <div >
 
                 <p><strong><?= 'Par ' . ucfirst(htmlspecialchars($comment['autor'])) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
                 <p><?= nl2br(htmlspecialchars($comment['text'])) ?></p>
@@ -45,10 +42,7 @@
             </div>
             </div>
         </div>
-    </div>
 <?php endwhile; ?>
-</div>
-</div>
 </div>
 <?php if (isset($_SESSION['username'])) : ?>
     <div class="container">
@@ -59,7 +53,7 @@
                     <div class="d-flex justify-content-center">
                         <textarea class="form-control" name="comments" placeholder="Votre message"></textarea>
                     </div>
-                    <input type="submit" value="Submit">
+                    <input class="btn btn-info" type="submit" value="Submit">
                 </form>
             </div>
         </div>
@@ -74,7 +68,6 @@
         </div>
     </div>
     </div>
-</div>
 <?php endif; ?>
 <?php $content = ob_get_clean(); ?>
 <?php require('style/template.php'); ?>

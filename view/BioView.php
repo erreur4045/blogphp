@@ -18,8 +18,6 @@
                     <h4 class="titlenews"></h4>
                     <p class="articleindex"></p>
                 </div>
-            </div>
-            <div class="card flex-md-row mb-4 box-shadow h-md-250">
                 <div class="card-body d-flex flex-column align-items-start ">
                     <p>Né à Paris en 1992, j'ai passé une moitié de mon enfance à Paris, puis à Toulouse. <br>
 
