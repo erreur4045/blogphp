@@ -6,13 +6,11 @@
  * Time: 16:03
  */
 
-require_once ('models/PostManager.php');
-require_once ('models/Comment.php');
-
 function listPosts()
 {
     $managepost = new PostManager();
     $posts = $managepost->selectLastPosts();
+
     require('view/LastPostView.php');
 }
 
@@ -33,8 +31,8 @@ function supprPost()
         $post = new Post($data);
         $managepost = new PostManager($post);
         $managepost->suppr($post);
-        header('Location: index.php?action=dashboard');
         $_SESSION['message'] = "Votre article a ete supprimer";
+        header('Location: index.php?action=dashboard');
     }
 }
 
@@ -48,8 +46,8 @@ function supprpostlistpost()
         $post = new Post($data);
         $managepost = new PostManager($post);
         $managepost->suppr($post);
-        header('Location: index.php?action=listPosts');
         $_SESSION['message'] = "Votre article a ete supprimer";
+        header('Location: index.php?action=listPosts');
     }
 }
 
@@ -129,20 +127,23 @@ function post()
     $donnees = array('number' => $_GET['id']);
     $post_for_data = new Post($donnees);
 
-    /*creation post manager avec OBJ post*/
+    /*creation post_manager avec OBJ post*/
     $post_manager = new PostManager($post_for_data);
 
     /*Creation OBJ post pour recuperer toutes les donees du post lier a l'ID du post envoyer*/
     $post = new Post($post_manager->selectPostById($post_for_data));
 
-    /*Preparation des donn2es pour creation de OBJ Comment*/
+    /*Preparation des donnees pour creation de OBJ Comment*/
     $data_for_com = array('postid' => $_GET['id']);
     $comment_for_data = new Comment($data_for_com);
     /*Creation de OBJ manager*/
     $com_manager = new CommentManager($comment_for_data);
     /* Passage des commentaire a la vue */
     $comments = $com_manager->GetComments($comment_for_data);
-
+/*    echo '<pre>';
+    var_dump($comments);
+    echo '</pre>';
+    die();*/
     require ('view/PostViewco.php');
 
 }
