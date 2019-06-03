@@ -20,10 +20,10 @@
                 <h3>Modifier un commentaire</h3>
                 <form action="index.php?idpost=<?php echo $_GET['idpost'] . '&id=' . $_GET['id'] ?>&action=updatecomment"
                       method="post">
-                        <p class="">Ancien commentaire : </p>
-                        <p><?php echo $old_com_for_view->getText() ?></p>
-                        <textarea class="form-control" name="comments"
-                                  placeholder="Votre nouveau commentaire"></textarea>
+                    <p class="">Ancien commentaire : </p>
+                    <p><?php echo $old_com_for_view->getText() ?></p>
+                    <textarea class="form-control" name="comments"
+                              placeholder="Votre nouveau commentaire"></textarea>
                     <input type="submit" value="Submit">
                 </form>
             </div>

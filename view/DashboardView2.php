@@ -24,14 +24,14 @@
                         </ul>
                     </div>
                     <div class="card-body">
-<?php foreach ($result_com as $com_data) : ?>
+                        <?php foreach ($result_com as $com_data) : ?>
                             <?php if (!isset($_SESSION['username'])) : ?>
                                 <em></em>
                             <?php elseif ($_SESSION['username'] == $com_data->getAutor()): ?>
                                 <div class="card flex-md-row mb-4 box-shadow h-md-250">
                                     <div class="card-body d-flex flex-column align-items-start ">
                                         <div class="">
-                                            <p> le <?=$com_data->getComment_date()?></p>
+                                            <p> le <?= $com_data->getComment_date() ?></p>
                                             <p><?= nl2br(htmlspecialchars($com_data->getText())) ?></p>
                                             <em><a class="btn btn-outline-warning"
                                                    href="index.php?action=modifcomment&id=<?= $com_data->getId() . '&idpost=' . $com_data->getPostid() ?>"
@@ -40,13 +40,14 @@
                                                    href="index.php?action=supprcom&id=<?= $com_data->getId() . '&idpost=' . $com_data->getPostid() ?>"
                                                    role="button">Supprimer</a></em>
                                             <em><a class="btn btn-info"
-                                                   href="index.php?action=post&id=<?= $com_data->getPostid()?>" role="button">Voir
+                                                   href="index.php?action=post&id=<?= $com_data->getPostid() ?>"
+                                                   role="button">Voir
                                                     le post</a></em>
                                         </div>
                                     </div>
                                 </div>
                             <?php endif; ?>
-<?php endforeach; ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

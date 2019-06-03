@@ -24,7 +24,9 @@
                         </ul>
                     </div>
                     <div class="card-body">
-                        <?php foreach ($result_post as $post_data) : ?>
+                        <?php foreach ($result_post
+
+                        as $post_data) : ?>
                         <?php if (!isset($_SESSION['username'])) : ?>
                             <em></em>
                         <?php elseif ($_SESSION['username'] == $post_data->getAuthor()): ?>

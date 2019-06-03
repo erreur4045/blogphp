@@ -3,28 +3,29 @@
 <?php ob_start(); ?>
 <?php if (isset($_SESSION['username'])): ?>
     <div class="main">
-    <?php if (isset($_SESSION['message'])): ?>
-        <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
-        <?php unset($_SESSION['message']); ?>
-    <?php endif; ?>
-    <div class="container">
-        <div class="row">
-            <form action="index.php?action=validpost" class="form_control" method="post">
-                <div class="form_in">
-                    <h3><i class="fa fa-align-left"></i> Ajouter un article</h3>
+        <?php if (isset($_SESSION['message'])): ?>
+            <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
+            <?php unset($_SESSION['message']); ?>
+        <?php endif; ?>
+        <div class="container">
+            <div class="row">
+                <form action="index.php?action=validpost" class="form_control" method="post">
                     <div class="form_in">
-                        <label for="title" class="title_post">Titre:</label><br>
-                        <input name="title" id="title" class="title_post" placeholder="Titre de l'article">
-                    </div>
-                    <div class="form_in">
-                        <label for="content" class="content_post">Contenue de l'article:</label><br>
-                        <textarea name="content" class="form-control" placeholder="Votre article" required></textarea>
-                        <br>
-                        <input type="submit" value="Envoyer" class="btn btn-info btn-block rounded-0 py-2">
-                    </div>
-            </form>
+                        <h3><i class="fa fa-align-left"></i> Ajouter un article</h3>
+                        <div class="form_in">
+                            <label for="title" class="title_post">Titre:</label><br>
+                            <input name="title" id="title" class="title_post" placeholder="Titre de l'article">
+                        </div>
+                        <div class="form_in">
+                            <label for="content" class="content_post">Contenue de l'article:</label><br>
+                            <textarea name="content" class="form-control" placeholder="Votre article"
+                                      required></textarea>
+                            <br>
+                            <input type="submit" value="Envoyer" class="btn btn-info btn-block rounded-0 py-2">
+                        </div>
+                </form>
+            </div>
         </div>
-    </div>
     </div>
 <?php else: ?>
     <div class="container">

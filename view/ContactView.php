@@ -9,7 +9,7 @@
         <div class="container">
             <div class="d-flex justify-content-center">
                 <div class="col-md-6">
-                <div class="row form_contact">
+                    <div class="row form_contact">
                         <div class="card bg-secondary form-white form_contact">
                             <div class="card-body form_contact">
                                 <!-- Form contact -->
@@ -45,8 +45,8 @@
                     </div>
                 </div>
             </div>
-            </div>
         </div>
+    </div>
     </div>
 
 <?php $content = ob_get_clean(); ?>
