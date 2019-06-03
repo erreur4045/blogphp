@@ -1,8 +1,8 @@
 <?php $title = $post->getTitle(); ?>
 <?php ob_start(); ?>
 <div class="main">
-    <?php if (isset($_SESSION['message'])): ?>
-        <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
+    <?php if (isset($_SESSION['message'])) : ?>
+        <div class="alert alert-info"><? echo $_SESSION['message']; ?></div>
         <?php unset($_SESSION['message']); ?>
     <?php endif; ?>
     <div class="container">
@@ -15,34 +15,31 @@
                     <h3><?= ucfirst(htmlspecialchars($post->getTitle())) ?></h3>
                     <em> <h5><?= 'Le ' . $post->getDate() . ' par ' . $post->getAuthor() ?></h5></em>
                 </h3>
-                    <?= nl2br(htmlspecialchars($post->getContent())) ?>
+                    <?php echo nl2br(htmlspecialchars($post->getContent())); ?>
                 </p>
             </div>
             </div>
         </div>
 
         <h2>Commentaires</h2>
-        <?php while ($comment = $comments->fetch()) : ?>
-
+        <?php foreach ($comments as $comment_data) : ?>
         <div class="row">
-
             <div class="card flex-md-row mb-4 box-shadow h-md-250">
                 <div class="card-body d-flex flex-column align-items-start ">
             <div class="col-md-6">
-
-                <p><strong><?= 'Par ' . ucfirst(htmlspecialchars($comment['autor'])) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-                <p><?= nl2br(htmlspecialchars($comment['text'])) ?></p>
-                <?php if (isset($_SESSION['username']) && ($_SESSION['username'] == $comment['autor'])) : ?>
-                    <em><a class="btn btn-outline-warning" href="index.php?action=modifcomment&id=<?= $comment['id'] . '&idpost=' . $post->getNumber() ?>">Modifier</a></em>
-                    <em><a class="btn btn-outline-danger confirmation" href="index.php?action=supprcom&id=<?= $comment['id'] . '&idpost=' . $post->getNumber() ?>">Supprimer</a></em>
+                <p><strong><?= 'Par ' . ucfirst(htmlspecialchars($comment_data->getAutor())) ?></strong> le <?= $comment_data->getComment_date() ?></p>
+                <p><?= nl2br(htmlspecialchars($comment_data->getText())) ?></p>
+                <?php if (isset($_SESSION['username']) && ($_SESSION['username'] == $comment_data->getAutor())) : ?>
+                    <em><a class="btn btn-outline-warning" href="index.php?action=modifcomment&id=<?= $comment_data->getId() . '&idpost=' . $post->getNumber() ?>">Modifier</a></em>
+                    <em><a class="btn btn-outline-danger confirmation" href="index.php?action=supprcom&id=<? echo $comment_data->getId() . '&idpost=' . $post->getNumber() ?>">Supprimer</a></em>
                 <?php elseif (isset($_SESSION['username']) && ($_SESSION['username'] == $post->getAuthor())) : ?>
-                    <em><a class="btn btn-outline-danger confirmation" href="index.php?action=supprcom&id=<?= $comment['id'] . '&idpost=' . $post->getNumber() ?>">Supprimer</a></em>
+                    <em><a class="btn btn-outline-danger confirmation" href="index.php?action=supprcom&id=<? echo $comment_data->getId() . '&idpost=' . $post->getNumber() ?>">Supprimer</a></em>
                 <?php endif; ?>
             </div>
             </div>
             </div>
         </div>
-<?php endwhile; ?>
+<?php endforeach;  ?>
 </div>
 <?php if (isset($_SESSION['username'])) : ?>
     <div class="container">
@@ -70,4 +67,4 @@
     </div>
 <?php endif; ?>
 <?php $content = ob_get_clean(); ?>
-<?php require('style/template.php'); ?>
+<?php require 'style/template.php'; ?>

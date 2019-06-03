@@ -24,27 +24,28 @@
                         </ul>
                     </div>
                     <div class="card-body">
-                            <?php while ($posts = $result_post->fetch()) : ?>
-                            <?php if (!isset($_SESSION['username'])) : ?>
-                                <em></em>
-                            <?php elseif ($_SESSION['username'] == $posts['author']): ?>
+                        <?php foreach ($result_post as $post_data) : ?>
+                        <?php if (!isset($_SESSION['username'])) : ?>
+                            <em></em>
+                        <?php elseif ($_SESSION['username'] == $post_data->getAuthor()): ?>
                             <div class="card flex-md-row mb-4 box-shadow h-md-250">
                                 <div class="card-body d-flex flex-column align-items-start ">
                                     <div class=""
-                                    <p> le <?= $posts['date'] ?></p>
-                                    <p><?= nl2br(htmlspecialchars($posts['content'])) ?></p>
+                                    <p> le <?= $post_data->getDate() ?></p>
+                                    <p><?= nl2br(htmlspecialchars($post_data->getContent())) ?></p>
                                     <em><a class="btn btn-outline-warning"
-                                           href="index.php?action=modifpost&id=<?= $posts['number'] ?>">Modifier</a></em>
+                                           href="index.php?action=modifpost&id=<?= $post_data->getNumber() ?>">Modifier</a></em>
                                     <em><a class="btn btn-outline-danger confirmation"
-                                           href="index.php?action=supprpost&id=<?= $posts['number'] . '&author=' . $posts['author'] ?>">Supprimer</a></em>
+                                           href="index.php?action=supprpost&id=<?= $post_data->getNumber() . '&author=' . $post_data->getAuthor() ?>">Supprimer</a></em>
                                     <em><a class="btn btn-outline-info"
-                                           href="index.php?action=post&id=<?= $posts['number'] ?>">Voir l'article et les
+                                           href="index.php?action=post&id=<?= $post_data->getNumber() ?>">Voir
+                                            l'article et les
                                             commentaires</a></em>
                                 </div>
                             </div>
-                        </div>
                         <?php endif; ?>
-                        <?php endwhile; ?>
+                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

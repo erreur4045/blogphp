@@ -25,13 +25,12 @@
             </form>
         </div>
     </div>
+    </div>
 <?php else: ?>
     <div class="container">
         <div class="row">
             <h1 class="">Vous devez etre connecte pour ajouter un article</h1>
         </div>
-    </div>
-    </div>
     </div>
 <?php endif; ?>
 <?php $content = ob_get_clean(); ?>

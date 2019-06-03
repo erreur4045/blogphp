@@ -10,25 +10,25 @@
             <h2 class="">Derniers articles du blog :</h2>
         </div>
     <div class="container">
-        <?php while ($data = $posts->fetch()) { ?>
+            <?php foreach ($posts as $post_data) : ?>
         <div class="card flex-md-row mb-4 box-shadow h-md-250">
             <div class="card-body d-flex flex-column align-items-start ">
                 <h3 class="titlenews">
-                    <?= ucfirst(htmlspecialchars($data['title'])) ?>
+                    <?= ucfirst(htmlspecialchars($post_data->getTitle())) ?>
                 </h3>
-                <h4 class="titlenews"><em>le <?= $data['date'] = date("d-m-Y") ?></em><em> Ecrit
-                        par <?= ucfirst($data['author']) ?></em></h4>
+                <h4 class="titlenews"><em>le <?= date('d M Y',strtotime($post_data->getDate()))/* = date("d-m-Y")*/ ?></em><em> Ecrit
+                        par <?= ucfirst($post_data->getAuthor()) ?></em></h4>
                 <h6 class="font-italic">chapo :</h6>
                 <p class="articleindex">
-                    <?= substr(nl2br(htmlspecialchars($data['content'])),0,90); ?>
+                    <?= substr(nl2br(htmlspecialchars($post_data->getContent())),0,90); ?>
                 </p>
-                <p><a class="btn btn-outline-info" href="index.php?id=<?= $data['number'] ?>&action=post">Article détaillé</a>
-            <?php if (($_SESSION['username']) == $data['author']) : ?>
-                <em><a class="btn btn-outline-danger confirmation" href="index.php?action=supprpostlistpost&id=<?= $data['number'].'&author='.$data['author']?>" >Supprimer</a></em>
+                <p><a class="btn btn-outline-info" href="index.php?id=<?= $post_data->getNumber() ?>&action=post">Article détaillé</a>
+            <?php if (($_SESSION['username']) == $post_data->getAuthor()) : ?>
+                <em><a class="btn btn-outline-danger confirmation" href="index.php?action=supprpostlistpost&id=<?= $post_data->getNumber().'&author='.$post_data->getAuthor()?>" >Supprimer</a></em>
             <?php endif; ?>
             </div>
         </div>
-    <?php } $posts->closeCursor(); ?>
+            <?php endforeach; ?>
     </div>
     <div class="container">
         <div class="row">

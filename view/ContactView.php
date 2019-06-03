@@ -7,32 +7,33 @@
             <?php unset($_SESSION['message']); ?>
         <?php endif; ?>
         <div class="container">
-            <div class="col-md-8">
             <div class="d-flex justify-content-center">
-                <div class="row">
-                    <div class="d-flex justify-content-center">
-                        <div class="card bg-secondary form-white">
-                            <div class="card-body" >
+                <div class="col-md-6">
+                <div class="row form_contact">
+                        <div class="card bg-secondary form-white form_contact">
+                            <div class="card-body form_contact">
+                                <!-- Form contact -->
                                 <form action="index.php?action=contacter">
-                                    <h2 class="text-center py-4 font-bold font-up white-text">Contacter moi</h2>
+                                    <h2 class="text-center py-4 font-bold font-up white-text">Contactez moi</h2>
                                     <div class="md-form">
-                                        <i class="fa fa-user prefix white-text"></i><em></em>
+                                        <i class="fa fa-user prefix white-text"></i>
+                                        <label for="form32">Votre nom/prenom</label>
                                         <input type="text" id="form32" class="form-control">
-                                        <label for="form32">Votre nom</label>
                                     </div>
                                     <div class="md-form">
                                         <i class="fa fa-envelope prefix white-text"></i>
-                                        <input type="text" id="form22" class="form-control">
                                         <label for="form22">Votre mail</label>
+                                        <input type="text" id="form22" class="form-control">
                                     </div>
                                     <div class="md-form">
                                         <i class="fa fa-tag prefix white-text"></i>
-                                        <input type="text" id="form322" class="form-control">
                                         <label for="form342">Sujet</label>
+                                        <input type="text" id="form322" class="form-control">
                                     </div>
                                     <div class="md-form">
                                         <i class="fa fa-pencil prefix white-text"></i>
-                                        <textarea type="text" id="form82" class="form-control" placeholder="Votre message"></textarea>
+                                        <label for="form82" class="">Votre message</label>
+                                        <textarea type="text" id="form82" class="form-control""></textarea>
                                     </div>
                                     <div class="text-center">
                                         <button class="btn btn-info btn-lg waves-effect waves-light">Envoyer</button>
@@ -41,9 +42,9 @@
                                 <!-- Form contact -->
                             </div>
                         </div>
-                        </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </div>
