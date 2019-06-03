@@ -1,41 +1,46 @@
-<header class="blog-header py-0">
-        <div class="row flex-nowrap justify-content-between align-items-center">
-            <div class="col-4 pt-1">
-                <a class="text-muted" href="#"></a>
-            </div>
-            <div class="col-4 text-center">
-                <a class="blog-header-logo text-dark  line-accueil" href="index.php">Blog de Maxime</a>
-            </div>
-            <div class="col-4 d-flex justify-content-end align-items-center">
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.php">Blog PHP POO MVC</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.php">Accueil <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?action=CV">CV</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?action=listPosts">Articles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?action=contact">Contact</a>
+                </li>
                 <?php if (!isset($_SESSION['username'])) : ?>
-                    <a class="btn btn-sm btn-outline-secondary nav-bar-inscription" href="index.php?action=inscription">Inscription</a>
-                <?php endif; ?>
-                <?php if (!isset($_SESSION['username'])) : ?>
-                    <a class="btn btn-sm btn-outline-secondary" href="index.php?action=connection">Se connecter</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?action=connection">Se connecter</a>
+                    </li>
                 <?php else: ?>
-<!--                    <a class="btn btn-sm btn-outline-secondary pseudo" href="index.php?action=dashboard"><?/*= " " . ucfirst($_SESSION['username']) */?></a>
-                    <a class="btn btn-sm btn-outline-secondary" href="index.php?action=deconnection">Se deconnecter</a>-->
-                    <div class="dropdown">
-                        <button class="btn btn-sm btn-outline-secondary pseudo dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <?= " " . ucfirst($_SESSION['username']) ?>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a class="boutonmenu" href="index.php?action=dashboard" ">Dashboard</a></li>
-                            <li><a class="boutonmenu" href="index.php?action=deconnection" >Se deconnecter</a></li>
-                        </ul>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="index.php?action=dashboard" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?= ucfirst($_SESSION['username']) ?>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="index.php?action=addnewpost">Ajouter un article</a>
+                        <a class="dropdown-item" href="index.php?action=dashboard"">Dashboard</a>
+                        <a class="dropdown-item" href="index.php?action=deconnection">Se deconnecter</a>
                     </div>
+                </li>
                 <?php endif; ?>
-            </div>
+                <?php if (!isset($_SESSION['username'])) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?action=inscription">Inscription</a>
+                </li>
+                <?php endif; ?>
+            </ul>
         </div>
-<div class="nav-scroller py-1 mb-2">
-    <nav class="nav d-flex justify-content-between">
-        <a class="p-2 text-muted" href="index.php">Accueil</a>
-        <a class="p-2 text-muted" href="index.php?action=CV">CV</a>
-        <a class="p-2 text-muted" href="index.php?action=listPosts">Articles</a>
-        <a class="p-2 text-muted" href="index.php?action=testfunction">test function</a>
-        <a class="p-2 text-muted" href="index.php?action=contact">Contact</a>
-        <a class="p-2 text-muted" href="index.php?action=testmail">test_mail</a>
     </nav>
-</div>
 </header>
