@@ -9,16 +9,19 @@
 class UserManager
 {
     function GetAllPostsByUser(User $user){
+
         try{
-            //$db = DatabaseConnection::dbConnect();
-            $reqest = 'SELECT * FROM blogphp_posts WHERE author = ' .'\'' . $user->getPseudo(). '\'' ;
-            $req = DatabaseConnection::dbConnect()->query($reqest);
-/*            $recup = $db->prepare('SELECT * FROM post WHERE author = :username');
+            $all_post = [];
+            $db = DatabaseConnection::dbConnect();
+            $recup = $db->prepare('SELECT * FROM blogphp_posts WHERE author = :username');
             $recup->execute(array(
                 ':username' => $user->getPseudo()
             ));
-            $result = $recup->fetch();*/
-            return $req;
+            while ($donnees = $recup->fetch(PDO::FETCH_ASSOC))
+            {
+                $all_post[] = new Post($donnees);
+            }
+            return $all_post;
         }
         catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());

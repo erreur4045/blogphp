@@ -45,7 +45,6 @@ class PostManager
         'newcontent'=>$post->getContent(),
         'author'=>$post->getAuthor()
     ));
-       // var_dump($result);
     }
 
     public function deletePost(Post $post)
@@ -58,8 +57,16 @@ class PostManager
 
     public function selectLastPosts()
     {
-        $req = DatabaseConnection::dbConnect()->query('SELECT number, title, content, date, author FROM blogphp_posts ORDER BY date DESC LIMIT 0, 5');
-        return $req;
+        $lastpost = [];
+
+        $q = DatabaseConnection::dbConnect()->query('SELECT number, title, content, date, author FROM blogphp_posts ORDER BY date DESC LIMIT 0, 5');
+
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $lastpost[] = new Post($donnees);
+        }
+
+        return $lastpost;
     }
 
     public function selectAuthorByNumberPost(Post $post)
