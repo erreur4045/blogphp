@@ -2,8 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: maxime
- * Date: 06/05/2019
- * Time: 12:15
+ * Date: 01/04/2019
+ * Time: 12:57
+ * PHP version 7.2
+ *
+ * Post class
+ *
+ * Classe aui permet de creer et recuper les valeurs d'un post
+ *
+ * @category Exemple
+ * @package  BlogphpOCR_OCR_Php_Symfony
+ * @author   Maxime <contact@maximethierry.xyz>
+ * @license  Phpstorm exemple@exemple.com
+ * @link     Exemple
  */
 
 class Post

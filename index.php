@@ -4,16 +4,21 @@
  * User: maxime
  * Date: 01/04/2019
  * Time: 12:57
+ * PHP version 7.2
+ *
+ * @category Exemple
+ * @package  BlogphpOCR_OCR_Php_Symfony
+ * @author   Maxime <contact@maximethierry.xyz>
+ * @license  Phpstorm exemple@exemple.com
+ * @link     Exemple
  */
 session_start();
-require_once ('controleurs/controller.php');
-require_once ('controleurs/ControleursUsers.php');
-require_once ('controleurs/ControleursPost.php');
-require_once ('controleurs/ControleursComments.php');
-require_once ('models/DatabaseConnection.php');
-require_once ('models/CommentManager.php');
-require_once ('models/Comment.php');
-require_once ('models/PostManager.php');
+require 'controleurs/controller.php';
+require 'controleurs/ControleursUsers.php';
+require 'controleurs/ControleursPost.php';
+require 'controleurs/ControleursComments.php';
+require 'models/DatabaseConnection.php';
+require 'models/CommentManager.php';
 
 $maintenance = 0;
 if ($maintenance == 0) {
@@ -76,15 +81,13 @@ if ($maintenance == 0) {
             testfunction();
         } elseif ($_GET['action'] == 'bio') {
             bio();
-        }elseif ($_GET['action'] == 'testmail') {
+        } elseif ($_GET['action'] == 'testmail') {
             testmail();
         }
     } else {
         accueil();
     }
 } else {
-    include_once('bloc/maintenance.php');
+    include 'bloc/maintenance.php';
 }
-include_once('bloc/footer.php');
-
 ?>

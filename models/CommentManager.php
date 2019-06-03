@@ -20,39 +20,58 @@ class CommentManager
     }
     public function GetComments(Comment $comment)
     {
+        $all_comments = [];
         $db = DatabaseConnection::dbConnect();
-        $comments = $db->prepare('SELECT id, autor, approved, text, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM blogphp_commentaire WHERE post_id = :idpost ORDER BY comment_date_fr DESC');
+        $comments = $db->prepare('SELECT id, postid, autor, approved, text, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date FROM blogphp_commentaire WHERE postid = :idpost ORDER BY comment_date DESC');
         $comments->execute(array(
             ':idpost' => $comment->getPostid()
         ));
 
-        return $comments;
+        while ($donnees = $comments->fetch(PDO::FETCH_ASSOC))
+        {
+            $all_comments[] = new Comment($donnees);
+        }
+
+        return $all_comments;
     }
 
     public function GetCommentsByUser(Comment $comment)
     {
-        $request = 'SELECT id, autor, text, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM blogphp_commentaire WHERE autor =' . '\'' . $comment->getAutor() . '\' ORDER BY comment_date_fr DESC' ;
-        $req = DatabaseConnection::dbConnect()->query($request);
-        /*$db = DatabaseConnection::dbConnect();
-        $comments = $db->prepare('SELECT id, autor, text, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM blogphp_commentaire WHERE author = :author ORDER BY comment_date_fr DESC');
+        $all_comments_by_user = [];
+        $db = DatabaseConnection::dbConnect();
+        $comments = $db->prepare('SELECT id, autor, text, postid, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date FROM blogphp_commentaire WHERE autor = :author ORDER BY comment_date DESC');
         $comments->execute(array(
             ':author' => $comment->getAutor()
-        ));*/
-        return $req;
+        ));
+        while ($donnees = $comments->fetch(PDO::FETCH_ASSOC))
+        {
+            $all_comments_by_user[] = new Comment($donnees);
+        }
+
+        return $all_comments_by_user;
     }
 
     public function GetCommentsToBeApproved(Comment $comment)
     {
-        $request = 'SELECT * FROM blogphp_commentaire, blogphp_posts WHERE author =' . '\'' . $comment->getAutor() . '\' AND approved = 0 AND autor != ' . '\''. $comment->getAutor() . '\'  GROUP BY blogphp_commentaire.id' ;
-        $req = DatabaseConnection::dbConnect()->query($request);
-        return $req;
+        $get_comments_to_approve = [];
+        $db = DatabaseConnection::dbConnect();
+        $comments = $db->prepare('SELECT * FROM blogphp_commentaire JOIN blogphp_posts ON number = postid WHERE blogphp_commentaire.autor != :author AND approved = 0');
+        $comments->execute(array(
+            ':author' => $comment->getAutor()
+        ));
+        while ($donnees = $comments->fetch(PDO::FETCH_ASSOC))
+        {
+            $get_comments_to_approve[] = new Comment($donnees);
+            $get_comments_to_approve[] = new Post($donnees);
+        }
+        return $get_comments_to_approve;
     }
 
     public function AddCommentWithVerrif(Comment $comment)
     {
         try {
             $db = DatabaseConnection::dbConnect();
-            $addcom = $db->prepare('INSERT INTO blogphp_commentaire (post_id,autor,text,comment_date,approved) VALUES (:idpost, :autor, :comment, NOW(),0) ');
+            $addcom = $db->prepare('INSERT INTO blogphp_commentaire (postid,autor,text,comment_date,approved) VALUES (:idpost, :autor, :comment, NOW(),0) ');
             $addcom->execute(array(
                 ':idpost' => $comment->getPostid(),
                 ':autor' => $comment->getAutor(),
@@ -67,7 +86,7 @@ class CommentManager
     {
         try {
             $db = DatabaseConnection::dbConnect();
-            $addcom = $db->prepare('INSERT INTO blogphp_commentaire (post_id,autor,text,comment_date,approved) VALUES (:idpost, :autor, :comment, NOW(),1) ');
+            $addcom = $db->prepare('INSERT INTO blogphp_commentaire (postid,autor,text,comment_date,approved) VALUES (:idpost, :autor, :comment, NOW(),1) ');
             $addcom->execute(array(
                 ':idpost' => $comment->getPostid(),
                 ':autor' => $comment->getAutor(),
@@ -82,7 +101,7 @@ class CommentManager
     {
         try {
             $db = DatabaseConnection::dbConnect();
-            $update = $db->prepare('UPDATE `blogphp_commentaire` SET `text` = :newcom, `comment_date` = NOW()  WHERE `blogphp_commentaire`.`id` = :id AND `blogphp_commentaire`.`post_id` = :idpost ');
+            $update = $db->prepare('UPDATE `blogphp_commentaire` SET `text` = :newcom  WHERE `blogphp_commentaire`.`id` = :id AND `blogphp_commentaire`.`postid` = :idpost ');
             $update->execute(array(
                 ':newcom' => $comment->getText(),
                 ':idpost' => $comment->getPostid(),
@@ -96,7 +115,7 @@ class CommentManager
     public function GetComment(Comment $comment)
     {
         $db = DatabaseConnection::dbConnect();
-        $thecomment = $db->prepare('SELECT text FROM blogphp_commentaire WHERE post_id = :idpost AND id= :id AND autor = :author');
+        $thecomment = $db->prepare('SELECT text FROM blogphp_commentaire WHERE postid = :idpost AND id= :id AND autor = :author');
         $thecomment->execute(array(
             ':idpost' => $comment->getPostid(),
             ':id'     => $comment->getId(),

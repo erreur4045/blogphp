@@ -30,36 +30,6 @@ class Comment
         }
     }
 
-    public function GetComments($postid)
-    {
-        $db = DatabaseConnection::dbConnect();
-        $comments = $db->prepare('SELECT id, autor, text, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM blogphp_commentaire WHERE post_id = ? ORDER BY comment_date_fr DESC');
-        $comments->execute(array($postid));
-
-        return $comments;
-    }
-    public function AddComment($postid, $author, $comment_date)
-    {
-        try {
-            $db = DatabaseConnection::dbConnect();
-            $addcom = $db->prepare('INSERT INTO blogphp_commentaire (post_id,autor,text,comment_date) VALUES (:idpost, :autor, :comment, NOW()) ');
-            $addcom->execute(array(':idpost' => $postid, ':autor' => $author, ':comment' => $comment_date));
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
-    }
-
-    public function UpdateComment($id, $postid, $newcom)
-    {
-        try {
-            $db = DatabaseConnection::dbConnect();
-            $update = $db->prepare('UPDATE `blogphp_commentaire` SET `text` = :newcom, `comment_date` = NOW()  WHERE `blogphp_commentaire`.`id` = :id AND `blogphp_commentaire`.`post_id` = :idpost ');
-            $update->execute(array(':newcom' => $newcom, ':idpost' => $postid, ':id' => $id));
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
-    }
-
     /*---------------------------------------getteurs-------------------------------/*
         /**
          * @return mixed
