@@ -13,7 +13,7 @@ class User
     private $pass;
     private $email;
     private $datesub;
-    private $isadmin;
+    private $grade;
 
 
     public function __construct($donnees)
@@ -76,11 +76,11 @@ class User
     }
 
     /**
-     * @param mixed $isadmin
+     * @param mixed $grade
      */
-    public function setIsadmin($isadmin)
+    public function setGrade($grade)
     {
-        $this->isadmin = $isadmin;
+        $this->grade = $grade;
     }
 
     /*------------------------------getters-------------------------------------------*/
@@ -127,8 +127,8 @@ class User
     /**
      * @return mixed
      */
-    public function getIsadmin()
+    public function getGrade()
     {
-        return $this->isadmin;
+        return $this->grade;
     }
 }

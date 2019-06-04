@@ -28,15 +28,18 @@ class UserManager
         }
     }
 
-    function IsAdmin(User $user){
+    function GradeUser(User $user){
+
         try{
             $db = DatabaseConnection::dbConnect();
-            $recup = $db->prepare('SELECT * FROM blogphp_membres WHERE pseudo = :username');
+            $recup = $db->prepare('SELECT grade FROM blogphp_membres WHERE pseudo = :username');
             $recup->execute(array(
                 ':username' => $user->getPseudo()
             ));
-            $result = $recup->fetch();
-            return $result;
+
+        $donnees = $recup->fetch();
+
+            return new User($donnees);
         }
         catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
@@ -86,6 +89,7 @@ class UserManager
             $recup = $db->prepare('SELECT * FROM blogphp_membres WHERE pseudo = :pseudo');
             $recup->execute(array(
                 ':pseudo' => $user->getPseudo()));
+
             $result = $recup->fetch();
             return password_verify($user->getPass(), $result['pass']);
         } catch (Exception $e) {

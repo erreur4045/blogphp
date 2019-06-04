@@ -22,7 +22,7 @@ class CommentManager
     {
         $all_comments = [];
         $db = DatabaseConnection::dbConnect();
-        $comments = $db->prepare('SELECT id, postid, autor, approved, text, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date FROM blogphp_commentaire WHERE postid = :idpost ORDER BY comment_date DESC');
+        $comments = $db->prepare('SELECT id, postid, autor, approved, text, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date FROM blogphp_commentaire WHERE postid = :idpost AND approved = 1 ORDER BY comment_date DESC');
         $comments->execute(array(
             ':idpost' => $comment->getPostid()
         ));
@@ -55,14 +55,13 @@ class CommentManager
     {
         $get_comments_to_approve = [];
         $db = DatabaseConnection::dbConnect();
-        $comments = $db->prepare('SELECT * FROM blogphp_commentaire JOIN blogphp_posts ON number = postid WHERE blogphp_commentaire.autor != :author AND approved = 0');
+        $comments = $db->prepare('SELECT * FROM blogphp_commentaire WHERE blogphp_commentaire.autor != :author AND approved = 0');
         $comments->execute(array(
             ':author' => $comment->getAutor()
         ));
         while ($donnees = $comments->fetch(PDO::FETCH_ASSOC))
         {
             $get_comments_to_approve[] = new Comment($donnees);
-            $get_comments_to_approve[] = new Post($donnees);
         }
         return $get_comments_to_approve;
     }
@@ -136,7 +135,7 @@ class CommentManager
     public function validCom(Comment $com)
     {
         $db = DatabaseConnection::dbConnect();
-        $recup = $db->prepare('UPDATE `blogphp_commentaire` SET `approved` = 1 WHERE id = :id AND post_id = :postid');
+        $recup = $db->prepare('UPDATE `blogphp_commentaire` SET `approved` = 1 WHERE id = :id AND postid = :postid');
         $recup->execute(array(
             ':id'=>$com->getId(),
             ':postid'=>$com->getPostid()

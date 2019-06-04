@@ -140,10 +140,6 @@ function post()
     $com_manager = new CommentManager($comment_for_data);
     /* Passage des commentaire a la vue */
     $comments = $com_manager->GetComments($comment_for_data);
-/*    echo '<pre>';
-    var_dump($comments);
-    echo '</pre>';
-    die();*/
     require ('view/PostViewco.php');
 
 }
