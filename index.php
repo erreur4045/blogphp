@@ -51,6 +51,8 @@ if ($maintenance == 0) {
             contact();
         } elseif ($_GET['action'] == 'updatecomment') {
             updatecomm();
+        } elseif ($_GET['action'] == 'adminuser') {
+            adminuser();
         } elseif ($_GET['action'] == 'CV') {
             CV();
         } elseif ($_GET['action'] == 'inscription') {

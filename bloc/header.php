@@ -31,6 +31,9 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="index.php?action=addnewpost">Ajouter un article</a>
                         <a class="dropdown-item" href="index.php?action=dashboard"">Dashboard</a>
+                            <?php if ($_SESSION['admin'] == TRUE) : ?>
+                            <a class="dropdown-item" href="index.php?action=adminuser">Administration utilisateur</a>
+                            <?php endif; ?>
                         <a class="dropdown-item" href="index.php?action=deconnection">Se deconnecter</a>
                     </div>
                 </li>

@@ -68,9 +68,9 @@ function dashboard3()
             'autor' => $_SESSION['username'],
         );
         $com = new Comment($data);
-        //echo $com->getAutor();
         $manage_user = new CommentManager($com);
         $result_com = $manage_user->GetCommentsToBeApproved($com);
+
         require('view/DashboardView3.php');
     }
 }
@@ -104,8 +104,16 @@ function connectionuser()
     );
     $user = new User($data);
     $manage_user = new UserManager($user);
-    if ($manage_user->ConnectionUser($user) == TRUE) {
+    $grade = $manage_user->GradeUser($user);
+
+    if ($manage_user->ConnectionUser($user) == true && $grade->getGrade() == 1 ) {
         $_SESSION['username'] = $_POST['username'];
+        $_SESSION['admin'] = TRUE;
+        $_SESSION['message'] = "vous êtes bien connecté";
+        header('Location: index.php');
+    } elseif ($manage_user->ConnectionUser($user) == true) {
+        $_SESSION['username'] = $_POST['username'];
+        $_SESSION['admin'] = FALSE;
         $_SESSION['message'] = "vous êtes bien connecté";
         header('Location: index.php');
     } else {
