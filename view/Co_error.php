@@ -5,10 +5,13 @@
             <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
             <?php unset($_SESSION['message']); ?>
         <?php endif; ?>
-        <div class="container">
+        <div class="container textcenter">
             <div class="row">
-                <div class="error_co">
-                    <h1>Vous n'est pas autorisé sur cette page</h1>
+                <div class="col-md-12">
+                    <div class="error_co">
+                        <i class="fas fa-hand-paper fa-9x"></i>
+                        <h1>Vous n'est pas autorisé sur cette page</h1>
+                    </div>
                 </div>
             </div>
         </div>
