@@ -10,7 +10,6 @@ function listPosts()
 {
     $managepost = new PostManager();
     $posts = $managepost->selectLastPosts();
-
     require('view/LastPostView.php');
 }
 
@@ -53,7 +52,11 @@ function supprpostlistpost()
 
 function addnewpost()
 {
-    require('view/AddnewpostView.php');
+    if (isset($_SESSION['username']) && $_SESSION['grade'] == 2 OR $_SESSION['grade'] == 1) {
+        require('view/AddnewpostView.php');
+    }
+    else
+        require 'view/Co_error.php';
 }
 
 function validpost()

@@ -80,9 +80,18 @@ class PostManager
 
     public function selectAllPosts()
     {
-        $req = DatabaseConnection::dbConnect()->query('SELECT number, title, content, date, author FROM blogphp_posts ORDER BY date DESC');
-        return $req;
+        $allpost = [];
+
+        $q = DatabaseConnection::dbConnect()->query('SELECT number, title, content, date, author FROM blogphp_posts ORDER BY date DESC');
+
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+            $allpost[] = new Post($donnees);
+        }
+
+        return $allpost;
     }
+
     public function selectPostById(Post $post)
     {
         $req = DatabaseConnection::dbConnect()->prepare('SELECT number, title, content, author, date FROM blogphp_posts WHERE number = :number');

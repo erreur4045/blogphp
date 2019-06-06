@@ -24,21 +24,35 @@ function adminusertobevalided()
         $list_user = $manage_user->GetUsersNotAccepted();
         include 'view/AdminUser.php';
     }
+    else
+        include 'view/Co_error.php';
 
 
 }
 
 function accceptuser()
 {
-    $data = array(
-        'id' => $_GET['id'],
-        'grade' => '2'
-    );
+    $data = array('pseudo' => $_SESSION['username'],);
     $user = new User($data);
     $manage_user = new UserManager($user);
-    $manage_user->ChangeGradeUser($user);
-    $_SESSION['message'] = "Utilisateur est accepté";
-    header('Location: index.php?action=adminusertobevalided');
+    $grade = $manage_user->GradeUser($user);
+    if ($grade->getGrade() == 1 )
+    {
+        $data = array(
+            'id' => $_GET['id'],
+            'grade' => '2'
+        );
+        $user = new User($data);
+        $manage_user = new UserManager($user);
+
+        echo 'je passe par la';
+        $manage_user->ChangeGradeUser($user);
+        $_SESSION['message'] = "Utilisateur est accepté";
+        header('Location: index.php?action=adminusertobevalided');
+    }
+    else
+        include 'view/Co_error.php';
+
 
 }
 function suppuser()
@@ -160,11 +174,13 @@ function connectionuser()
     if ($manage_user->ConnectionUser($user) == true && $grade->getGrade() == 1 ) {
         $_SESSION['username'] = $_POST['username'];
         $_SESSION['admin'] = TRUE;
+        $_SESSION['grade'] = $grade->getGrade();
         $_SESSION['message'] = "vous êtes bien connecté";
         header('Location: index.php');
     } elseif ($manage_user->ConnectionUser($user) == true) {
         $_SESSION['username'] = $_POST['username'];
         $_SESSION['admin'] = FALSE;
+        $_SESSION['grade'] = $grade->getGrade();
         $_SESSION['message'] = "vous êtes bien connecté";
         header('Location: index.php');
     } else {

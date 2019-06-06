@@ -23,15 +23,16 @@
                         <a class="nav-link" href="index.php?action=connection">Se connecter</a>
                     </li>
                 <?php else: ?>
-
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="index.php?action=dashboard" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?= ucfirst($_SESSION['username']) ?>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <?php if ($_SESSION['grade'] == 1 OR $_SESSION['grade'] == 2) : ?>
                         <a class="dropdown-item" href="index.php?action=addnewpost">Ajouter un article</a>
+                            <?php endif; ?>
                         <a class="dropdown-item" href="index.php?action=dashboard"">Dashboard</a>
-                            <?php if ($_SESSION['admin'] == TRUE) : ?>
+                            <?php if ($_SESSION['admin'] == true) : ?>
                             <a class="dropdown-item" href="index.php?action=adminusertobevalided">Administration utilisateur</a>
                             <?php endif; ?>
                         <a class="dropdown-item" href="index.php?action=deconnection">Se deconnecter</a>
