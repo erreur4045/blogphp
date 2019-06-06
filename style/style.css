@@ -74,15 +74,6 @@
 }
 
 
-.error_co, .author{
-    text-align: center;
-    border: 10px solid var(--color-four);
-    border-radius: 20px;
-    padding: 12px;
-}
-
-
-
 .articleindex{
     text-align: left;
 }

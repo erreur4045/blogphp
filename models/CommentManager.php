@@ -63,6 +63,7 @@ class CommentManager
         {
             $get_comments_to_approve[] = new Comment($donnees);
         }
+
         return $get_comments_to_approve;
     }
 
@@ -126,7 +127,7 @@ class CommentManager
     public function supprCom(Comment $com)
     {
         $db = DatabaseConnection::dbConnect();
-        $recup = $db->prepare('DELETE FROM blogphp_commentaire WHERE id = :id AND post_id = :postid');
+        $recup = $db->prepare('DELETE FROM blogphp_commentaire WHERE id = :id AND postid = :postid');
         $recup->execute(array(
             ':id'=>$com->getId(),
             ':postid'=>$com->getPostid()

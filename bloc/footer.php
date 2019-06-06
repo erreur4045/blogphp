@@ -15,7 +15,6 @@
                         elems[i].addEventListener('click', confirmIt, false);
                     }
                 </script>
-
                 <br>
                 <div class="footer-copyright text-center ">© 2019 Copyright:
                     <a href="https://www.linkedin.com/in/maxime-thierry-93870a97/"> maximethierry.xyz</a>

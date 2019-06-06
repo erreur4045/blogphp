@@ -8,7 +8,7 @@
  *
  * Post class
  *
- * Classe aui permet de creer et recuper les valeurs d'un post
+ * Classe qui permet de creer et recuper les valeurs d'un post
  *
  * @category Exemple
  * @package  BlogphpOCR_OCR_Php_Symfony
