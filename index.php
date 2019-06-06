@@ -51,8 +51,14 @@ if ($maintenance == 0) {
             contact();
         } elseif ($_GET['action'] == 'updatecomment') {
             updatecomm();
-        } elseif ($_GET['action'] == 'adminuser') {
-            adminuser();
+        } elseif ($_GET['action'] == 'adminusertobevalided') {
+            adminusertobevalided();
+        } elseif ($_GET['action'] == 'adminuserlist') {
+            adminuserlist();
+        } elseif ($_GET['action'] == 'accceptuser') {
+            accceptuser();
+        } elseif ($_GET['action'] == 'suppuser') {
+            suppuser();
         } elseif ($_GET['action'] == 'CV') {
             CV();
         } elseif ($_GET['action'] == 'inscription') {

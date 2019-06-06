@@ -9,7 +9,7 @@
             <div class="d-flex justify-content-center">
                 <div class="row">
                     <!-- Grid column -->
-                    <div class="col-md-12 mb-4 margin-form">
+                    <div class="col-md-12 margin-form">
                         <div class="card near-moon-gradient form-white">
                             <div class="card-body">
                                 <!-- Form subscription -->
@@ -38,12 +38,6 @@
                                 </form>
                                 <!-- Form subscription -->
                             </div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <h3 class="">Vous n'etes pas inscrit ?<span><a href="index.php?action=inscription"
-                                                                           class="small"> Incription</a></span></h3>
                         </div>
                     </div>
                 </div>

@@ -65,13 +65,23 @@ function validpost()
             'author' => $_SESSION['username']
         );
         $post = new Post($donnees);
-        $manager = new PostManager($post);
-        $manager->addPost($post);
-        $_SESSION['message'] = "Votre article a ete ajoute";
-        header('Location: index.php?action=listPosts');
-    }
-    else
-    {
+        $donnees_user = array(
+            'pseudo' => $_SESSION['username']
+        );
+        $user = new User($donnees_user);
+        $manager_user = new UserManager($user);
+        $grade = $manager_user->GradeUser($user);
+        if ($grade->getGrade() == 2 OR $grade->getGrade() == 1) {
+            $manager = new PostManager($post);
+            $manager->addPost($post);
+            $_SESSION['message'] = "Votre article a ete ajoute";
+            header('Location: index.php?action=listPosts');
+        } else {
+            $_SESSION['message'] = "Votre n'etes pas autorisé à ajouter un article";
+            header('Location: index.php');
+        }
+
+    } else {
         $_SESSION['message'] = "Vous devez etre connecter pour ajouter un article";
         header('Location: index.php?action=connectionadmin');
     }
