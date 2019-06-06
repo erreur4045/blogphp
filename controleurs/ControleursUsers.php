@@ -11,6 +11,57 @@ require_once ('models/UserManager.php');
 require_once ('models/Post.php');
 require_once ('models/PostManager.php');
 
+function adminusertobevalided()
+{
+    if (!isset($_SESSION['username']))
+        require ('view/Co_error.php');
+    $data = array('pseudo' => $_SESSION['username'],);
+    $user = new User($data);
+    $manage_user = new UserManager($user);
+    $grade = $manage_user->GradeUser($user);
+    if ($grade->getGrade() == 1 )
+    {
+        $list_user = $manage_user->GetUsersNotAccepted();
+        include 'view/AdminUser.php';
+    }
+
+
+}
+
+function accceptuser()
+{
+    $data = array(
+        'id' => $_GET['id'],
+        'grade' => '2'
+    );
+    $user = new User($data);
+    $manage_user = new UserManager($user);
+    $manage_user->ChangeGradeUser($user);
+    $_SESSION['message'] = "Utilisateur est accepté";
+    header('Location: index.php?action=adminusertobevalided');
+
+}
+function suppuser()
+{
+    $data = array(
+        'id' => $_GET['id'],
+    );
+    $user = new User($data);
+    $manage_user = new UserManager($user);
+    $data_user = $manage_user->GetDataByIdUser($user);
+    $manage_user->SuppUser($data_user);
+    $_SESSION['message'] = "Utilisateur a été supprimé";
+    header('Location: index.php?action=adminusertobevalided');
+
+}
+
+function adminuserlist()
+{
+    $manage_user = new UserManager();
+    $data_user = $manage_user->GetAllUser();
+        include 'view/AdminUserList.php';
+}
+
 function dashboard()
 {
     if (!isset($_SESSION['username']))
