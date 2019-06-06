@@ -21,19 +21,21 @@ function comment()
         'number' => $_GET['idpost']
     );
     $getdatapost = new Post($data);
-    echo $getdatapost->getNumber();
     $getdatapostmanager = new PostManager($getdatapost);
     $datapost = $getdatapostmanager->selectAuthorByNumberPost($getdatapost);
     $dd = $datapost->fetch();
     $com = new Comment($idpost);
     $com_manager = new CommentManager($com);
-    if ($dd['author'] == $_SESSION{'username'}){
+    if ($dd['author'] == $_SESSION{'username'}) {
         $com_manager->AddCommentLessVerrif($com);
-    }
-    else
+        $_SESSION['message'] = 'Votre commentaire à été ajouté';
+        header('Location: index.php?id=' . $com->getPostid() . '&action=post');
+    } else {
         $com_manager->AddCommentWithVerrif($com);
-    $_SESSION['message'] = 'votre commentaire a ete ajoute';
-    header('Location: index.php?id=' . $com->getPostid() . '&action=post');
+        $_SESSION['message'] = 'Votre commentaire est en attente de validation par l\'auteur';
+        header('Location: index.php?id=' . $com->getPostid() . '&action=post');
+    }
+
 }
 
 function modifcomment()
