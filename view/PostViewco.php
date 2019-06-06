@@ -2,7 +2,7 @@
 <?php ob_start(); ?>
 <div class="main">
     <?php if (isset($_SESSION['message'])) : ?>
-        <div class="alert alert-info"><? echo $_SESSION['message']; ?></div>
+        <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
         <?php unset($_SESSION['message']); ?>
     <?php endif; ?>
     <div class="container">
@@ -68,7 +68,8 @@
             </div>
         </div>
     </div>
+    <?php endif; ?>
 </div>
-<?php endif; ?>
+
 <?php $content = ob_get_clean(); ?>
 <?php require 'style/template.php'; ?>

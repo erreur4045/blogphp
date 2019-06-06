@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="error_co">
-                    <h1>Vous n'est pas autorisez sur cette page</h1>
+                    <h1>Vous n'est pas autorisé sur cette page</h1>
                 </div>
             </div>
         </div>

@@ -47,6 +47,9 @@
                                                    href="index.php?action=post&id=<?= $com_data->getPostid() ?>"
                                                    role="button">Voir
                                                     le post</a></em>
+                                            <em><a class="btn btn-outline-danger confirmation"
+                                                   href="index.php?action=supprcom&id=<?= $com_data->getId() . '&idpost=' . $com_data->getPostid() ?>"
+                                                   role="button">Supprimer</a></em>
                                         </div>
                                     </div>
                                 </div>
