@@ -13,6 +13,7 @@
  * @link     Exemple
  */
 require_once 'models/PostManager.php';
+require_once 'models/UserManager.php';
 require_once 'models/Comment.php';
 require_once 'models/Post.php';
 
@@ -26,7 +27,7 @@ require_once 'models/Post.php';
 function testfunction()
 {
     //pour la classe post
-
+/*
     echo 'coucou';
     ini_set("SMTP", "smtp.maximethierry.xyz");
     echo 'coucou';
@@ -37,7 +38,13 @@ function testfunction()
         'Reply-To: maximethi@hotmail.fr' . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
 
-    var_dump(mail($to, $subject, $message, $headers));
+    var_dump(mail($to, $subject, $message, $headers));*/
+    $data = array(
+        'pseudo' => 'maxime',
+    );
+    $user = new User($data);
+    $manage_user = new UserManager($user);
+    var_dump($manage_user->GradeUser($user));
 
 }
 /**
@@ -51,6 +58,14 @@ function testmail()
 {
     include 'view/testview.php';
 }
+/**
+ * Permet de faire une function test
+ *
+ * @return void
+ *
+ * @since 1.0.1
+ */
+
 /**
  * Permet de faire une function test
  *

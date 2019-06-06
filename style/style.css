@@ -24,6 +24,9 @@
 .btn, .fab{
     margin: 5px;
 }
+.sameline{
+    display: inline-block;
+}
 
 .img-bio{
     display: block;

@@ -26,32 +26,32 @@
                     <div class="card-body">
                         <?php foreach ($result_post
 
-                        as $post_data) : ?>
-                        <?php if (!isset($_SESSION['username'])) : ?>
-                            <em></em>
-                        <?php elseif ($_SESSION['username'] == $post_data->getAuthor()): ?>
-                            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                                       as $post_data) : ?>
+                            <?php if (!isset($_SESSION['username'])) : ?>
+                                <em></em>
+                            <?php elseif ($_SESSION['username'] == $post_data->getAuthor()): ?>
+                                <div class="card flex-md-row mb-4 box-shadow h-md-250">
                                 <div class="card-body d-flex flex-column align-items-start ">
-                                    <div class=""
                                     <p> le <?= $post_data->getDate() ?></p>
                                     <p><?= nl2br(htmlspecialchars($post_data->getContent())) ?></p>
-                                    <em><a class="btn btn-outline-warning"
-                                           href="index.php?action=modifpost&id=<?= $post_data->getNumber() ?>">Modifier</a></em>
-                                    <em><a class="btn btn-outline-danger confirmation"
-                                           href="index.php?action=supprpost&id=<?= $post_data->getNumber() . '&author=' . $post_data->getAuthor() ?>">Supprimer</a></em>
-                                    <em><a class="btn btn-outline-info"
-                                           href="index.php?action=post&id=<?= $post_data->getNumber() ?>">Voir
-                                            l'article et les
-                                            commentaires</a></em>
+                                    <div class="sameline">
+                                        <em><a class="btn btn-outline-warning"
+                                               href="index.php?action=modifpost&id=<?= $post_data->getNumber() ?>">Modifier</a></em>
+                                        <em><a class="btn btn-outline-danger confirmation"
+                                               href="index.php?action=supprpost&id=<?= $post_data->getNumber() . '&author=' . $post_data->getAuthor() ?>">Supprimer</a></em>
+                                        <em><a class="btn btn-outline-info"
+                                               href="index.php?action=post&id=<?= $post_data->getNumber() ?>">Voir
+                                                l'article et les
+                                                commentaires</a></em>
+                                    </div>
                                 </div>
+                            <?php endif; ?>
                             </div>
-                        <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
-                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 <?php $content = ob_get_clean(); ?>
 <?php require('style/template.php'); ?>

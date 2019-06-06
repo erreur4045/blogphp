@@ -33,16 +33,18 @@
                                         <div class="">
                                             <p> le <?= $com_data->getComment_date() ?></p>
                                             <p><?= nl2br(htmlspecialchars($com_data->getText())) ?></p>
-                                            <em><a class="btn btn-outline-warning"
-                                                   href="index.php?action=modifcomment&id=<?= $com_data->getId() . '&idpost=' . $com_data->getPostid() ?>"
-                                                   role="button">Modifier</a></em>
-                                            <em><a class="btn btn-outline-danger confirmation"
-                                                   href="index.php?action=supprcom&id=<?= $com_data->getId() . '&idpost=' . $com_data->getPostid() ?>"
-                                                   role="button">Supprimer</a></em>
-                                            <em><a class="btn btn-info"
-                                                   href="index.php?action=post&id=<?= $com_data->getPostid() ?>"
-                                                   role="button">Voir
-                                                    le post</a></em>
+                                            <div class="sameline">
+                                                <em><a class="btn btn-outline-warning"
+                                                       href="index.php?action=modifcomment&id=<?= $com_data->getId() . '&idpost=' . $com_data->getPostid() ?>"
+                                                       role="button">Modifier</a></em>
+                                                <em><a class="btn btn-outline-danger confirmation"
+                                                       href="index.php?action=supprcom&id=<?= $com_data->getId() . '&idpost=' . $com_data->getPostid() ?>"
+                                                       role="button">Supprimer</a></em>
+                                                <em><a class="btn btn-info"
+                                                       href="index.php?action=post&id=<?= $com_data->getPostid() ?>"
+                                                       role="button">Voir
+                                                        le post</a></em>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
