@@ -8675,7 +8675,7 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
 }
 
 .mt-5, .my-5 {
-    margin-top: 3rem !important
+    margin-top: 0rem !important
 }
 
 .mr-5, .mx-5 {
@@ -8795,7 +8795,7 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
 }
 
 .pt-5, .py-5 {
-    padding-top: 3rem !important
+    padding-top: 0rem !important
 }
 
 .pr-5, .px-5 {

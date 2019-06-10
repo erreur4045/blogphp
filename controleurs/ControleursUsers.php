@@ -162,7 +162,7 @@ function validincription()
         header('Location: index.php?action=inscription');
     } else {
         $_SESSION['message'] = "Votre inscription a été prise en compte, vous pouvez maintenant vous connecter";
-        require('views/ConnectionUserView.php');
+        header('Location: index.php');
     }
 }
 

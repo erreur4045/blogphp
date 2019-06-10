@@ -25,7 +25,7 @@
                                 <h1>Blog personnel de Maxime THIERRY</h1>
                             </div>
                             <div class="text">
-                                <p class="sub-text mb-5">Je suis développeur PHP7 MVC POO</p>
+                                <p class="sub-text mb-5">Développeur PHP7 MVC POO</p>
                                 <p><a href="index.php?action=bio" target="_blank" class="btn btn-primary btn-md">Bio</a></p>
                             </div>
                         </div>

@@ -30,7 +30,7 @@ function supprPost()
         $post = new Post($data);
         $managepost = new PostManager($post);
         $managepost->suppr($post);
-        $_SESSION['message'] = "Votre article a ete supprimer";
+        $_SESSION['message'] = "Votre article a été supprimer";
         header('Location: index.php?action=dashboard');
     }
 }
@@ -45,7 +45,7 @@ function supprpostlistpost()
         $post = new Post($data);
         $managepost = new PostManager($post);
         $managepost->suppr($post);
-        $_SESSION['message'] = "Votre article a ete supprimer";
+        $_SESSION['message'] = "Votre article a été supprimer";
         header('Location: index.php?action=listPosts');
     }
 }

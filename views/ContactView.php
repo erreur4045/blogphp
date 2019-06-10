@@ -10,12 +10,10 @@
         <div class="site-section " id="contact-section">
             <div class="container">
                 <form action="" class="contact-form">
-
                     <div class="section-title text-center mb-5">
                         <span class="sub-title mb-2 d-block">Restons en contact</span>
                         <h2 class="title text-primary">Contactez moi</h2>
                     </div>
-
                     <div class="row mb-4">
                         <div class="col-md-6 mb-4 mb-md-0">
                             <input name="firstname" type="text" class="form-control" placeholder="Prénom">
@@ -46,6 +44,7 @@
                 </form>
             </div>
         </div>
+    </div>
     </div>
     </div>
 

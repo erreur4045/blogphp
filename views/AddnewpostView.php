@@ -22,13 +22,13 @@
                                        placeholder="Titre de l'article">
                             </div>
                             <div class="md-form">
-                                <i class="fa fa-pencil prefix white-text"></i>
+                                <i class="fas fa-align-left"></i>
                                 <label for="form82" class="">Contenue de l'article:</label>
                                 <textarea name="content" type="text" id="form82" class="form-control"
                                           placeholder="Votre article"></textarea>
                             </div>
                             <div class="text-center">
-                                <button class="btn btn-info btn-lg waves-effect waves-light">Envoyer</button>
+                                <button class="btn btn-primary btn-md">Envoyer</button>
                             </div>
                         </form>
                 </div>

@@ -34,19 +34,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-5 mb-lg-0">
-                    <div class="mb-5">
-                        <h3 class="footer-heading mb-2">Subscribe Newsletter</h3>
-                        <form method="post" class="form-subscribe">
-                            <div class="form-group mb-3">
-                                <input type="text" class="form-control border-white text-white bg-transparent" placeholder="Enter email" aria-label="Enter Email" aria-describedby="button-addon2">
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-primary px-5" type="submit">Subscribe</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
             </div>
             <div class="row pt-5 mt-5 text-center">
                 <div class="col-md-12">

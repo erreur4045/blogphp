@@ -109,6 +109,7 @@ h1, h2, h3, h4, h5, h6 {
 	}
 	&.btn-md {
 		padding: 14px 30px;
+		margin: 5px;
 	}
 }
 
@@ -172,7 +173,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .site-footer {
-	padding-top: 17rem;
+	padding-top: 10rem;
 	padding-bottom: 4rem;
 	background: lighten($black, 20%);
 	p {

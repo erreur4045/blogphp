@@ -5,13 +5,9 @@
             <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
             <?php unset($_SESSION['message']); ?>
         <?php endif; ?>
-            <div class="container" >
-                <div class="d-flex justify-content-center">
-                    <div class="row">
-                        <div class="col-md-12 mb-4 margin-form">
-                            <div class="card near-moon-gradient form-white">
-                                <div class="card-body">
-                                <form action="index.php?action=validinscription" method="post">
+        <div class="container ">
+            <div class="site-section" id="contact-section">
+                    <form action="index.php?action=validinscription" method="post" class="contact-form">
                                     <h3 class="text-center indigo-text font-bold py-4"><strong>S'inscrire</strong>
                                     </h3>
                                     <div class="md-form">
@@ -30,7 +26,7 @@
                                         <input type="email" name="mail" id="form35" class="form-control">
                                     </div>
                                     <div class="text-center py-4">
-                                        <button class="btn btn-indigo">Send <i class="far fa-paper-plane"></i>
+                                        <button class="btn btn-primary btn-md">Send <i class="fas fa-paper-plane"></i>
                                         </button>
                                     </div>
 
@@ -39,10 +35,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 <?php $content = ob_get_clean(); ?>
