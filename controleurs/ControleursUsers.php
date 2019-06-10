@@ -6,26 +6,26 @@
  * Time: 16:03
  */
 
-require_once ('models/User.php');
-require_once ('models/UserManager.php');
-require_once ('models/Post.php');
-require_once ('models/PostManager.php');
+require_once('models/User.php');
+require_once('models/UserManager.php');
+require_once('models/Post.php');
+require_once('models/PostManager.php');
 
 function adminusertobevalided()
 {
-    if (!isset($_SESSION['username']))
-        require ('view/Co_error.php');
+    if (!isset($_SESSION['username'])) {
+        require('views/Co_error.php');
+    }
     $data = array('pseudo' => $_SESSION['username'],);
     $user = new User($data);
     $manage_user = new UserManager($user);
     $grade = $manage_user->GradeUser($user);
-    if ($grade->getGrade() == 1 )
-    {
+    if ($grade->getGrade() == 1) {
         $list_user = $manage_user->GetUsersNotAccepted();
-        include 'view/AdminUser.php';
+        include 'views/AdminUser.php';
+    } else {
+        include 'views/Co_error.php';
     }
-    else
-        include 'view/Co_error.php';
 
 
 }
@@ -36,8 +36,7 @@ function accceptuser()
     $user = new User($data);
     $manage_user = new UserManager($user);
     $grade = $manage_user->GradeUser($user);
-    if ($grade->getGrade() == 1 )
-    {
+    if ($grade->getGrade() == 1) {
         $data = array(
             'id' => $_GET['id'],
             'grade' => '2'
@@ -49,38 +48,44 @@ function accceptuser()
         $manage_user->ChangeGradeUser($user);
         $_SESSION['message'] = "Utilisateur est accepté";
         header('Location: index.php?action=adminusertobevalided');
+    } else {
+        include 'views/Co_error.php';
     }
-    else
-        include 'view/Co_error.php';
 
 
 }
+
 function suppuser()
 {
-    $data = array(
-        'id' => $_GET['id'],
-    );
-    $user = new User($data);
-    $manage_user = new UserManager($user);
-    $data_user = $manage_user->GetDataByIdUser($user);
-    $manage_user->SuppUser($data_user);
-    $_SESSION['message'] = "Utilisateur a été supprimé";
-    header('Location: index.php?action=adminusertobevalided');
-
+    if ($_SESSION['grade'] == 1) {
+        $data = array(
+            'id' => $_GET['id'],
+        );
+        $user = new User($data);
+        $manage_user = new UserManager($user);
+        $data_user = $manage_user->GetDataByIdUser($user);
+        $manage_user->SuppUser($data_user);
+        $_SESSION['message'] = "Utilisateur a été supprimé";
+        header('Location: index.php?action=adminusertobevalided');
+    }
 }
 
 function adminuserlist()
 {
-    $manage_user = new UserManager();
-    $data_user = $manage_user->GetAllUser();
-        include 'view/AdminUserList.php';
+    if ($_SESSION['grade'] == 1) {
+        $manage_user = new UserManager();
+        $data_user = $manage_user->GetAllUser();
+        include 'views/AdminUserList.php';
+    }
+    else
+        require 'views/Co_error.php';
 }
 
 function dashboard()
 {
-    if (!isset($_SESSION['username']))
-        require ('view/Co_error.php');
-    else{
+        if (!isset($_SESSION['username'])) {
+        require('views/Co_error.php');
+    } else {
         $data = array(
             'pseudo' => $_SESSION['username'],
         );
@@ -93,15 +98,15 @@ function dashboard()
         $com = new Comment($data);
         $manage_user = new CommentManager($com);
         $result_com = $manage_user->GetCommentsByUser($com);
-        require('view/DashboardView.php');
+        require('views/DashboardView.php');
     }
 }
 
 function dashboard2()
 {
-    if (!isset($_SESSION['username']))
-        require ('view/Co_error.php');
-    else{
+    if (!isset($_SESSION['username'])) {
+        require('views/Co_error.php');
+    } else {
         $data = array(
             'pseudo' => $_SESSION['username'],
         );
@@ -114,15 +119,15 @@ function dashboard2()
         $com = new Comment($data);
         $manage_user = new CommentManager($com);
         $result_com = $manage_user->GetCommentsByUser($com);
-        require('view/DashboardView2.php');
+        require('views/DashboardView2.php');
     }
 }
 
 function dashboard3()
 {
-    if (!isset($_SESSION['username']))
-        require ('view/Co_error.php');
-    else{
+    if (!isset($_SESSION['username'])) {
+        require('views/Co_error.php');
+    } else {
         $data = array(
             'pseudo' => $_SESSION['username'],
         );
@@ -136,7 +141,7 @@ function dashboard3()
         $manage_user = new CommentManager($com);
         $result_com = $manage_user->GetCommentsToBeApproved($com);
 
-        require('view/DashboardView3.php');
+        require('views/DashboardView3.php');
     }
 }
 
@@ -157,7 +162,7 @@ function validincription()
         header('Location: index.php?action=inscription');
     } else {
         $_SESSION['message'] = "Votre inscription a été prise en compte, vous pouvez maintenant vous connecter";
-        require('view/ConnectionUserView.php');
+        require('views/ConnectionUserView.php');
     }
 }
 
@@ -171,15 +176,15 @@ function connectionuser()
     $manage_user = new UserManager($user);
     $grade = $manage_user->GradeUser($user);
 
-    if ($manage_user->ConnectionUser($user) == true && $grade->getGrade() == 1 ) {
+    if ($manage_user->ConnectionUser($user) == true && $grade->getGrade() == 1) {
         $_SESSION['username'] = $_POST['username'];
-        $_SESSION['admin'] = TRUE;
+        $_SESSION['admin'] = true;
         $_SESSION['grade'] = $grade->getGrade();
         $_SESSION['message'] = "vous êtes bien connecté";
         header('Location: index.php');
     } elseif ($manage_user->ConnectionUser($user) == true) {
         $_SESSION['username'] = $_POST['username'];
-        $_SESSION['admin'] = FALSE;
+        $_SESSION['admin'] = false;
         $_SESSION['grade'] = $grade->getGrade();
         $_SESSION['message'] = "vous êtes bien connecté";
         header('Location: index.php');
@@ -198,10 +203,10 @@ function deconnection()
 
 function incription()
 {
-    require('view/IncriptionView.php');
+    require('views/IncriptionView.php');
 }
 
 function connection()
 {
-    require('view/ConnectionUserView.php');
+    require('views/ConnectionUserView.php');
 }

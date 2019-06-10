@@ -10,14 +10,14 @@ function listPosts()
 {
     $managepost = new PostManager();
     $posts = $managepost->selectLastPosts();
-    require('view/LastPostView.php');
+    require('views/LastPostView.php');
 }
 
 function allPost()
 {
     $managepost = new PostManager();
     $posts = $managepost->selectAllPosts();
-    require('view/AllPostView.php');
+    require('views/AllPostView.php');
 }
 
 function supprPost()
@@ -53,10 +53,10 @@ function supprpostlistpost()
 function addnewpost()
 {
     if (isset($_SESSION['username']) && $_SESSION['grade'] == 2 OR $_SESSION['grade'] == 1) {
-        require('view/AddnewpostView.php');
+        require('views/AddnewpostView.php');
     }
     else
-        require 'view/Co_error.php';
+        require 'views/Co_error.php';
 }
 
 function validpost()
@@ -131,7 +131,7 @@ function modifpost()
         $_SESSION['message'] = "Vous devez etre connecter pour ajouter un article";
         header('Location: index.php?action=connectionadmin');
     }
-    require('view/UpdatepostView.php');
+    require('views/UpdatepostView.php');
 }
 
 function post()
@@ -153,6 +153,6 @@ function post()
     $com_manager = new CommentManager($comment_for_data);
     /* Passage des commentaire a la vue */
     $comments = $com_manager->GetComments($comment_for_data);
-    require ('view/PostViewco.php');
+    require ('views/PostViewco.php');
 
 }

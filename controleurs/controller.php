@@ -47,6 +47,28 @@ function testfunction()
     var_dump($manage_user->GradeUser($user));
 
 }
+function contacter()
+{
+
+    ini_set("SMTP", "smtp.maximethierry.xyz");
+        $to      = 'maximethi@hotmail.fr';
+        $subject = $_POST['subject'];
+        $message = $_POST['content'];
+        $headers = 'From: ' . $_POST['mail'] . "\r\n" .
+            'Reply-To: contact@maximethierry.xyz' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+        var_dump(mail($to, $subject, $message, $headers));
+    $to      = 'maximethi@hotmail.fr';
+    $subject = 'le sujet';
+    $message = 'Bonjour !';
+    $headers = 'From: contact@maximethierry.xyz' . "\r\n" .
+        'Reply-To: maximethi@hotmail.fr' . "\r\n" .
+        'X-Mailer: PHP/' . phpversion();
+
+    var_dump(mail($to, $subject, $message, $headers));
+        die();
+
+}
 /**
  * Permet de faire une function test
  *
@@ -56,6 +78,8 @@ function testfunction()
  */
 function testmail()
 {
+    var_dump($_SESSION['grade']);
+    die();
     include 'view/testview.php';
 }
 /**
@@ -75,7 +99,7 @@ function testmail()
  */
 function bio()
 {
-    include 'view/BioView.php';
+    include 'views/BioView.php';
 }
 /**
  * Permet de faire une function test
@@ -86,7 +110,7 @@ function bio()
  */
 function accueil()
 {
-    include 'view/AccueilView.php';
+    include 'views/AccueilView.php';
 }
 /**
  * Permet de faire une function test
@@ -97,7 +121,7 @@ function accueil()
  */
 function mention()
 {
-    include 'view/MentionsView.php';
+    include 'views/MentionsView.php';
 }
 /**
  * Permet de faire une function test
@@ -108,7 +132,7 @@ function mention()
  */
 function CV()
 {
-    include 'view/CvView.php';
+    include 'views/CvView.php';
 }
 /**
  * Permet de faire une function test
@@ -119,5 +143,5 @@ function CV()
  */
 function contact()
 {
-    include 'view/ContactView.php';
+    include 'views/ContactView.php';
 }

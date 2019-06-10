@@ -33,6 +33,8 @@ if ($maintenance == 0) {
             }
         } elseif ($_GET['action'] == 'listAllPosts') {
             allPost();
+        } elseif ($_GET['action'] == 'contacter') {
+            contacter();
         } elseif ($_GET['action'] == 'mention') {
             mention();
         } elseif ($_GET['action'] == 'comment') {

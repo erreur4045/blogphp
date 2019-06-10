@@ -49,6 +49,7 @@ function modifcomment()
     $old_com = new Comment($data);
     $com_manager = new CommentManager($old_com);
     $result = $com_manager->GetComment($old_com);
+    //recperer objet !!!!!
     $dd = $result->fetch();
     $comment = $dd['text'];
     /*on creer un nouvelle obj pour envoyer la vue*/
@@ -56,7 +57,7 @@ function modifcomment()
         'text' => $comment
     );
     $old_com_for_view = new Comment($data_for_view);
-    require('view/UpdatecommentView.php');
+    require('views/UpdatecommentView.php');
 }
 
 function updatecomm()
@@ -87,9 +88,8 @@ function supprcom()
         $managepost = new CommentManager($com);
         $managepost->supprCom($com);
         $str = 'Location: index.php?action=dashboardcom';
-        echo $str;
-        header($str);
         $_SESSION['message'] = "Votre commentaire a ete supprimer";
+        header($str);
     }
 }
 
