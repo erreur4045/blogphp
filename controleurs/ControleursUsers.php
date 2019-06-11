@@ -32,22 +32,24 @@ function adminusertobevalided()
 
 function accceptuser()
 {
-    $data = array('pseudo' => $_SESSION['username'],);
-    $user = new User($data);
-    $manage_user = new UserManager($user);
-    $grade = $manage_user->GradeUser($user);
-    if ($grade->getGrade() == 1) {
-        $data = array(
-            'id' => $_GET['id'],
-            'grade' => '2'
-        );
+    if (isset($_SESSION['username'])) {
+        $data = array('pseudo' => $_SESSION['username'],);
         $user = new User($data);
         $manage_user = new UserManager($user);
+        $grade = $manage_user->GradeUser($user);
+        if ($grade->getGrade() == 1) {
+            $data = array(
+                'id' => $_GET['id'],
+                'grade' => '2'
+            );
+            $user = new User($data);
+            $manage_user = new UserManager($user);
 
-        echo 'je passe par la';
-        $manage_user->ChangeGradeUser($user);
-        $_SESSION['message'] = "Utilisateur est accepté";
-        header('Location: index.php?action=adminusertobevalided');
+            echo 'je passe par la';
+            $manage_user->ChangeGradeUser($user);
+            $_SESSION['message'] = "Utilisateur est accepté";
+            header('Location: index.php?action=adminusertobevalided');
+        }
     } else {
         include 'views/Co_error.php';
     }
@@ -57,33 +59,38 @@ function accceptuser()
 
 function suppuser()
 {
-    if ($_SESSION['grade'] == 1) {
-        $data = array(
-            'id' => $_GET['id'],
-        );
-        $user = new User($data);
-        $manage_user = new UserManager($user);
-        $data_user = $manage_user->GetDataByIdUser($user);
-        $manage_user->SuppUser($data_user);
-        $_SESSION['message'] = "Utilisateur a été supprimé";
-        header('Location: index.php?action=adminusertobevalided');
+    if (isset($_SESSION['username'])) {
+        if ($_SESSION['grade'] == 1) {
+            $data = array(
+                'id' => $_GET['id'],
+            );
+            $user = new User($data);
+            $manage_user = new UserManager($user);
+            $data_user = $manage_user->GetDataByIdUser($user);
+            $manage_user->SuppUser($data_user);
+            $_SESSION['message'] = "Utilisateur a été supprimé";
+            header('Location: index.php?action=adminusertobevalided');
+        }
+    } else {
+        include 'views/Co_error.php';
     }
 }
 
 function adminuserlist()
 {
-    if ($_SESSION['grade'] == 1) {
+
+    if (isset($_SESSION['username']) && $_SESSION['grade'] == 1) {
         $manage_user = new UserManager();
         $data_user = $manage_user->GetAllUser();
         include 'views/AdminUserList.php';
-    }
-    else
+    } else {
         require 'views/Co_error.php';
+    }
 }
 
 function dashboard()
 {
-        if (!isset($_SESSION['username'])) {
+    if (!isset($_SESSION['username'])) {
         require('views/Co_error.php');
     } else {
         $data = array(
@@ -168,29 +175,33 @@ function validincription()
 
 function connectionuser()
 {
-    $data = array(
-        'pseudo' => $_POST['username'],
-        'pass' => $_POST['mdp']
-    );
-    $user = new User($data);
-    $manage_user = new UserManager($user);
-    $grade = $manage_user->GradeUser($user);
+    if ($_POST['username'] != null OR $_POST['mdp'] != null) {
+        $data = array(
+            'pseudo' => $_POST['username'],
+            'pass' => $_POST['mdp']
+        );
+        $user = new User($data);
+        $manage_user = new UserManager($user);
+        $grade = $manage_user->GradeUser($user);
 
-    if ($manage_user->ConnectionUser($user) == true && $grade->getGrade() == 1) {
-        $_SESSION['username'] = $_POST['username'];
-        $_SESSION['admin'] = true;
-        $_SESSION['grade'] = $grade->getGrade();
-        $_SESSION['message'] = "vous êtes bien connecté";
-        header('Location: index.php');
-    } elseif ($manage_user->ConnectionUser($user) == true) {
-        $_SESSION['username'] = $_POST['username'];
-        $_SESSION['admin'] = false;
-        $_SESSION['grade'] = $grade->getGrade();
-        $_SESSION['message'] = "vous êtes bien connecté";
-        header('Location: index.php');
+        if ($manage_user->ConnectionUser($user) == true && $grade->getGrade() == 1) {
+            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['admin'] = true;
+            $_SESSION['grade'] = $grade->getGrade();
+            $_SESSION['message'] = "vous êtes bien connecté";
+            header('Location: index.php');
+        } elseif ($manage_user->ConnectionUser($user) == true) {
+            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['admin'] = false;
+            $_SESSION['grade'] = $grade->getGrade();
+            $_SESSION['message'] = "vous êtes bien connecté";
+            header('Location: index.php');
+        } else {
+            $_SESSION['message'] = "Error MDP ou pseudo";
+            header('Location: index.php?action=connection');
+        }
     } else {
-        $_SESSION['message'] = "Error MDP ou pseudo";
-        header('Location: index.php?action=connection');
+        require 'views/Co_error.php';
     }
 }
 

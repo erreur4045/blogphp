@@ -21,6 +21,10 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <?php include 'bloc/header.php' ?>
+<?php if (isset($_SESSION['message'])): ?>
+    <div class="alert alert-info"><?= $_SESSION['message'];?></div>
+    <?php unset($_SESSION['message']); ?>
+<?php endif; ?>
 <body>
 <?= $content ?>
 </body>

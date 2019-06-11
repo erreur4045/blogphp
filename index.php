@@ -35,8 +35,6 @@ if ($maintenance == 0) {
             allPost();
         } elseif ($_GET['action'] == 'contacter') {
             contacter();
-        } elseif ($_GET['action'] == 'mention') {
-            mention();
         } elseif ($_GET['action'] == 'comment') {
             comment();
         } elseif ($_GET['action'] == 'modifcomment') {
@@ -61,7 +59,7 @@ if ($maintenance == 0) {
             accceptuser();
         } elseif ($_GET['action'] == 'suppuser') {
             suppuser();
-        } elseif ($_GET['action'] == 'CV') {
+        } elseif ($_GET['action'] == 'CV' OR $_GET['action'] == 'cv') {
             CV();
         } elseif ($_GET['action'] == 'inscription') {
             incription();

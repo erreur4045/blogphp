@@ -61,21 +61,25 @@ class PostManager
 
         $q = DatabaseConnection::dbConnect()->query('SELECT number, title, content, date, author FROM blogphp_posts ORDER BY date DESC LIMIT 0, 5');
 
-        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
-        {
-            $lastpost[] = new Post($donnees);
-        }
+        $donnees = $q->fetch(PDO::FETCH_ASSOC);
 
-        return $lastpost;
+        $lastpost[] = new Post($donnees);
+
+        return  $lastpost;
     }
 
     public function selectAuthorByNumberPost(Post $post)
     {
+        $all_post = [];
         $req = DatabaseConnection::dbConnect()->prepare('SELECT * FROM `blogphp_posts` WHERE number = :idpost');
         $req->execute(array(
             ':idpost' => $post->getNumber()
         ));
-        return $req;
+        while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
+        {
+            $all_post[] = new Post($donnees);
+        }
+        return $all_post;
     }
 
     public function selectAllPosts()
@@ -109,7 +113,6 @@ class PostManager
             ':author' => $post->getAuthor()
         ));
         $result = $req->fetchAll();
-        var_dump($result);
         return $req;
     }
 }

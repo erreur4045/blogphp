@@ -26,7 +26,7 @@
                             </div>
                             <div class="text">
                                 <p class="sub-text mb-5">Développeur PHP7 MVC POO</p>
-                                <p><a href="index.php?action=bio" target="_blank" class="btn btn-primary btn-md">Bio</a></p>
+                                <p><a href="index.php?action=bio" class="btn btn-primary btn-md">Bio</a></p>
                             </div>
                         </div>
                     </div>
@@ -83,6 +83,8 @@
                                         quibusdam temporibus quasi. Ipsa quisquam rem illo.</p>
                                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus suscipit dolores illum, deleniti
                                         quod officiis labore ipsam? Nulla, ab perspiciatis!</p>
+
+                                    <p>Retrouvez moi sur les reseaux sociaux :</p>
                                     <p class="d-flex align-items-center">
                                         <a href="https://twitter.com/mapethierry" class="twitter pr-2 pt-2 pb-2 pl-0"><span class="icon-twitter"></span></a>
                                         <a href="https://www.facebook.com/yrreiht.emixam?ref=bookmarks" class="facebook p-2"><span class="icon-facebook"></span></a>

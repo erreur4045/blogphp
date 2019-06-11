@@ -33,6 +33,9 @@ function supprPost()
         $_SESSION['message'] = "Votre article a été supprimer";
         header('Location: index.php?action=dashboard');
     }
+    else {
+        require 'views/Co_error.php';
+    }
 }
 
 function supprpostlistpost()
@@ -48,15 +51,20 @@ function supprpostlistpost()
         $_SESSION['message'] = "Votre article a été supprimer";
         header('Location: index.php?action=listPosts');
     }
+    else {
+        require 'views/Co_error.php';
+    }
 }
 
 function addnewpost()
 {
-    if (isset($_SESSION['username']) && $_SESSION['grade'] == 2 OR $_SESSION['grade'] == 1) {
-        require('views/AddnewpostView.php');
-    }
-    else
+    if (isset($_SESSION['username'])) {
+        if ($_SESSION['grade'] == 2 OR $_SESSION['grade'] == 1) {
+            require('views/AddnewpostView.php');
+        }
+    } else {
         require 'views/Co_error.php';
+    }
 }
 
 function validpost()
@@ -86,7 +94,7 @@ function validpost()
 
     } else {
         $_SESSION['message'] = "Vous devez etre connecter pour ajouter un article";
-        header('Location: index.php?action=connectionadmin');
+        header('Location: index.php?action=connection');
     }
 
 }
@@ -110,7 +118,7 @@ function validupdatepost()
     else
     {
         $_SESSION['message'] = "Vous devez etre connecter pour ajouter un article";
-         header('Location: index.php?action=connectionuser');
+         header('Location: index.php?action=connection');
     }
 }
 
@@ -128,8 +136,7 @@ function modifpost()
     }
     else
     {
-        $_SESSION['message'] = "Vous devez etre connecter pour ajouter un article";
-        header('Location: index.php?action=connectionadmin');
+        require 'views/Co_error.php';
     }
     require('views/UpdatepostView.php');
 }

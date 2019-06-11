@@ -1,10 +1,7 @@
 <?php $title = 'Mon blog'; ?>
 <?php ob_start(); ?>
     <div class="main">
-        <?php if (isset($_SESSION['message'])): ?>
-            <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
-            <?php unset($_SESSION['message']); ?>
-        <?php endif; ?>
+
         <div class="d-flex justify-content-center">
             <h1 class="title text-primary mb-3">Derniers articles du blog :</h1>
         </div>
@@ -46,13 +43,13 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class=" p-2">
                         <a class="btn btn-primary btn-md" href="index.php?action=listAllPosts">Voir tout les articles</a>
                     </div>
                     <?php if (!isset($_SESSION['username'])) : ?>
                         <em></em>
                     <?php elseif (isset($_SESSION['username']) && $_SESSION['grade'] == 1 OR $_SESSION['grade'] == 2) : ?>
-                    <div class="col-md-6">
+                    <div class=" ml-auto p-2">
                         <a class="btn btn-primary btn-md" href="index.php?action=addnewpost">Ajouter un article</a>
                     </div>
                 </div>
