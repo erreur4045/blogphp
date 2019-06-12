@@ -69,11 +69,14 @@ function addnewpost()
 
 function validpost()
 {
+    $title = htmlspecialchars(stripcslashes(trim($_POST['title'])));
+    $content = htmlspecialchars(stripcslashes(trim($_POST['content'])));
+    $author = htmlspecialchars(stripcslashes(trim($_SESSION['username'])));
     if (isset($_SESSION['username'])) {
         $donnees = array(
-            'title' => $_POST['title'],
-            'content' => $_POST['content'],
-            'author' => $_SESSION['username']
+            'title' => $title,
+            'content' => $content,
+            'author' => $author
         );
         $post = new Post($donnees);
         $donnees_user = array(
@@ -87,26 +90,24 @@ function validpost()
             $manager->addPost($post);
             $_SESSION['message'] = "Votre article a ete ajoute";
             header('Location: index.php?action=listPosts');
-        } else {
-            $_SESSION['message'] = "Votre n'etes pas autorisé à ajouter un article";
-            header('Location: index.php');
         }
-
     } else {
-        $_SESSION['message'] = "Vous devez etre connecter pour ajouter un article";
-        header('Location: index.php?action=connection');
+        require 'views/Co_error.php';
     }
-
 }
 
 function validupdatepost()
 {
+    $title = htmlspecialchars(stripcslashes(trim($_POST['title'])));
+    $content = htmlspecialchars(stripcslashes(trim($_POST['content'])));
+    $author = htmlspecialchars(stripcslashes(trim($_SESSION['username'])));
+    $id = htmlspecialchars(stripcslashes(trim($_GET['id'])));
     if (isset($_SESSION['username'])) {
         $donnees = array(
-            'content' => $_POST['content'],
-            'title' => $_POST['title'],
-            'number' => $_GET['id'],
-            'author' => $_SESSION['username']
+            'content' => $content,
+            'title' => $title,
+            'number' => $id,
+            'author' => $author
         );
         $post = new Post($donnees);
         $manager = new PostManager($post);

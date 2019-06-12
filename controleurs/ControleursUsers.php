@@ -154,10 +154,14 @@ function dashboard3()
 
 function validincription()
 {
+    $username = htmlspecialchars(stripcslashes(trim($_POST['username'])));
+    $mdp = htmlspecialchars(stripcslashes(trim($_POST['mdp'])));
+    $mail = htmlspecialchars(stripcslashes(trim($_POST['mail'])));
+
     $data = array(
-        'pseudo' => $_POST['username'],
-        'pass' => $_POST['mdp'],
-        'email' => $_POST['mail']
+        'pseudo' => $username,
+        'pass' => $mdp,
+        'email' => $mail
     );
     $user = new User($data);
     $manage_user = new UserManager($user);
@@ -175,23 +179,25 @@ function validincription()
 
 function connectionuser()
 {
-    if ($_POST['username'] != null && $_POST['mdp'] != null) {
+    $username = htmlspecialchars(stripcslashes(trim($_POST['username'])));
+    $mdp = htmlspecialchars(stripcslashes(trim($_POST['mdp'])));
+
+    if ($username != null && $mdp != null) {
         $data = array(
-            'pseudo' => $_POST['username'],
-            'pass' => $_POST['mdp']
+            'pseudo' => $username,
+            'pass' => $mdp
         );
         $user = new User($data);
         $manage_user = new UserManager($user);
         $grade = $manage_user->GradeUser($user);
-
         if ($manage_user->ConnectionUser($user) == true && $grade->getGrade() == 1) {
-            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['username'] = $user->getPseudo();
             $_SESSION['admin'] = true;
             $_SESSION['grade'] = $grade->getGrade();
             $_SESSION['message'] = "vous êtes bien connecté";
             header('Location: index.php');
         } elseif ($manage_user->ConnectionUser($user) == true) {
-            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['username'] = $user->getPseudo();
             $_SESSION['admin'] = false;
             $_SESSION['grade'] = $grade->getGrade();
             $_SESSION['message'] = "vous êtes bien connecté";
@@ -209,8 +215,8 @@ function connectionuser()
 function deconnection()
 {
     $_SESSION['message'] = "Merci pour votre visite";
-    header('Location: index.php');
     session_destroy();
+    header('Location: index.php');
 }
 
 function incription()
