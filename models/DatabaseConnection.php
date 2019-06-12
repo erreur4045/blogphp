@@ -8,7 +8,7 @@
 
 class DatabaseConnection
 {
-    static public function dbConnect()
+   static public function dbConnect()
     {
         ini_set('display_errors', 'stdout');
         try {
@@ -28,7 +28,7 @@ class DatabaseConnection
         ini_set('display_errors', 'stdout');
         try {
             $db = new PDO('mysql:host=maximethjn373.mysql.db;dbname=maximethjn373;charset=utf8', 'maximethjn373',
-                'Margauxthi88',
+                'Maximethi88',
                 array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
             return $db;
         } catch (Exception $e) {

@@ -36,10 +36,11 @@ class UserManager
             $recup->execute(array(
                 ':username' => $user->getPseudo()
             ));
-
-        $donnees = $recup->fetch();
-
-            return new User($donnees);
+            $donnees = $recup->fetch();
+            if ($donnees)
+                return new User($donnees);
+            else
+                return null;
         }
         catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());

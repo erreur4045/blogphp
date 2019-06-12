@@ -62,7 +62,6 @@ class PostManager
         $q = DatabaseConnection::dbConnect()->query('SELECT number, title, content, date, author FROM blogphp_posts ORDER BY date DESC LIMIT 0, 5');
 
         $donnees = $q->fetch(PDO::FETCH_ASSOC);
-
         $lastpost[] = new Post($donnees);
 
         return  $lastpost;
