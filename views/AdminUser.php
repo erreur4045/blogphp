@@ -29,7 +29,7 @@
                                     <p> <?= ucfirst($user_data->getPseudo()) . ' inscrit le : ' . $user_data->getDatesub()  ?></p>
                                     <div class="sameline">
                                     <em><a class="btn btn-outline-success"
-                                           href="index.php?action=accceptuser&id=<?= $user_data->getId()  ?>">Accpeter</a></em>
+                                           href="index.php?action=accceptuser&id=<?= $user_data->getId()  ?>">Accepeter</a></em>
                                     <em><a class="btn btn-outline-danger confirmation"
                                            href="index.php?action=suppuser&id=<?= $user_data->getId()?>">Refuser l'inscription</a></em>
                                 </div>

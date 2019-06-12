@@ -18,7 +18,7 @@
                                     </div>
                                     <div class="md-form">
                                         <i class="fa fa-lock prefix white-text"></i>
-                                        <label for="form25">Mot de pass</label>
+                                        <label for="form25">Mot de passe</label>
                                         <input required="required" name="mdp" type="password" id="form25" class="form-control">
                                     </div>
                                     <div class="text-center py-4">

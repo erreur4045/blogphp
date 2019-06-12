@@ -50,8 +50,10 @@
                 <div class="container">
 
                         <div class="col-md-12"></div>
+                        <div class="row align-items-center">
                             <div class="d-flex justify-content-center">
                             <a class="btn btn-primary btn-md" href="index.php?action=addnewpost">Ajouter un article</a>
+                        </div>
                         </div>
                     </div>
             <?php endif; ?>

@@ -1,7 +1,7 @@
 <?php $title = 'Mon blog'; ?>
 <?php ob_start(); ?>
     <div class="main">
-        <?php if (isset($_SESSION['message'])): ?>
+        <?php if (isset($_SESSION['message'])) : ?>
             <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
             <?php unset($_SESSION['message']); ?>
         <?php endif; ?>
@@ -12,17 +12,17 @@
                                     </h3>
                                     <div class="md-form">
                                         <i class="fa fa-user prefix white-text"></i>
-                                        <label for="username" class="username_in">Pseudo:</label><br>
+                                        <label for="username" class="username_in">Pseudo :</label><br>
                                         <input type="text" name="username" id="form35" class="form-control">
                                     </div>
                                     <div class="md-form">
                                         <i class="fa fa-lock prefix white-text"></i>
-                                        <label for="mdp" class="">Mots de pass</label><br>
+                                        <label for="mdp" class="">Mots de passe :</label><br>
                                         <input type="password" name="mdp" id="form35" class="form-control">
                                     </div>
                                     <div class="md-form">
                                         <i class="fa fa-envelope prefix white-text"></i>
-                                        <label for="mdp" class="mdp_in">Mail:</label><br>
+                                        <label for="mdp" class="mdp_in">Mail :</label><br>
                                         <input type="email" name="mail" id="form35" class="form-control">
                                     </div>
                                     <div class="text-center py-4">
@@ -39,4 +39,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require'template.php'; ?>

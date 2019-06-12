@@ -19,13 +19,13 @@
                                 <i class="fa fa-tag prefix white-text"></i>
                                 <label for="form32">Titre de l'article</label>
                                 <input type="text" name="title" id="form32" class="form-control"
-                                       placeholder="Titre de l'article">
+                                       placeholder="Titre de l'article" required="required">
                             </div>
                             <div class="md-form">
                                 <i class="fas fa-align-left"></i>
                                 <label for="form82" class="">Contenue de l'article:</label>
                                 <textarea name="content" type="text" id="form82" class="form-control"
-                                          placeholder="Votre article"></textarea>
+                                          placeholder="Votre article" required="required"></textarea>
                             </div>
                             <div class="text-center">
                                 <button class="btn btn-primary btn-md">Envoyer</button>

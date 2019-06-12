@@ -201,7 +201,7 @@
 
     <div class="site-section " id="contact-section">
         <div class="container">
-            <form action="index.php?action=contacter" class="contact-form">
+            <form action="index.php?action=contacter" class="contact-form" method="post">
 
                 <div class="section-title text-center mb-5">
                     <span class="sub-title mb-2 d-block">Restons en contact</span>
