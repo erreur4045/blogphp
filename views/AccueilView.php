@@ -201,7 +201,7 @@
 
     <div class="site-section " id="contact-section">
         <div class="container">
-            <form action="" class="contact-form">
+            <form action="index.php?action=contacter" class="contact-form">
 
                 <div class="section-title text-center mb-5">
                     <span class="sub-title mb-2 d-block">Restons en contact</span>
@@ -222,7 +222,11 @@
                         <input name="mail" type="text" class="form-control" placeholder="Email">
                     </div>
                 </div>
-
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <input required="required" name="subject" type="text" class="form-control" placeholder="Sujet">
+                    </div>
+                </div>
                 <div class="row mb-4">
                     <div class="col-12">
                         <textarea class="form-control" name="content" id="" cols="30" rows="10" placeholder="Message"></textarea>

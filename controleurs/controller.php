@@ -49,25 +49,17 @@ function testfunction()
 }
 function contacter()
 {
-
+    if ( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['mail']) && isset($_POST['subject']) && isset($_POST['content']) )
     ini_set("SMTP", "smtp.maximethierry.xyz");
         $to      = 'maximethi@hotmail.fr';
         $subject = $_POST['subject'];
-        $message = $_POST['content'];
+        $message = ucfirst($_POST['fistname']). ' '.ucfirst($_POST['lastname']) .' a envoye le message suivant : '."\r\n"  .$_POST['content'];
         $headers = 'From: ' . $_POST['mail'] . "\r\n" .
             'Reply-To: contact@maximethierry.xyz' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
-        var_dump(mail($to, $subject, $message, $headers));
-    $to      = 'maximethi@hotmail.fr';
-    $subject = 'le sujet';
-    $message = 'Bonjour !';
-    $headers = 'From: contact@maximethierry.xyz' . "\r\n" .
-        'Reply-To: maximethi@hotmail.fr' . "\r\n" .
-        'X-Mailer: PHP/' . phpversion();
-
-    var_dump(mail($to, $subject, $message, $headers));
-        die();
-
+        mail($to, $subject, $message, $headers);
+    $_SESSION['message'] = "Votre message a été envoyer, merci pour votre message";
+    header('Location: index.php');
 }
 /**
  * Permet de faire une function test

@@ -14,12 +14,12 @@
                                     <div class="md-form">
                                         <i class="fa fa-user prefix white-text"></i>
                                         <label for="form35">Pseudo</label>
-                                        <input name="username" type="text" id="form35" class="form-control">
+                                        <input required="required" name="username" type="text" id="form35" class="form-control">
                                     </div>
                                     <div class="md-form">
                                         <i class="fa fa-lock prefix white-text"></i>
                                         <label for="form25">Mot de pass</label>
-                                        <input name="mdp" type="password" id="form25" class="form-control">
+                                        <input required="required" name="mdp" type="password" id="form25" class="form-control">
                                     </div>
                                     <div class="text-center py-4">
                                         <button class="btn btn-primary btn-md">Send <i class="fas fa-paper-plane"></i>

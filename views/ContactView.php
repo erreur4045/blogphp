@@ -9,29 +9,33 @@
         <div class="container ">
         <div class="site-section " id="contact-section">
             <div class="container">
-                <form action="" class="contact-form">
+                <form action="index.php?action=contacter" class="contact-form" method="post">
                     <div class="section-title text-center mb-5">
                         <span class="sub-title mb-2 d-block">Restons en contact</span>
                         <h2 class="title text-primary">Contactez moi</h2>
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-6 mb-4 mb-md-0">
-                            <input name="firstname" type="text" class="form-control" placeholder="Prénom">
+                            <input required="required" name="firstname" type="text" class="form-control" placeholder="Prénom">
                         </div>
                         <div class="col-md-6">
-                            <input name="lastname" type="text" class="form-control" placeholder="Nom">
+                            <input required="required" name="lastname" type="text" class="form-control" placeholder="Nom">
                         </div>
                     </div>
 
                     <div class="row mb-4">
                         <div class="col-12">
-                            <input name="mail" type="text" class="form-control" placeholder="Email">
+                            <input required="required" name="mail" type="email" class="form-control" placeholder="Email">
                         </div>
                     </div>
-
                     <div class="row mb-4">
                         <div class="col-12">
-                            <textarea class="form-control" name="content" id="" cols="30" rows="10" placeholder="Message"></textarea>
+                            <input required="required" name="subject" type="text" class="form-control" placeholder="Sujet">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <textarea required="required" class="form-control" name="content" id="" cols="30" rows="10" placeholder="Message"></textarea>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">

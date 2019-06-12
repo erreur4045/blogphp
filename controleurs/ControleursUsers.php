@@ -175,7 +175,7 @@ function validincription()
 
 function connectionuser()
 {
-    if ($_POST['username'] != null OR $_POST['mdp'] != null) {
+    if ($_POST['username'] != null && $_POST['mdp'] != null) {
         $data = array(
             'pseudo' => $_POST['username'],
             'pass' => $_POST['mdp']
@@ -201,7 +201,8 @@ function connectionuser()
             header('Location: index.php?action=connection');
         }
     } else {
-        require 'views/Co_error.php';
+        $_SESSION['message'] = "Il manque le mot de passe ou le pseudo";
+        header('Location: '. $_SERVER['HTTP_REFERER']);
     }
 }
 
