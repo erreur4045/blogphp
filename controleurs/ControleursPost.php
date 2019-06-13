@@ -2,26 +2,55 @@
 /**
  * Created by PhpStorm.
  * User: maxime
- * Date: 09/05/2019
- * Time: 16:03
+ * Date: 01/04/2019
+ * Time: 12:57
+ * PHP version 7.2
+ *
+ * @category Controller
+ * @package  BlogphpOCR_OCR_Php_Symfony
+ * @author   Maxime <contact@maximethierry.xyz>
+ * @license  Phpstorm exemple@exemple.com
+ * @link     Exemple
  */
-
+/**
+ * Création obj PostManager puis appel selectLastPosts pour vue
+ *
+ * @return void
+ *
+ * @since 1.0.1
+ */
 function listPosts()
 {
     $managepost = new PostManager();
     $posts = $managepost->selectLastPosts();
-    require('views/LastPostView.php');
+    include 'views/LastPostView.php';
 }
 
+/**
+ * Création obj PostManager puis appel selectAllPosts pour vue
+ *
+ * @return void
+ *
+ * @since 1.0.1
+ */
 function allPost()
 {
     $managepost = new PostManager();
     $posts = $managepost->selectAllPosts();
-    require('views/AllPostView.php');
+    include 'views/AllPostView.php';
 }
 
+/**
+ * Verif connection, Création obj PostManager
+ * puis appel suppr pour vue, et redirection
+ *
+ * @return void
+ *
+ * @since 1.0.1
+ */
 function supprPost()
 {
+    //todo : verrif si usernqme est bien author pour suppression
     if (isset($_SESSION['username'])) {
         $data = array(
             'number' => $_GET['id'],
@@ -30,16 +59,24 @@ function supprPost()
         $post = new Post($data);
         $managepost = new PostManager($post);
         $managepost->suppr($post);
-        $_SESSION['message'] = "Votre article a été supprimer";
+        $_SESSION['message'] = "Votre article a été supprimé";
         header('Location: index.php?action=dashboard');
-    }
-    else {
-        require 'views/Co_error.php';
+    } else {
+        include 'views/Co_error.php';
     }
 }
 
+/**
+ * Verif connection, Création obj PostManager
+ * puis appel suppr pour vue, et redirection
+ *
+ * @return void
+ *
+ * @since 1.0.1
+ */
 function supprpostlistpost()
 {
+    //todo : verrif username = author pour supp optimisable avec function supprPost()
     if (isset($_SESSION['username'])) {
         $data = array(
             'number' => $_GET['id'],
@@ -48,25 +85,41 @@ function supprpostlistpost()
         $post = new Post($data);
         $managepost = new PostManager($post);
         $managepost->suppr($post);
-        $_SESSION['message'] = "Votre article a été supprimer";
+        $_SESSION['message'] = "Votre article a été supprimé";
         header('Location: index.php?action=listPosts');
-    }
-    else {
-        require 'views/Co_error.php';
+    } else {
+        include 'views/Co_error.php';
     }
 }
 
+/**
+ * Verif connection, appel vue, si pas co redirection sur page erreur
+ *
+ * @return void
+ *
+ * @since 1.0.1
+ */
 function addnewpost()
 {
     if (isset($_SESSION['username'])) {
         if ($_SESSION['grade'] == 2 OR $_SESSION['grade'] == 1) {
-            require('views/AddnewpostView.php');
+            include 'views/AddnewpostView.php';
         }
     } else {
-        require 'views/Co_error.php';
+        include 'views/Co_error.php';
     }
 }
 
+/**
+ * Verif contenu avec formatage
+ * Verif connection / grade (1 = admin 2 = autheur) appel vue,
+ * Si ok, on ajoute
+ * Si pas connecté, redirection sur page erreur
+ *
+ * @return void
+ *
+ * @since 1.0.1
+ */
 function validpost()
 {
     $title = htmlspecialchars(stripcslashes(trim($_POST['title'])));
@@ -88,16 +141,25 @@ function validpost()
         if ($grade->getGrade() == 2 OR $grade->getGrade() == 1) {
             $manager = new PostManager($post);
             $manager->addPost($post);
-            $_SESSION['message'] = "Votre article a ete ajoute";
+            $_SESSION['message'] = "Votre article a été ajouté.";
             header('Location: index.php?action=listPosts');
         }
     } else {
-        require 'views/Co_error.php';
+        include 'views/Co_error.php';
     }
 }
 
+/**
+ * Verif contenu avec formatage
+ * Verif connection, puis redirection
+ *
+ * @return void
+ *
+ * @since 1.0.1
+ */
 function validupdatepost()
 {
+    //todo : verrifier si username = author pour update et verrif grade
     $title = htmlspecialchars(stripcslashes(trim($_POST['title'])));
     $content = htmlspecialchars(stripcslashes(trim($_POST['content'])));
     $author = htmlspecialchars(stripcslashes(trim($_SESSION['username'])));
@@ -113,54 +175,75 @@ function validupdatepost()
         $manager = new PostManager($post);
         $manager->updatePost($post);
         $_SESSION['message'] = "Votre article a ete modifier";
-        $str = 'Location: index.php?id='.$_GET['id'].'&action=post';
+        $str = 'Location: index.php?id=' . $_GET['id'] . '&action=post';
         header($str);
-    }
-    else
-    {
-        $_SESSION['message'] = "Vous devez etre connecter pour ajouter un article";
-         header('Location: index.php?action=connection');
+    } else {
+        $_SESSION['message'] = "Vous devez être connecté pour ajouter un article.";
+        header('Location: index.php?action=connection');
     }
 }
 
+/**
+ * Verif connection verrif $_GET avec formatage,
+ * puis appel vue error ou UpdatepostView
+ *
+ * @return void
+ *
+ * @since 1.0.1
+ */
 function modifpost()
 {
+    //todo : verrifier si username = author pour update et verrif grade
     if (isset($_SESSION['username'])) {
         $donnees = array(
-            'number' => $_GET['id'],
+            'number' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
         );
         $post = new Post($donnees);
         echo $post->getNumber();
         $manager = new PostManager($post);
         $data_view = $manager->selectPostById($post);
 
+    } else {
+        include 'views/Co_error.php';
     }
-    else
-    {
-        require 'views/Co_error.php';
-    }
-    require('views/UpdatepostView.php');
+    include 'views/UpdatepostView.php';
 }
-
+/**
+ * Verif connection verrif $_GET avec formatage,
+ * si id est bon on passe dans le if pour recuperer le post
+ * Puis appel vue error ou UpdatepostView
+ *
+ * @return void
+ *
+ * @since 1.0.1
+ */
 function post()
 {
-    /*preparation du tableau pour contruction de OBJ post et creation OBJ*/
-    $donnees = array('number' => $_GET['id']);
-    $post_for_data = new Post($donnees);
 
-    /*creation post_manager avec OBJ post*/
-    $post_manager = new PostManager($post_for_data);
-
-    /*Creation OBJ post pour recuperer toutes les donees du post lier a l'ID du post envoyer*/
-    $post = new Post($post_manager->selectPostById($post_for_data));
-
-    /*Preparation des donnees pour creation de OBJ Comment*/
-    $data_for_com = array('postid' => $_GET['id']);
-    $comment_for_data = new Comment($data_for_com);
-    /*Creation de OBJ manager*/
-    $com_manager = new CommentManager($comment_for_data);
-    /* Passage des commentaire a la vue */
-    $comments = $com_manager->GetComments($comment_for_data);
-    require ('views/PostViewco.php');
-
+    if (isset($_SESSION['username'])) {
+        /*preparation du tableau pour contruction de OBJ post et creation OBJ*/
+        $donnees = array(
+            'number' => htmlspecialchars(stripcslashes(trim($_GET['id'])))
+        );
+        $post_for_data = new Post($donnees);
+        /*creation post_manager avec OBJ post*/
+        $post_manager = new PostManager($post_for_data);
+        /*Creation OBJ post pour recuperer toutes
+        les donees du post lier a l'ID du post envoyer*/
+        $post = $post_manager->selectPostById($post_for_data);
+        if (is_object($post)) {
+            /*Preparation des donnees pour creation de OBJ Comment*/
+            $data_for_com = array('postid' => $_GET['id']);
+            $comment_for_data = new Comment($data_for_com);
+            /*Creation de OBJ manager*/
+            $com_manager = new CommentManager($comment_for_data);
+            /* Passage des commentaire a la vue */
+            $comments = $com_manager->GetComments($comment_for_data);
+            include 'views/PostViewco.php';
+        } else {
+            include 'views/Co_error.php';
+        }
+    } else {
+        include 'views/Co_error.php';
+    }
 }
