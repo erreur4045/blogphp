@@ -164,7 +164,6 @@ class UserManager
     }
     public function SuppUser(User $user)
     {
-
         try {
             $db = DatabaseConnection::dbConnect();
             $recup = $db->prepare('DELETE FROM blogphp_membres WHERE blogphp_membres.id = :id;');

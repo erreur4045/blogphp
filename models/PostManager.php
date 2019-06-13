@@ -10,108 +10,150 @@ class PostManager
 {
     public function suppr(Post $post)
     {
-        $db = DatabaseConnection::dbConnect();
-        $deletepost = $db->prepare('DELETE FROM blogphp_posts WHERE number = :id AND author = :author');
-        $deletepost->execute(array(
-            ':id'=>$post->getNumber(),
-            ':author'=>$post->getAuthor()
-        ));
-        $deletecom = $db->prepare('DELETE FROM blogphp_commentaire WHERE post_id = :id ');
-        $deletecom->execute(array(
-            ':id'=>$post->getNumber()
-        ));
-        return 1;
+        try {
+            $db = DatabaseConnection::dbConnect();
+            $deletepost = $db->prepare('DELETE FROM blogphp_posts WHERE number = :id AND author = :author');
+            $deletepost->execute(array(
+                ':id' => $post->getNumber(),
+                ':author' => $post->getAuthor()
+            ));
+            $deletecom = $db->prepare('DELETE FROM blogphp_commentaire WHERE post_id = :id ');
+            $deletecom->execute(array(
+                ':id' => $post->getNumber()
+            ));
+            return 1;
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
     }
+
     public function addPost(Post $post)
     {
-        $db = DatabaseConnection::dbConnect();
-        $recup = $db->prepare('INSERT INTO `blogphp_posts` (`title`, `content`, `date`, `author`) VALUES (:title, :content, NOW(), :author)');
-        $recup->execute(array(
-            ':title'=>$post->getTitle(),
-            ':content'=>$post->getContent(),
-            ':author'=>$post->getAuthor()
-        ));
-        return 1;
+        try {
+            $db = DatabaseConnection::dbConnect();
+            $recup = $db->prepare('INSERT INTO `blogphp_posts` (`title`, `content`, `date`, `author`) VALUES (:title, :content, NOW(), :author)');
+            $recup->execute(array(
+                ':title' => $post->getTitle(),
+                ':content' => $post->getContent(),
+                ':author' => $post->getAuthor()
+            ));
+            return 1;
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
     }
 
     public function updatePost(Post $post)
     {
-        echo $post->getNumber();
-        $db = DatabaseConnection::dbConnect();
-        $recup = $db->prepare('UPDATE blogphp_posts SET title = :newtitle, content = :newcontent, date = NOW() WHERE `blogphp_posts`.`number` = :number AND author = :author');
-        $result = $recup->execute(array(
-        ':newtitle' => $post->getTitle(),
-        ':number' => $post->getNumber(),
-        'newcontent'=>$post->getContent(),
-        'author'=>$post->getAuthor()
-    ));
+        try {
+            $db = DatabaseConnection::dbConnect();
+            $recup = $db->prepare('UPDATE blogphp_posts SET title = :newtitle, content = :newcontent, date = NOW() WHERE `blogphp_posts`.`number` = :number AND author = :author');
+            $result = $recup->execute(array(
+                ':newtitle' => $post->getTitle(),
+                ':number' => $post->getNumber(),
+                'newcontent' => $post->getContent(),
+                'author' => $post->getAuthor()
+            ));
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
     }
 
     public function deletePost(Post $post)
     {
-        $req = DatabaseConnection::dbConnect()->prepare('DELETE FROM `blogphp_posts` WHERE number = :idpost');
-        $req->execute(array(
-            ':idpost' => $post->getNumber()
-        ));
+        try {
+            $req = DatabaseConnection::dbConnect()->prepare('DELETE FROM `blogphp_posts` WHERE number = :idpost');
+            $req->execute(array(
+                ':idpost' => $post->getNumber()
+            ));
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
     }
 
     public function selectLastPosts()
     {
-        $lastpost = [];
+        try {
+            $lastpost = [];
 
-        $q = DatabaseConnection::dbConnect()->query('SELECT number, title, content, date, author FROM blogphp_posts ORDER BY date DESC LIMIT 0, 5');
+            $q = DatabaseConnection::dbConnect()->query('SELECT number, title, content, date, author FROM blogphp_posts ORDER BY date DESC LIMIT 0, 6');
 
-        $donnees = $q->fetch(PDO::FETCH_ASSOC);
-        $lastpost[] = new Post($donnees);
-
-        return  $lastpost;
+            while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+                $lastpost[] = new Post($donnees);
+            }
+            return $lastpost;
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
     }
 
     public function selectAuthorByNumberPost(Post $post)
     {
-        $all_post = [];
-        $req = DatabaseConnection::dbConnect()->prepare('SELECT * FROM `blogphp_posts` WHERE number = :idpost');
-        $req->execute(array(
-            ':idpost' => $post->getNumber()
-        ));
-        while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
-        {
-            $all_post[] = new Post($donnees);
+        try {
+            $all_post = [];
+            $req = DatabaseConnection::dbConnect()->prepare('SELECT * FROM `blogphp_posts` WHERE number = :idpost');
+            $req->execute(array(
+                ':idpost' => $post->getNumber()
+            ));
+            while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
+                $all_post[] = new Post($donnees);
+            }
+            return $all_post;
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
         }
-        return $all_post;
     }
 
     public function selectAllPosts()
     {
-        $allpost = [];
+        try {
+            $allpost = [];
 
-        $q = DatabaseConnection::dbConnect()->query('SELECT number, title, content, date, author FROM blogphp_posts ORDER BY date DESC');
+            $q = DatabaseConnection::dbConnect()->query('SELECT number, title, content, date, author FROM blogphp_posts ORDER BY date DESC');
 
-        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
-        {
-            $allpost[] = new Post($donnees);
+            while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+                $allpost[] = new Post($donnees);
+            }
+
+            return $allpost;
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
         }
-
-        return $allpost;
     }
 
     public function selectPostById(Post $post)
     {
-        $req = DatabaseConnection::dbConnect()->prepare('SELECT number, title, content, author, date FROM blogphp_posts WHERE number = :number');
-        $req->execute(array(
-            ':number' => $post->getNumber()
-        ));
-        $post = $req->fetch();
+        try {
+            $req = DatabaseConnection::dbConnect()->prepare('SELECT number, title, content, author, date FROM blogphp_posts WHERE number = :number');
+            $req->execute(array(
+                ':number' => $post->getNumber()
+            ));
+            $isempty = $req->rowCount();
+            if ($isempty >= 1) {
+                $post = $req->fetch();
+                return new Post($post);
+            } else {
+                return 2;
+            }
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
 
-        return $post;
     }
-    public function selectPostByAuthorSession(Post $post)
-    {
-        $req = DatabaseConnection::dbConnect()->prepare('SELECT * FROM blogphp_posts WHERE author = :author ORDER BY date DESC');
-        $req->execute(array(
-            ':author' => $post->getAuthor()
-        ));
-        $result = $req->fetchAll();
-        return $req;
+
+    public
+    function selectPostByAuthorSession(
+        Post $post
+    ) {
+        try {
+            $req = DatabaseConnection::dbConnect()->prepare('SELECT * FROM blogphp_posts WHERE author = :author ORDER BY date DESC');
+            $req->execute(array(
+                ':author' => $post->getAuthor()
+            ));
+            $result = $req->fetchAll();
+            return $req;
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
     }
 }
