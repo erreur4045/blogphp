@@ -1,36 +1,50 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: maxime
- * Date: 18/05/2019
- * Time: 23:09
+ * Recipe class file
+ *
+ * PHP Version 7.0
+ *
+ * @category Comment
+ * @package  Comment
+ * @author   Maxime THIERRY <contact@maximethierry.xyz>
+ * @license  Phpstorm exemple@exemple.com
+ * @link     Exemple
+ */
+
+/**
+ * CommentManager class
+ *
+ * Class qui permet la gestion des methodes associer a la class Comment
+ *
+ * @category Comment
+ * @package  Comment
+ * @author   Maxime THIERRY <contact@maximethierry.xyz>
+ * @license  Phpstorm exemple@exemple.com
+ * @link     Exemple
  */
 
 class CommentManager
 {
-    public function VerrifAuthor(Comment $comment)
-    {
-        try {
-            $db = DatabaseConnection::dbConnect();
-            $author = $db->prepare('SELECT id, autor, approved, text, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM blogphp_commentaire WHERE post_id = :idpost ORDER BY comment_date_fr DESC');
-            $author->execute(array(
-                ':idpost' => $comment->getPostid()
-            ));
-            return new User($author);
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
-    }
-
-    public function GetComments(Comment $comment)
+    /**
+     * Recupere les commentaire avec le idpost
+     *
+     * @param Comment $comment object commentaire
+     *
+     * @return array Un array d'objets Comment
+     */
+    public function getComments(Comment $comment)
     {
         try {
             $all_comments = [];
             $db = DatabaseConnection::dbConnect();
-            $comments = $db->prepare('SELECT id, postid, autor, approved, text, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date FROM blogphp_commentaire WHERE postid = :idpost AND approved = 1 ORDER BY comment_date DESC');
-            $comments->execute(array(
-                ':idpost' => $comment->getPostid()
-            ));
+            $comments = $db->prepare(
+                'SELECT id, postid, autor, approved, text, 
+               DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date 
+             FROM blogphp_commentaire 
+             WHERE postid = :idpost 
+               AND approved = 1 ORDER BY comment_date DESC'
+            );
+            $comments->execute(array(':idpost' => $comment->getPostid()));
 
             while ($donnees = $comments->fetch(PDO::FETCH_ASSOC)) {
                 $all_comments[] = new Comment($donnees);
@@ -41,35 +55,51 @@ class CommentManager
             die('Erreur : ' . $e->getMessage());
         }
     }
-
-    public function GetCommentsByUser(Comment $comment)
+    /**
+     * Recupere les commentaire par l'auteur
+     *
+     * @param Comment $comment object commentaire
+     *
+     * @return array Un array d'objets Comment
+     */
+    public function getCommentsByUser(Comment $comment)
     {
         try {
             $all_comments_by_user = [];
             $db = DatabaseConnection::dbConnect();
-            $comments = $db->prepare('SELECT id, autor, text, postid, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date FROM blogphp_commentaire WHERE autor = :author ORDER BY comment_date DESC');
-            $comments->execute(array(
-                ':author' => $comment->getAutor()
-            ));
+            $comments = $db->prepare(
+                'SELECT id, autor, text, postid, 
+            DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date 
+            FROM blogphp_commentaire 
+            WHERE autor = :author ORDER BY comment_date DESC'
+            );
+            $comments->execute(array(':author' => $comment->getAutor()));
             while ($donnees = $comments->fetch(PDO::FETCH_ASSOC)) {
                 $all_comments_by_user[] = new Comment($donnees);
             }
-
             return $all_comments_by_user;
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
     }
-
-    public function GetCommentsToBeApproved(Comment $comment)
+    /**
+     * Recupere les commentaire à approver
+     *
+     * @param Comment $comment object commentaire
+     *
+     * @return array Un array d'objets Comment
+     */
+    public function getCommentsToBeApproved(Comment $comment)
     {
         try {
             $get_comments_to_approve = [];
             $db = DatabaseConnection::dbConnect();
-            $comments = $db->prepare('SELECT * FROM blogphp_commentaire WHERE blogphp_commentaire.autor != :author AND approved = 0');
-            $comments->execute(array(
-                ':author' => $comment->getAutor()
-            ));
+            $comments = $db->prepare(
+                'SELECT * 
+                        FROM blogphp_commentaire 
+                        WHERE blogphp_commentaire.autor != :author AND approved = 0'
+            );
+            $comments->execute(array(':author' => $comment->getAutor()));
             while ($donnees = $comments->fetch(PDO::FETCH_ASSOC)) {
                 $get_comments_to_approve[] = new Comment($donnees);
             }
@@ -79,93 +109,168 @@ class CommentManager
             die('Erreur : ' . $e->getMessage());
         }
     }
-
-    public function AddCommentWithVerrif(Comment $comment)
+    /**
+     * Ajoute un commentaire avec la 0 pour approved pour approbation par l'auteur
+     *
+     * @param Comment $comment object commentaire
+     *
+     * @return void
+     */
+    public function addCommentWithVerrif(Comment $comment)
     {
         try {
             $db = DatabaseConnection::dbConnect();
-            $addcom = $db->prepare('INSERT INTO blogphp_commentaire (postid,autor,text,comment_date,approved) VALUES (:idpost, :autor, :comment, NOW(),0) ');
-            $addcom->execute(array(
+            $addcom = $db->prepare(
+                'INSERT INTO blogphp_commentaire 
+                              (postid,autor,text,comment_date,approved) 
+                              VALUES (:idpost, :autor, :comment, NOW(),0) '
+            );
+            $addcom->execute(
+                array(
                 ':idpost' => $comment->getPostid(),
                 ':autor' => $comment->getAutor(),
                 ':comment' => $comment->getText()
-            ));
+                )
+            );
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
     }
-
-    public function AddCommentLessVerrif(Comment $comment)
+    /**
+     * Ajoute un commentaire avec la 1 pour approved sans approbation car même auteur
+     *
+     * @param Comment $comment object commentaire
+     *
+     * @return void
+     */
+    public function addCommentLessVerrif(Comment $comment)
     {
         try {
             $db = DatabaseConnection::dbConnect();
-            $addcom = $db->prepare('INSERT INTO blogphp_commentaire (postid,autor,text,comment_date,approved) VALUES (:idpost, :autor, :comment, NOW(),1) ');
-            $addcom->execute(array(
+            $addcom = $db->prepare(
+                'INSERT INTO blogphp_commentaire 
+                              (postid,autor,text,comment_date,approved) 
+                            VALUES (:idpost, :autor, :comment, NOW(),1)'
+            );
+            $addcom->execute(
+                array(
                 ':idpost' => $comment->getPostid(),
                 ':autor' => $comment->getAutor(),
                 ':comment' => $comment->getText()
-            ));
+                    )
+            );
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
     }
-
-    public function UpdateComment(Comment $comment)
+    /**
+     * Met à jour un commentaire
+     *
+     * @param Comment $comment object commentaire
+     *
+     * @return void
+     */
+    public function updateComment(Comment $comment)
     {
         try {
             $db = DatabaseConnection::dbConnect();
-            $update = $db->prepare('UPDATE `blogphp_commentaire` SET `text` = :newcom  WHERE `blogphp_commentaire`.`id` = :id AND `blogphp_commentaire`.`postid` = :idpost ');
-            $update->execute(array(
+            $update = $db->prepare(
+                'UPDATE `blogphp_commentaire` 
+                             SET `text` = :newcom  
+                             WHERE `blogphp_commentaire`.`id` = :id 
+                             AND `blogphp_commentaire`.`postid` = :idpost '
+            );
+            $update->execute(
+                array(
                 ':newcom' => $comment->getText(),
                 ':idpost' => $comment->getPostid(),
                 ':id' => $comment->getId()
-            ));
+                    )
+            );
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
     }
-
-    public function GetComment(Comment $comment)
+    /**
+     * Recupere un commentaire avec idpost id et auteur
+     *
+     * @param Comment $comment object commentaire
+     *
+     * @return Array un array obj com
+     */
+    public function getComment(Comment $comment)
     {
         try {
             $db = DatabaseConnection::dbConnect();
-            $thecomment = $db->prepare('SELECT text FROM blogphp_commentaire WHERE postid = :idpost AND id= :id AND autor = :author');
-            $thecomment->execute(array(
+            $thecomment = $db->prepare(
+                'SELECT text FROM blogphp_commentaire 
+                              WHERE postid = :idpost 
+                                AND id= :id 
+                                AND autor = :author'
+            );
+            $thecomment->execute(
+                array(
                 ':idpost' => $comment->getPostid(),
                 ':id' => $comment->getId(),
                 'author' => $comment->getAutor()
-            ));
+                    )
+            );
             $com = $thecomment->fetch();
             return new Comment($com);
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
     }
-
+    /**
+     * Supprime commentaire avec id et idpost
+     *
+     * @param Comment $com object commentaire
+     *
+     * @return void
+     */
     public function supprCom(Comment $com)
     {
         try {
             $db = DatabaseConnection::dbConnect();
-            $recup = $db->prepare('DELETE FROM blogphp_commentaire WHERE id = :id AND postid = :postid');
-            $recup->execute(array(
+            $recup = $db->prepare(
+                'DELETE FROM blogphp_commentaire 
+                                WHERE id = :id AND postid = :postid'
+            );
+            $recup->execute(
+                array(
                 ':id' => $com->getId(),
                 ':postid' => $com->getPostid()
-            ));
+                    )
+            );
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
     }
-
+    /**
+     * Valide commentaire, function appeler dans la vue dashboard,
+     * change la valeur de approved à 1.
+     *
+     * @param Comment $com object commentaire
+     *
+     * @return void
+     */
     public function validCom(Comment $com)
     {
         try {
 
             $db = DatabaseConnection::dbConnect();
-            $recup = $db->prepare('UPDATE `blogphp_commentaire` SET `approved` = 1 WHERE id = :id AND postid = :postid');
-            $recup->execute(array(
-                ':id' => $com->getId(),
-                ':postid' => $com->getPostid()
-            ));
+            $recup = $db->prepare(
+                'UPDATE `blogphp_commentaire` 
+                              SET `approved` = 1 
+                              WHERE id = :id 
+                                AND postid = :postid'
+            );
+            $recup->execute(
+                array(
+                    ':id' => $com->getId(),
+                    ':postid' => $com->getPostid()
+                )
+            );
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }

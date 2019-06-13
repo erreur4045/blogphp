@@ -150,7 +150,7 @@ function dashboard()
 }
 /**
  * Verif connection, création obj User
- * appel GetCommentsByUser pour recuperer la list des commentaires
+ * appel getCommentsByUser pour recuperer la list des commentaires
  * Puis appel vue
  *
  * @return void
@@ -167,14 +167,14 @@ function dashboard2()
         );
         $com = new Comment($data);
         $manage_user = new CommentManager($com);
-        $result_com = $manage_user->GetCommentsByUser($com);
+        $result_com = $manage_user->getCommentsByUser($com);
         include 'views/DashboardView2.php';
     }
 }
 /**
  * Verif connection, création obj User
- * appel GetCommentsByUser pour recuperer la list des commentaires
- * appel GetCommentsToBeApproved pour recuperer la list des commentaires à valider
+ * appel getCommentsByUser pour recuperer la list des commentaires
+ * appel getCommentsToBeApproved pour recuperer la list des commentaires à valider
  * Puis appel vue
  *
  * @return void
@@ -197,7 +197,7 @@ function dashboard3()
         );
         $com = new Comment($data);
         $manage_user = new CommentManager($com);
-        $result_com = $manage_user->GetCommentsToBeApproved($com);
+        $result_com = $manage_user->getCommentsToBeApproved($com);
 
         include 'views/DashboardView3.php';
     }

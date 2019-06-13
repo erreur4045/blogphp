@@ -238,7 +238,7 @@ function post()
             /*Creation de OBJ manager*/
             $com_manager = new CommentManager($comment_for_data);
             /* Passage des commentaire a la vue */
-            $comments = $com_manager->GetComments($comment_for_data);
+            $comments = $com_manager->getComments($comment_for_data);
             include 'views/PostViewco.php';
         } else {
             include 'views/Co_error.php';

@@ -38,11 +38,11 @@ function comment()
         $com = new Comment($idpost);
         $com_manager = new CommentManager($com);
         if ($datapost[0]->getAuthor() == $_SESSION{'username'}) {
-            $com_manager->AddCommentLessVerrif($com);
+            $com_manager->addCommentLessVerrif($com);
             $_SESSION['message'] = 'Votre commentaire a été ajouté.';
             header('Location: index.php?id=' . $com->getPostid() . '&action=post');
         } else {
-            $com_manager->AddCommentWithVerrif($com);
+            $com_manager->addCommentWithVerrif($com);
             $_SESSION['message'] = 'Votre commentaire est en attente de validation par l\'auteur.';
             header('Location: index.php?id=' . $com->getPostid() . '&action=post');
         }
@@ -68,7 +68,7 @@ function modifcomment()
         );
         $old_com = new Comment($data);
         $com_manager = new CommentManager($old_com);
-        $result = $com_manager->GetComment($old_com);
+        $result = $com_manager->getComment($old_com);
         include 'views/UpdatecommentView.php';
     } else {
         include 'views/Co_error.php';
@@ -94,7 +94,7 @@ function updatecomm()
 
         $new_com = new Comment($data_to_add);
         $com_manager = new CommentManager($new_com);
-        $com_manager->UpdateComment($new_com);
+        $com_manager->updateComment($new_com);
         header('Location: index.php?id=' . $new_com->getPostid() . '&action=post');
     } else {
         include 'views/Co_error.php';
