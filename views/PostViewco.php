@@ -1,13 +1,8 @@
 <?php $title = $post->getTitle(); ?>
 <?php ob_start(); ?>
 <div class="main">
-    <?php if (isset($_SESSION['message'])) : ?>
-        <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
-        <?php unset($_SESSION['message']); ?>
-    <?php endif; ?>
     <div class="container">
                 <p class="btn btn-dark"><a href="index.php?action=listAllPosts">Retour à la liste des articles</a></p>
-
             <div class="row">
                 <div class="col-lg-12 ml-auto">
                     <div class="row">
@@ -29,7 +24,6 @@
             <div class="row">
         <h2 class="text-center">Commentaires</h2>
         <?php foreach ($comments as $comment_data) : ?>
-
                 <div class="card flex-md-row mb-4 box-shadow h-md-250">
                     <div class="card-body d-flex flex-column align-items-start ">
                         <div class="col-md-12">

@@ -1,10 +1,6 @@
 <?php $title = 'Mon blog'; ?>
 <?php ob_start(); ?>
     <div class="main">
-        <?php if (isset($_SESSION['message'])): ?>
-            <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
-            <?php unset($_SESSION['message']); ?>
-        <?php endif; ?>
         <div class="container ">
             <div class="site-section" id="contact-section">
                 <div class="container">

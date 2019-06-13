@@ -2,10 +2,6 @@
 
 <?php ob_start(); ?>
     <div class="main">
-        <?php if (isset($_SESSION['message'])): ?>
-            <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
-            <?php unset($_SESSION['message']); ?>
-        <?php endif; ?>
         <div>
             <iframe src="images/cv.pdf" style="width: 100%;height: 800px;border: none;"></iframe>
         </div>

@@ -1,7 +1,6 @@
 <?php $title = 'Mon blog'; ?>
 <?php ob_start(); ?>
     <div class="main">
-
         <div class="d-flex justify-content-center">
             <h1 class="title text-primary mb-3">Derniers articles du blog :</h1>
         </div>

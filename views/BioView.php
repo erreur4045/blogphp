@@ -1,9 +1,5 @@
 <?php $title = 'Ma bio'; ?>
 <?php ob_start(); ?>
-<?php if (isset($_SESSION['message'])): ?>
-    <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
-    <?php unset($_SESSION['message']); ?>
-<?php endif; ?>
     <div class="site-section bg-light" id="what-we-do-section">
         <div class="container">
             <div class="row mb-5">

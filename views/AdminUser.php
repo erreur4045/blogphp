@@ -1,10 +1,6 @@
 <?php $title = 'Dashboard'; ?>
 <?php ob_start(); ?>
     <div class="main">
-        <?php if (isset($_SESSION['message'])): ?>
-            <div class="alert alert-info"><?= $_SESSION['message']; ?></div>
-            <?php unset($_SESSION['message']); ?>
-        <?php endif; ?>
         <div class="container">
             <div class="d-flex justify-content-center">
             <h1 class="title text-primary mb-3">Dashboard</h1>
