@@ -1,6 +1,6 @@
 <?php
 /**
- * Recipe class file
+ * CommentManager class file
  *
  * PHP Version 7.0
  *
