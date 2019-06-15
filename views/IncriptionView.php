@@ -9,17 +9,17 @@
                                     <div class="md-form">
                                         <i class="fa fa-user prefix white-text"></i>
                                         <label for="username" class="username_in">Pseudo :</label><br>
-                                        <input type="text" name="username" id="form35" class="form-control">
+                                        <input type="text" name="username" id="form35" class="form-control" required="required">
                                     </div>
                                     <div class="md-form">
                                         <i class="fa fa-lock prefix white-text"></i>
                                         <label for="mdp" class="">Mots de passe :</label><br>
-                                        <input type="password" name="mdp" id="form35" class="form-control">
+                                        <input type="password" name="mdp" id="form35" class="form-control" required="required">
                                     </div>
                                     <div class="md-form">
                                         <i class="fa fa-envelope prefix white-text"></i>
                                         <label for="mdp" class="mdp_in">Mail :</label><br>
-                                        <input type="email" name="mail" id="form35" class="form-control">
+                                        <input type="email" name="mail" id="form35" class="form-control" required="required">
                                     </div>
                                     <div class="text-center py-4">
                                         <button class="btn btn-primary btn-md">Send <i class="fas fa-paper-plane"></i>

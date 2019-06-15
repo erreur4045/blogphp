@@ -214,11 +214,14 @@ function dashboard3()
  */
 function validincription()
 {
-    //TODO : verif si $_Post empty
     $username = htmlspecialchars(stripcslashes(trim($_POST['username'])));
     $mdp = $_POST['mdp'];
     $mail = htmlspecialchars(stripcslashes(trim($_POST['mail'])));
-
+    if (empty($username) or empty($mdp) or empty($mail)){
+        $_SESSION['message'] = "Il manque des information pour votre inscription, tout les champs doivent être renseigné.";
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        die();
+    }
     $data = array(
         'pseudo' => $username,
         'pass' => $mdp,
@@ -228,10 +231,10 @@ function validincription()
     $manage_user = new UserManager($user);
     if ($manage_user->AddUser($user) == 1) {
         $_SESSION['message'] = "Le pseudo choisi est déjà utilisé, veuillez vous inscrire en utilisant un autre pseudo.";
-        header('Location: index.php?action=inscription');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     } elseif ($manage_user->AddUser($user) == 2) {
         $_SESSION['message'] = "Le mail choisi est déjà utilisé, veuillez vous inscrire en utilisant un autre mail.";
-        header('Location: index.php?action=inscription');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
         $_SESSION['message'] = "Votre inscription a été prise en compte, vous pouvez maintenant vous connecter.";
         header('Location: index.php');
