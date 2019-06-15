@@ -50,7 +50,6 @@ function allPost()
  */
 function supprPost()
 {
-    //todo : verrif si usernqme est bien author pour suppression
     if (isset($_SESSION['username'])) {
         $data = array(
             'number' => $_GET['id'],
@@ -58,9 +57,15 @@ function supprPost()
         );
         $post = new Post($data);
         $managepost = new PostManager($post);
-        $managepost->suppr($post);
-        $_SESSION['message'] = "Votre article a été supprimé";
-        header('Location: index.php?action=dashboard');
+        $datapost = $managepost->selectAuthorByNumberPost($post);
+        if ($_SESSION['username'] == $datapost[0]->getAuthor()) {
+            $managepost->suppr($post);
+            $_SESSION['message'] = "Votre article a été supprimé";
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
+        else {
+            include 'views/Co_error.php';
+        }
     } else {
         include 'views/Co_error.php';
     }
@@ -208,6 +213,7 @@ function modifpost()
     }
     include 'views/UpdatepostView.php';
 }
+
 /**
  * Verif connection verrif $_GET avec formatage,
  * si id est bon on passe dans le if pour recuperer le post

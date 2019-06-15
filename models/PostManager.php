@@ -50,7 +50,7 @@ class PostManager
             );
             $deletecom = $db->prepare(
                 'DELETE FROM blogphp_commentaire 
-                              WHERE post_id = :id '
+                              WHERE postid = :id '
             );
             $deletecom->execute(
                 array(
@@ -181,6 +181,7 @@ class PostManager
      */
     public function selectAuthorByNumberPost(Post $post)
     {
+        //todo ne pas renvoyer un tableau mais directement un obj
         try {
             $all_post = [];
             $req = DatabaseConnection::dbConnect()->prepare(
