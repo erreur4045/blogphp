@@ -252,10 +252,13 @@ function validincription()
  */
 function connectionuser()
 {
-    //TODO : verrif empty $_POST
     $username = htmlspecialchars(stripcslashes(trim($_POST['username'])));
     $mdp = htmlspecialchars(stripcslashes(trim($_POST['mdp'])));
-
+    if (empty($username) or empty($mdp)){
+        $_SESSION['message'] = "Il manque des information pour votre connexion, tout les champs doivent être renseigné.";
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        die();
+    }
     if ($username != null && $mdp != null) {
         $data = array(
             'pseudo' => $username,
