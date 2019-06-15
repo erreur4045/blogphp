@@ -50,6 +50,7 @@ function comment()
     include 'views/Co_error.php';
 
 }
+
 /**
  * Vérifie la connexion, on recupere l'ancien com pour view et on appel la vue
  *
@@ -68,12 +69,17 @@ function modifcomment()
         );
         $old_com = new Comment($data);
         $com_manager = new CommentManager($old_com);
-        $result = $com_manager->getComment($old_com);
+        $result = $com_manager->GetComment($old_com);
+        $data_for_view = array(
+            'text' => $result->getText()
+        );
+        $old_com_for_view = new Comment($data_for_view);
         include 'views/UpdatecommentView.php';
     } else {
         include 'views/Co_error.php';
     }
 }
+
 /**
  * Vérifie la connexion, on crée obj Comment, en faisant une securisation de la donnée puis on update
  *
@@ -100,6 +106,7 @@ function updatecomm()
         include 'views/Co_error.php';
     }
 }
+
 /**
  * Vérifie la connexion, on crée obj Comment, on recup $_GET puis on supp
  *
@@ -112,17 +119,29 @@ function supprcom()
     //TODO : faire verrif sur username pour suppression com
     try {
         if (isset($_SESSION['username'])) {
-            $data = array(
-                'id' => $_GET['id'],
-                'postid' => $_GET['idpost']
+            $datauser = array(
+                'pseudo' => $_SESSION['username']
             );
+            $user = new User($datauser);
+            $usermanager = new UserManager();
+            $usermanager->GradeUser($user);
+            $datacom = array(
+                'id' => htmlspecialchars($_GET['id']),
+                'postid' => htmlspecialchars($_GET['idpost'])
 
-            $com = new Comment($data);
-            $managepost = new CommentManager($com);
-            $managepost->supprCom($com);
-            $str = 'Location: index.php?action=dashboardcom';
+            );
+            $com = new Comment($datacom);
+            $managecom = new CommentManager($com);
+            $authorcom = $managecom->getAuthorByIdCom($com);
+            if (($_SESSION['username'] == $authorcom->getAutor())) {
+                $managecom->supprCom($com);
+
             $_SESSION['message'] = "Votre commentaire a été supprimé";
-            header($str);
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            }
+            else {
+                include 'views/Co_error.php';
+            }
         } else {
             include 'views/Co_error.php';
         }
@@ -131,6 +150,7 @@ function supprcom()
     }
 
 }
+
 /**
  * Vérifie la connexion, on crée obj Comment, on recup $_GET puis on supp
  *

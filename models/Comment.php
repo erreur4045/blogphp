@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: maxime
- * Date: 06/05/2019
- * Time: 15:27
- */
-
 class Comment
 {
     private $id;

@@ -91,13 +91,14 @@ class CommentManager
      */
     public function getCommentsToBeApproved(Comment $comment)
     {
+        //todo : pas passer par obj com, autor post = autor personne connecter
         try {
             $get_comments_to_approve = [];
             $db = DatabaseConnection::dbConnect();
             $comments = $db->prepare(
                 'SELECT * 
                         FROM blogphp_commentaire 
-                        WHERE blogphp_commentaire.autor != :author AND approved = 0'
+                        WHERE blogphp_commentaire.autor = :author AND approved = 0'
             );
             $comments->execute(array(':author' => $comment->getAutor()));
             while ($donnees = $comments->fetch(PDO::FETCH_ASSOC)) {
@@ -271,6 +272,32 @@ class CommentManager
                     ':postid' => $com->getPostid()
                 )
             );
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
+    /**
+     * Recupere les commentaire par l'auteur
+     *
+     * @param Comment $comment object commentaire
+     *
+     * @return array Un array d'objets Comment
+     */
+    public function getAuthorByIdCom(Comment $comment)
+    {
+        try {
+            $db = DatabaseConnection::dbConnect();
+            $comments = $db->prepare(
+                'SELECT autor
+            FROM blogphp_commentaire 
+            WHERE id = :id '
+            );
+            $comments->execute(
+                array(':id' => $comment->getId())
+            );
+            $author = $comments->fetch();
+            return new Comment($author);
+
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
