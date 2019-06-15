@@ -60,7 +60,14 @@ function comment()
  */
 function modifcomment()
 {
-    if (isset($_SESSION['username'])) {
+    $data = array(
+        'number' => htmlspecialchars(stripcslashes(trim($_GET['idpost'])))
+    );
+    $post = new Post($data);
+    $com_manager = new PostManager($post);
+    $author = $com_manager->selectAuthorByNumberPost($post);
+    $authorpost = $author[0]->getAuthor();
+    if (isset($_SESSION['username']) && $authorpost == $_SESSION['username']) {
         /* on recupere l'ancien commentaire pour l'affichier*/
         $data = array(
             'id' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
@@ -89,7 +96,14 @@ function modifcomment()
  */
 function updatecomm()
 {
-    if (isset($_SESSION['username'])) {
+    $data = array(
+        'number' => htmlspecialchars(stripcslashes(trim($_GET['idpost'])))
+    );
+    $post = new Post($data);
+    $com_manager = new PostManager($post);
+    $author = $com_manager->selectAuthorByNumberPost($post);
+    $authorpost = $author[0]->getAuthor();
+    if (isset($_SESSION['username']) && $authorpost == $_SESSION['username']) {
         $new_com_to_add = htmlspecialchars(stripcslashes(trim($_POST['comments'])));
         $data_to_add = array(
             'postid' => htmlspecialchars(stripcslashes(trim($_GET['idpost']))),

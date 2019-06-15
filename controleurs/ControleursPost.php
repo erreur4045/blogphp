@@ -138,9 +138,8 @@ function validpost()
  */
 function validupdatepost()
 {
-    //todo : verrifier si username = author pour update et verrif grade
     $title = htmlspecialchars(stripcslashes(trim($_POST['title'])));
-    $content = htmlspecialchars(stripcslashes(trim($_POST['content'])));
+    $content = htmlspecialchars((trim($_POST['content'])));
     $author = htmlspecialchars(stripcslashes(trim($_SESSION['username'])));
     $id = htmlspecialchars(stripcslashes(trim($_GET['id'])));
     if (isset($_SESSION['username'])) {
