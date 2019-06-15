@@ -96,9 +96,11 @@ class CommentManager
             $get_comments_to_approve = [];
             $db = DatabaseConnection::dbConnect();
             $comments = $db->prepare(
-                'SELECT * 
-                        FROM blogphp_commentaire 
-                        WHERE blogphp_commentaire.autor = :author AND approved = 0'
+                'SELECT *
+                            FROM blogphp_posts
+                            JOIN blogphp_commentaire ON blogphp_commentaire.postid = blogphp_posts.number
+                            WHERE autor != :author 
+                              AND author = :author'
             );
             $comments->execute(array(':author' => $comment->getAutor()));
             while ($donnees = $comments->fetch(PDO::FETCH_ASSOC)) {
