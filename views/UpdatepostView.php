@@ -4,7 +4,7 @@
     <div class="main">
     <div class="container">
         <div class="row">
-            <div class="addnewpost">
+            <div class="col-md-12">
                 <form action="index.php?action=validupdatepost&id=<?= $_GET['id'] ?>" class="form_contact"
                       method="post">
                     <div class="contact-form">
@@ -20,7 +20,7 @@
                             <input type="submit" value="Envoyer" class="btn btn-info btn-block rounded-0 py-2">
                         </div>
                 </form>
-            </div>
+        </div>
         </div>
     </div>
 <?php else: ?>

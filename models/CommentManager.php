@@ -42,7 +42,7 @@ class CommentManager
                DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date 
              FROM blogphp_commentaire 
              WHERE postid = :idpost 
-               AND approved = 1 ORDER BY comment_date DESC'
+               AND approved = 1 ORDER BY comment_date ASC '
             );
             $comments->execute(array(':idpost' => $comment->getPostid()));
 
