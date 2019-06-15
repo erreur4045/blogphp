@@ -62,7 +62,7 @@ function accceptuser()
         $grade = $manage_user->GradeUser($user);
         if ($grade->getGrade() == 1) {
             $data = array(
-                'id' => $_GET['id'],
+                'id' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
                 'grade' => '2'
             );
             $user = new User($data);
@@ -90,7 +90,7 @@ function suppuser()
     if (isset($_SESSION['username'])) {
         if ($_SESSION['grade'] == 1) {
             $data = array(
-                'id' => $_GET['id'],
+                'id' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
             );
             $user = new User($data);
             $manage_user = new UserManager($user);

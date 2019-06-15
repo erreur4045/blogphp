@@ -52,8 +52,8 @@ function supprPost()
 {
     if (isset($_SESSION['username'])) {
         $data = array(
-            'number' => $_GET['id'],
-            'author' => $_GET['author']
+            'number' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
+            'author' => htmlspecialchars(stripcslashes(trim($_GET['author'])))
         );
         $post = new Post($data);
         $managepost = new PostManager($post);
@@ -84,8 +84,8 @@ function supprpostlistpost()
     //todo : verrif username = author pour supp optimisable avec function supprPost()
     if (isset($_SESSION['username'])) {
         $data = array(
-            'number' => $_GET['id'],
-            'author' => $_GET['author']
+            'number' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
+            'author' => htmlspecialchars(stripcslashes(trim($_GET['author'])))
         );
         $post = new Post($data);
         $managepost = new PostManager($post);
@@ -239,7 +239,7 @@ function post()
         $post = $post_manager->selectPostById($post_for_data);
         if (is_object($post)) {
             /*Preparation des donnees pour creation de OBJ Comment*/
-            $data_for_com = array('postid' => $_GET['id']);
+            $data_for_com = array('postid' => htmlspecialchars(stripcslashes(trim($_GET['id']))));
             $comment_for_data = new Comment($data_for_com);
             /*Creation de OBJ manager*/
             $com_manager = new CommentManager($comment_for_data);

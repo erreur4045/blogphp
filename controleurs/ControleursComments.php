@@ -24,13 +24,13 @@ function comment()
 {
     if (isset($_SESSION['username'])) {
         $idpost = array(
-            'postid' => $_GET['idpost'],
+            'postid' => htmlspecialchars(stripcslashes(trim($_GET['idpost']))),
             'autor' => $_SESSION['username'],
-            'text' => $_POST['comments']
+            'text' => htmlspecialchars(stripcslashes(trim($_POST['comments'])))
         );
 
         $data = array(
-            'number' => $_GET['idpost']
+            'number' => htmlspecialchars(stripcslashes(trim($_GET['idpost'])))
         );
         $getdatapost = new Post($data);
         $getdatapostmanager = new PostManager($getdatapost);
@@ -63,8 +63,8 @@ function modifcomment()
     if (isset($_SESSION['username'])) {
         /* on recupere l'ancien commentaire pour l'affichier*/
         $data = array(
-            'id' => $_GET['id'],
-            'postid' => $_GET['idpost'],
+            'id' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
+            'postid' => htmlspecialchars(stripcslashes(trim($_GET['idpost']))),
             'autor' => $_SESSION['username']
         );
         $old_com = new Comment($data);
@@ -92,8 +92,8 @@ function updatecomm()
     if (isset($_SESSION['username'])) {
         $new_com_to_add = htmlspecialchars(stripcslashes(trim($_POST['comments'])));
         $data_to_add = array(
-            'postid' => $_GET['idpost'],
-            'id' => $_GET['id'],
+            'postid' => htmlspecialchars(stripcslashes(trim($_GET['idpost']))),
+            'id' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
             'autor' => $_SESSION['username'],
             'text' => $new_com_to_add
         );
@@ -161,11 +161,11 @@ function validcomment()
     try {
         if (isset($_SESSION['username'])) {
             $datacom = array(
-                'id' => $_GET['id'],
-                'postid' => $_GET['idpost']
+                'id' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
+                'postid' => htmlspecialchars(stripcslashes(trim($_GET['idpost'])))
             );
             $datapost = array(
-                'number' => $_GET['idpost']
+                'number' => htmlspecialchars(stripcslashes(trim($_GET['idpost'])))
             );
             $com = new Comment($datacom);
             $post = new Post($datapost);

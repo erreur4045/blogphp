@@ -59,7 +59,11 @@ function testfunction()
 
 function contacter()
 {
-    //todo : empty les vars
+    if (empty($_POST['firstname']) or empty($_POST['lastname'])  or empty($_POST['mail'])  or empty($_POST['subject'])  or empty($_POST['content'])){
+        $_SESSION['message'] = "Il manque des information pour me contacter, tout les champs doivent être renseigné.";
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        die();
+    }
     if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['mail']) && isset($_POST['subject']) && isset($_POST['content']))
     {
         ini_set("SMTP", "smtp.maximethierry.xyz");
