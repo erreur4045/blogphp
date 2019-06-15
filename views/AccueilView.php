@@ -210,26 +210,26 @@
 
                 <div class="row mb-4">
                     <div class="col-md-6 mb-4 mb-md-0">
-                        <input name="firstname" type="text" class="form-control" placeholder="Prénom">
+                        <input name="firstname" type="text" class="form-control" placeholder="Prénom" required="required">
                     </div>
                     <div class="col-md-6">
-                        <input name="lastname" type="text" class="form-control" placeholder="Nom">
+                        <input name="lastname" type="text" class="form-control" placeholder="Nom" required="required">
                     </div>
                 </div>
 
                 <div class="row mb-4">
                     <div class="col-12">
-                        <input name="mail" type="text" class="form-control" placeholder="Email">
+                        <input name="mail" type="text" class="form-control" placeholder="Email" required="required">
                     </div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-12">
-                        <input required="required" name="subject" type="text" class="form-control" placeholder="Sujet">
+                        <input required="required" name="subject" type="text" class="form-control" placeholder="Sujet" required="required">
                     </div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-12">
-                        <textarea class="form-control" name="content" id="" cols="30" rows="10" placeholder="Message"></textarea>
+                        <textarea class="form-control" name="content" id="" cols="30" rows="10" placeholder="Message" required="required"></textarea>
                     </div>
                 </div>
 
