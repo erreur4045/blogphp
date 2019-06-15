@@ -72,32 +72,6 @@ function supprPost()
 }
 
 /**
- * Verif connection, Création obj PostManager
- * puis appel suppr pour vue, et redirection
- *
- * @return void
- *
- * @since 1.0.1
- */
-function supprpostlistpost()
-{
-    //todo : verrif username = author pour supp optimisable avec function supprPost()
-    if (isset($_SESSION['username'])) {
-        $data = array(
-            'number' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
-            'author' => htmlspecialchars(stripcslashes(trim($_GET['author'])))
-        );
-        $post = new Post($data);
-        $managepost = new PostManager($post);
-        $managepost->suppr($post);
-        $_SESSION['message'] = "Votre article a été supprimé";
-        header('Location: index.php?action=listPosts');
-    } else {
-        include 'views/Co_error.php';
-    }
-}
-
-/**
  * Verif connection, appel vue, si pas co redirection sur page erreur
  *
  * @return void
@@ -204,7 +178,6 @@ function modifpost()
             'number' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
         );
         $post = new Post($donnees);
-        echo $post->getNumber();
         $manager = new PostManager($post);
         $data_view = $manager->selectPostById($post);
 

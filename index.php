@@ -75,8 +75,6 @@ if ($maintenance == 0) {
             addnewpost();
         } elseif ($_GET['action'] == 'supprpost') {
             supprpost();
-        } elseif ($_GET['action'] == 'supprpostlistpost') {
-            supprpostlistpost();
         } elseif ($_GET['action'] == 'validpost') {
             validpost();
         } elseif ($_GET['action'] == 'validcomment') {

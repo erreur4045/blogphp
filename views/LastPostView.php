@@ -31,7 +31,7 @@
                                                 <em></em>
                                             <?php elseif (($_SESSION['username']) == $post_data->getAuthor()) : ?>
                                                 <em><a class="btn btn-outline-danger confirmation"
-                                                       href="index.php?action=supprpostlistpost&id=<?= $post_data->getNumber() . '&author=' . $post_data->getAuthor() ?>">Supprimer</a></em>
+                                                       href="index.php?action=supprpost&id=<?= $post_data->getNumber() . '&author=' . $post_data->getAuthor() ?>">Supprimer</a></em>
                                             <?php endif; ?>
                                     </div>
                                 </div>
