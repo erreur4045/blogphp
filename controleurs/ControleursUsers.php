@@ -216,7 +216,7 @@ function validincription()
 {
     //TODO : verif si $_Post empty
     $username = htmlspecialchars(stripcslashes(trim($_POST['username'])));
-    $mdp = htmlspecialchars(stripcslashes(trim($_POST['mdp'])));
+    $mdp = $_POST['mdp'];
     $mail = htmlspecialchars(stripcslashes(trim($_POST['mail'])));
 
     $data = array(
@@ -271,7 +271,7 @@ function connectionuser()
             $_SESSION['username'] = $user->getPseudo();
             $_SESSION['admin'] = false;
             $_SESSION['grade'] = $grade->getGrade();
-            $_SESSION['message'] = "Vous êtes bien connecté\"";
+            $_SESSION['message'] = "Vous êtes bien connecté";
             header('Location: index.php');
         } else {
             $_SESSION['message'] = "Error MDP ou pseudo";

@@ -28,21 +28,22 @@ class UserManager
         }
     }
 
-    function GradeUser(User $user){
-
-        try{
+    function GradeUser(User $user)
+    {
+        $pseudo = $user->getPseudo();
+        try {
             $db = DatabaseConnection::dbConnect();
-            $recup = $db->prepare('SELECT grade FROM blogphp_membres WHERE pseudo = :username');
+            $recup = $db->prepare('SELECT grade FROM blogphp_membres WHERE pseudo = :pseudo');
             $recup->execute(array(
-                ':username' => $user->getPseudo()
+                ':pseudo' => $pseudo
             ));
             $donnees = $recup->fetch();
-            if ($donnees)
+            if ($donnees) {
                 return new User($donnees);
-            else
+            } else {
                 return null;
-        }
-        catch (Exception $e) {
+            }
+        } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
     }

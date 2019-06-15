@@ -33,7 +33,7 @@
                                 <em><a class="btn btn-outline-warning"
                                        href="index.php?action=modifcomment&id=<?= $comment_data->getId() . '&idpost=' . $post->getNumber() ?>">Modifier</a></em>
                                 <em><a class="btn btn-outline-danger confirmation"
-                                       href="index.php?action=supprcom&id=<? echo $comment_data->getId() . '&idpost=' . $post->getNumber() ?>">Supprimer</a></em>
+                                       href="index.php?action=supprcom&id=<?=$comment_data->getId() . '&idpost=' . $post->getNumber() ?>">Supprimer</a></em>
                             <?php elseif (isset($_SESSION['username']) && ($_SESSION['username'] == $post->getAuthor())) : ?>
                                 <em><a class="btn btn-outline-danger confirmation"
                                        href="index.php?action=supprcom&id=<? echo $comment_data->getId() . '&idpost=' . $post->getNumber() ?>">Supprimer</a></em>

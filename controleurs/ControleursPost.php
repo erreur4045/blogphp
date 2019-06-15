@@ -174,7 +174,7 @@ function validupdatepost()
         $post = new Post($donnees);
         $manager = new PostManager($post);
         $manager->updatePost($post);
-        $_SESSION['message'] = "Votre article a ete modifier";
+        $_SESSION['message'] = "Votre article a été modifié";
         $str = 'Location: index.php?id=' . $_GET['id'] . '&action=post';
         header($str);
     } else {
@@ -193,7 +193,7 @@ function validupdatepost()
  */
 function modifpost()
 {
-    //todo : verrifier si username = author pour update et verrif grade
+
     if (isset($_SESSION['username'])) {
         $donnees = array(
             'number' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
