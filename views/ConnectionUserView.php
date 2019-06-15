@@ -10,12 +10,12 @@
                                     <div class="md-form">
                                         <i class="fa fa-user prefix white-text"></i>
                                         <label for="form35">Pseudo</label>
-                                        <input required="required" name="username" type="text" id="form35" class="form-control">
+                                        <input  name="username" type="text" id="form35" class="form-control">
                                     </div>
                                     <div class="md-form">
                                         <i class="fa fa-lock prefix white-text"></i>
                                         <label for="form25">Mot de passe</label>
-                                        <input required="required" name="mdp" type="password" id="form25" class="form-control">
+                                        <input  name="mdp" type="password" id="form25" class="form-control">
                                     </div>
                                     <div class="text-center py-4">
                                         <button class="btn btn-primary btn-md">Send <i class="fas fa-paper-plane"></i>
