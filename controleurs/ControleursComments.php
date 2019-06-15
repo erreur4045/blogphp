@@ -116,7 +116,6 @@ function updatecomm()
  */
 function supprcom()
 {
-    //TODO : faire verrif sur username pour suppression com
     try {
         if (isset($_SESSION['username'])) {
             $datauser = array(
@@ -136,10 +135,9 @@ function supprcom()
             if (($_SESSION['username'] == $authorcom->getAutor())) {
                 $managecom->supprCom($com);
 
-            $_SESSION['message'] = "Votre commentaire a été supprimé";
-            header('Location: ' . $_SERVER['HTTP_REFERER']);
-            }
-            else {
+                $_SESSION['message'] = "Votre commentaire a été supprimé";
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+            } else {
                 include 'views/Co_error.php';
             }
         } else {
@@ -160,21 +158,27 @@ function supprcom()
  */
 function validcomment()
 {
-    //TODO : verrfi username pour la validation
     try {
         if (isset($_SESSION['username'])) {
-            $data = array(
+            $datacom = array(
                 'id' => $_GET['id'],
                 'postid' => $_GET['idpost']
             );
-
-            $com = new Comment($data);
-
-            $managepost = new CommentManager($com);
-            $managepost->validCom($com);
-            $str = 'Location: index.php?action=dashboardcomtovalidated';
-            header($str);
-            $_SESSION['message'] = "Le commentaire a été validé";
+            $datapost = array(
+                'number' => $_GET['idpost']
+            );
+            $com = new Comment($datacom);
+            $post = new Post($datapost);
+            $managecom = new CommentManager($com);
+            $managepost = new PostManager($post);
+            $datapost = $managepost->selectAuthorByNumberPost($post);
+            if ($datapost[0]->getAuthor() == $_SESSION['username']) {
+                $managecom->validCom($com);
+                $_SESSION['message'] = "Le commentaire a été validé";
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+            } else {
+                include 'views/Co_error.php';
+            }
         } else {
             $_SESSION['message'] = "Vous devez être connecté pour ajouter un commentaire.";
             header('Location: index.php?action=connection');
