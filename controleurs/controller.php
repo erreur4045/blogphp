@@ -14,10 +14,10 @@
  */
 
 //todo : verif les controlleurs
-require_once 'models/PostManager.php';
-require_once 'models/UserManager.php';
-require_once 'models/Comment.php';
-require_once 'models/Post.php';
+require 'models/PostManager.php';
+require 'models/UserManager.php';
+require 'models/Comment.php';
+require 'models/Post.php';
 
 /**
  * Permet de faire une function test

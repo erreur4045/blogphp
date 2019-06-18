@@ -31,7 +31,7 @@ class PostManager
      *
      * @param Post $post object Post
      *
-     * @return int 1 si tout c'est bien passer
+     * @return void
      */
     public function suppr(Post $post)
     {
@@ -57,7 +57,6 @@ class PostManager
                 ':id' => $post->getNumber()
                     )
             );
-            return 1;
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
@@ -68,7 +67,7 @@ class PostManager
      *
      * @param Post $post object Post
      *
-     * @return int 1 si tout c'est bien passer
+     * @return void
      */
     public function addPost(Post $post)
     {
@@ -86,7 +85,6 @@ class PostManager
                 ':author' => $post->getAuthor()
                     )
             );
-            return 1;
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
@@ -181,9 +179,7 @@ class PostManager
      */
     public function selectAuthorByNumberPost(Post $post)
     {
-        //todo ne pas renvoyer un tableau mais directement un obj
         try {
-            $all_post = [];
             $req = DatabaseConnection::dbConnect()->prepare(
                 'SELECT * FROM `blogphp_posts` WHERE number = :idpost'
             );
@@ -192,9 +188,8 @@ class PostManager
                 ':idpost' => $post->getNumber()
                     )
             );
-            while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
-                $all_post[] = new Post($donnees);
-            }
+            $donnees = $req->fetch(PDO::FETCH_ASSOC);
+                return new Post($donnees);
             return $all_post;
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());

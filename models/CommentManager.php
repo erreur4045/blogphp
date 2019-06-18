@@ -63,7 +63,6 @@ class CommentManager
      *
      * @return array Un array d'objets Comment
      */
-    //todo function doit recevoir un obj user
     public function getCommentsByUser(Comment $comment)
     {
         try {
