@@ -151,10 +151,18 @@ function validupdatepost()
         );
         $post = new Post($donnees);
         $manager = new PostManager($post);
-        $manager->updatePost($post);
-        $_SESSION['message'] = "Votre article a été modifié";
-        $str = 'Location: index.php?id=' . $_GET['id'] . '&action=post';
-        header($str);
+        $objauthor = $manager->selectAuthorByNumberPost($post);
+        $author = $objauthor->getAuthor();
+        if ($_SESSION['username'] == $author) {
+            $manager->updatePost($post);
+            $_SESSION['message'] = "Votre article a été modifié";
+            $str = 'Location: index.php?id=' . $_GET['id'] . '&action=post';
+            header($str);
+        }
+        else {
+            $_SESSION['message'] = "Vous n'avez pas le droit de modifier cette article.";
+            header('Location: index.php');
+        }
     } else {
         $_SESSION['message'] = "Vous devez être connecté pour ajouter un article.";
         header('Location: index.php?action=connection');
@@ -171,19 +179,24 @@ function validupdatepost()
  */
 function modifpost()
 {
-
     if (isset($_SESSION['username'])) {
         $donnees = array(
             'number' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
         );
         $post = new Post($donnees);
         $manager = new PostManager($post);
-        $data_view = $manager->selectPostById($post);
-
+        $objauthor = $manager->selectAuthorByNumberPost($post);
+        $author = $objauthor->getAuthor();
+        if ($_SESSION['username'] == $author) {
+            $data_view = $manager->selectPostById($post);
+            include 'views/UpdatepostView.php';
+        } else {
+            $_SESSION['message'] = "Vous n'avez pas le droit de modifier cette article.";
+            header('Location: index.php');
+        }
     } else {
-        include 'views/Co_error.php';
-    }
-    include 'views/UpdatepostView.php';
+    include 'views/Co_error.php';
+}
 }
 
 /**
@@ -197,7 +210,6 @@ function modifpost()
  */
 function post()
 {
-
     if (isset($_SESSION['username'])) {
         /*preparation du tableau pour contruction de OBJ post et creation OBJ*/
         $donnees = array(

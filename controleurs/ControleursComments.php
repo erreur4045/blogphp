@@ -66,7 +66,7 @@ function modifcomment()
     $post = new Post($data);
     $com_manager = new PostManager($post);
     $author = $com_manager->selectAuthorByNumberPost($post);
-    $authorpost = $author[0]->getAuthor();
+    $authorpost = $author->getAuthor();
     if (isset($_SESSION['username']) && $authorpost == $_SESSION['username']) {
         /* on recupere l'ancien commentaire pour l'affichier*/
         $data = array(
@@ -102,7 +102,7 @@ function updatecomm()
     $post = new Post($data);
     $com_manager = new PostManager($post);
     $author = $com_manager->selectAuthorByNumberPost($post);
-    $authorpost = $author[0]->getAuthor();
+    $authorpost = $author->getAuthor();
     if (isset($_SESSION['username']) && $authorpost == $_SESSION['username']) {
         $new_com_to_add = htmlspecialchars(stripcslashes(trim($_POST['comments'])));
         $data_to_add = array(
@@ -186,7 +186,7 @@ function validcomment()
             $managecom = new CommentManager($com);
             $managepost = new PostManager($post);
             $datapost = $managepost->selectAuthorByNumberPost($post);
-            if ($datapost[0]->getAuthor() == $_SESSION['username']) {
+            if ($datapost->getAuthor() == $_SESSION['username']) {
                 $managecom->validCom($com);
                 $_SESSION['message'] = "Le commentaire a été validé";
                 header('Location: ' . $_SERVER['HTTP_REFERER']);
