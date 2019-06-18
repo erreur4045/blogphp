@@ -36,6 +36,8 @@ function comment()
         $getdatapost = new Post($data);
         $getdatapostmanager = new PostManager($getdatapost);
         $datapost = $getdatapostmanager->selectAuthorByNumberPost($getdatapost);
+        if ($datapost == 0)
+            include 'views/Co_error.php';
         $com = new Comment($idpost);
         $com_manager = new CommentManager($com);
         if ($datapost->getAuthor() == $_SESSION{'username'}) {
@@ -62,13 +64,15 @@ function comment()
 function modifcomment()
 {
     $data = array(
-        'number' => htmlspecialchars(stripcslashes(trim($_GET['idpost'])))
+        'id' => htmlspecialchars(stripcslashes(trim($_GET['id'])))
     );
-    $post = new Post($data);
-    $com_manager = new PostManager($post);
-    $author = $com_manager->selectAuthorByNumberPost($post);
-    $authorpost = $author->getAuthor();
-    if (isset($_SESSION['username']) && $authorpost == $_SESSION['username']) {
+    $com = new Comment($data);
+    $com_manager = new CommentManager($com);
+    $author = $com_manager->getAuthorByIdCom($com);
+    if ($author == 0)
+        require 'views/Co_error.php';
+    if (isset($_SESSION['username']) && $author->getAutor() == $_SESSION['username']) {
+        echo 'je passe par là';
         /* on recupere l'ancien commentaire pour l'affichier*/
         $data = array(
             'id' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
@@ -78,6 +82,8 @@ function modifcomment()
         $old_com = new Comment($data);
         $com_manager = new CommentManager($old_com);
         $result = $com_manager->GetComment($old_com);
+        if ($result == 0 )
+            require 'views/Co_error.php';
         $data_for_view = array(
             'text' => $result->getText()
         );
@@ -133,23 +139,25 @@ function supprcom()
 {
     try {
         if (isset($_SESSION['username'])) {
-            $datauser = array(
-                'pseudo' => $_SESSION['username']
-            );
-            $user = new User($datauser);
-            $usermanager = new UserManager();
-            $usermanager->gradeUser($user);
             $datacom = array(
                 'id' => htmlspecialchars($_GET['id']),
                 'postid' => htmlspecialchars($_GET['idpost'])
-
+            );
+            $datapost= array(
+                'number' => htmlspecialchars($_GET['idpost'])
             );
             $com = new Comment($datacom);
             $managecom = new CommentManager($com);
             $authorcom = $managecom->getAuthorByIdCom($com);
-            if (($_SESSION['username'] == $authorcom->getAutor())) {
+            if ($authorcom == 0)
+                include 'views/Co_error.php';
+            $post = new Post($datapost);
+            $managepost = new PostManager($post);
+            $authorpost = $managepost->selectAuthorByNumberPost($post);
+            if ($authorpost == 0)
+                include 'views/Co_error.php';
+            if (($_SESSION['username'] == $authorcom->getAutor() or $_SESSION['username'] == $authorpost->getAuthor())) {
                 $managecom->supprCom($com);
-
                 $_SESSION['message'] = "Votre commentaire a été supprimé";
                 header('Location: ' . $_SERVER['HTTP_REFERER']);
             } else {

@@ -221,6 +221,9 @@ class CommentManager
                     )
             );
             $com = $thecomment->fetch();
+            if ($com == false)
+                return 0;
+            else
             return new Comment($com);
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
@@ -300,6 +303,9 @@ class CommentManager
                 array(':id' => $comment->getId())
             );
             $author = $comments->fetch();
+            if ($author == false)
+                return 0;
+            else
             return new Comment($author);
 
         } catch (Exception $e) {
