@@ -7,7 +7,11 @@
                 <div class="col-md-12 ml-auto">
                     <p class="btn btn-info"><a href="index.php?action=listAllPosts">Retour à la liste des articles</a>
                     </p>
-
+                    <?php if (isset($_SESSION['username']) && ($_SESSION['username'] == $post->getAuthor())) : ?>
+                    <div class="btn-group-vertical-var">
+                        <a class="btn btn-outline-warning" href="index.php?action=modifpost&id=<?= $post->getNumber()?>">Modifier votre aticle</a>
+                    </div>
+                    <?php endif; ?>
                     <div class="contact-form">
                         <h3 class="title text-primary mb-3"><?= ucfirst(htmlspecialchars($post->getTitle())) ?></h3>
                         <em><h5><?= 'Le ' . $post->getDate() . ' par ' . $post->getAuthor() ?></h5></em>
