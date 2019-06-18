@@ -137,7 +137,7 @@ function supprcom()
             );
             $user = new User($datauser);
             $usermanager = new UserManager();
-            $usermanager->GradeUser($user);
+            $usermanager->gradeUser($user);
             $datacom = array(
                 'id' => htmlspecialchars($_GET['id']),
                 'postid' => htmlspecialchars($_GET['idpost'])

@@ -32,6 +32,7 @@ class CommentManager
      *
      * @return array Un array d'objets Comment
      */
+    // todo function doit recevoir un obj post
     public function getComments(Comment $comment)
     {
         try {
@@ -62,6 +63,7 @@ class CommentManager
      *
      * @return array Un array d'objets Comment
      */
+    //todo function doit recevoir un obj user
     public function getCommentsByUser(Comment $comment)
     {
         try {
@@ -100,7 +102,8 @@ class CommentManager
                             FROM blogphp_posts
                             JOIN blogphp_commentaire ON blogphp_commentaire.postid = blogphp_posts.number
                             WHERE autor != :author 
-                              AND author = :author'
+                              AND author = :author
+                              AND approved = 0'
             );
             $comments->execute(array(':author' => $comment->getAutor()));
             while ($donnees = $comments->fetch(PDO::FETCH_ASSOC)) {
@@ -283,7 +286,7 @@ class CommentManager
      *
      * @param Comment $comment object commentaire
      *
-     * @return array Un array d'objets Comment
+     * @return obj Un obj Comment
      */
     public function getAuthorByIdCom(Comment $comment)
     {

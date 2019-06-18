@@ -27,7 +27,7 @@
 class PostManager
 {
     /**
-     * Suppresion du post avec id et author
+     * Suppresion des posts avec id et author
      *
      * @param Post $post object Post
      *
@@ -251,7 +251,7 @@ class PostManager
                 $post = $req->fetch();
                 return new Post($post);
             } else {
-                return 2;
+                false;
             }
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
@@ -266,6 +266,7 @@ class PostManager
      *
      * @return void
      */
+    //todo : renvoyer new post
     public function selectPostByAuthorSession( Post $post)
     {
         try {

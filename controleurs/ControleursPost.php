@@ -116,7 +116,7 @@ function validpost()
         );
         $user = new User($donnees_user);
         $manager_user = new UserManager($user);
-        $grade = $manager_user->GradeUser($user);
+        $grade = $manager_user->gradeUser($user);
         if ($grade->getGrade() == 2 OR $grade->getGrade() == 1) {
             $manager = new PostManager($post);
             $manager->addPost($post);

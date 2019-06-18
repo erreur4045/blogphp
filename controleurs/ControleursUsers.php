@@ -32,9 +32,9 @@ function adminusertobevalided()
     $data = array('pseudo' => $_SESSION['username'],);
     $user = new User($data);
     $manage_user = new UserManager($user);
-    $grade = $manage_user->GradeUser($user);
+    $grade = $manage_user->gradeUser($user);
     if ($grade->getGrade() == 1) {
-        $list_user = $manage_user->GetUsersNotAccepted();
+        $list_user = $manage_user->getUsersNotAccepted();
         include 'views/AdminUser.php';
     } else {
         include 'views/Co_error.php';
@@ -45,7 +45,7 @@ function adminusertobevalided()
 
 /**
  * Verif connection, verrif si username est admin
- * appel ChangeGradeUser pour passage de l'utilisateur au grade 2
+ * appel changeGradeUser pour passage de l'utilisateur au grade 2
  * pour pouvoir ajouter des articles
  * Puis redirection
  *
@@ -59,7 +59,7 @@ function accceptuser()
         $data = array('pseudo' => $_SESSION['username'],);
         $user = new User($data);
         $manage_user = new UserManager($user);
-        $grade = $manage_user->GradeUser($user);
+        $grade = $manage_user->gradeUser($user);
         if ($grade->getGrade() == 1) {
             $data = array(
                 'id' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
@@ -67,7 +67,7 @@ function accceptuser()
             );
             $user = new User($data);
             $manage_user = new UserManager($user);
-            $manage_user->ChangeGradeUser($user);
+            $manage_user->changeGradeUser($user);
             $_SESSION['message'] = "L'utilisateur est accepté.";
             header('Location: index.php?action=adminusertobevalided');
         }
@@ -78,7 +78,7 @@ function accceptuser()
 
 /**
  * Verif connection, verrif si username est admin
- * appel SuppUser pour suppresion user
+ * appel suppUser pour suppresion user
  * Puis redirection
  *
  * @return void
@@ -94,8 +94,8 @@ function suppuser()
             );
             $user = new User($data);
             $manage_user = new UserManager($user);
-            $data_user = $manage_user->GetDataByIdUser($user);
-            $manage_user->SuppUser($data_user);
+            $data_user = $manage_user->getDataByIdUser($user);
+            $manage_user->suppUser($data_user);
             $_SESSION['message'] = "L'utilisateur a été supprimé.";
             header('Location: index.php?action=adminusertobevalided');
         }
@@ -106,7 +106,7 @@ function suppuser()
 
 /**
  * Verif connection, verrif si username est admin
- * appel SuppUser pour recuperer la list des utilisateur non admin
+ * appel suppUser pour recuperer la list des utilisateur non admin
  * Puis appel vue
  *
  * @return void
@@ -118,7 +118,7 @@ function adminuserlist()
 
     if (isset($_SESSION['username']) && $_SESSION['grade'] == 1) {
         $manage_user = new UserManager();
-        $data_user = $manage_user->GetAllUser();
+        $data_user = $manage_user->getAllUser();
         include 'views/AdminUserList.php';
     } else {
         include 'views/Co_error.php';
@@ -127,7 +127,7 @@ function adminuserlist()
 
 /**
  * Verif connection, création obj User
- * appel GetAllPostsByUser pour recuperer la list des articles
+ * appel getAllPostsByUser pour recuperer la list des articles
  * Puis appel vue
  *
  * @return void
@@ -144,7 +144,7 @@ function dashboard()
         );
         $user = new User($data);
         $manage_user = new UserManager($user);
-        $result_post = $manage_user->GetAllPostsByUser($user);
+        $result_post = $manage_user->getAllPostsByUser($user);
         include 'views/DashboardView.php';
     }
 }
@@ -191,7 +191,7 @@ function dashboard3()
         );
         $user = new User($data);
         $manage_user = new UserManager($user);
-        $result_post = $manage_user->GetAllPostsByUser($user);
+        $result_post = $manage_user->getAllPostsByUser($user);
         $data = array(
             'autor' => $_SESSION['username'],
         );
@@ -229,10 +229,10 @@ function validincription()
     );
     $user = new User($data);
     $manage_user = new UserManager($user);
-    if ($manage_user->AddUser($user) == 1) {
+    if ($manage_user->addUser($user) == 1) {
         $_SESSION['message'] = "Le pseudo choisi est déjà utilisé, veuillez vous inscrire en utilisant un autre pseudo.";
         header('Location: ' . $_SERVER['HTTP_REFERER']);
-    } elseif ($manage_user->AddUser($user) == 2) {
+    } elseif ($manage_user->addUser($user) == 2) {
         $_SESSION['message'] = "Le mail choisi est déjà utilisé, veuillez vous inscrire en utilisant un autre mail.";
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
@@ -266,14 +266,14 @@ function connectionuser()
         );
         $user = new User($data);
         $manage_user = new UserManager($user);
-        $grade = $manage_user->GradeUser($user);
-        if ($manage_user->ConnectionUser($user) == true && $grade->getGrade() == 1) {
+        $grade = $manage_user->gradeUser($user);
+        if ($manage_user->connectionUser($user) == true && $grade->getGrade() == 1) {
             $_SESSION['username'] = $user->getPseudo();
             $_SESSION['admin'] = true;
             $_SESSION['grade'] = $grade->getGrade();
             $_SESSION['message'] = "Vous êtes bien connecté";
             header('Location: index.php');
-        } elseif ($manage_user->ConnectionUser($user) == true) {
+        } elseif ($manage_user->connectionUser($user) == true) {
             $_SESSION['username'] = $user->getPseudo();
             $_SESSION['admin'] = false;
             $_SESSION['grade'] = $grade->getGrade();

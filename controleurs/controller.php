@@ -12,6 +12,8 @@
  * @license  Phpstorm exemple@exemple.com
  * @link     Exemple
  */
+
+//todo : verif les controlleurs
 require_once 'models/PostManager.php';
 require_once 'models/UserManager.php';
 require_once 'models/Comment.php';
@@ -51,7 +53,7 @@ function testfunction()
     echo '<pre>';
     $user = new User($data);
     $manage_user = new UserManager($user);
-    $data_user = $manage_user->GetDataByIdUser($user);
+    $data_user = $manage_user->getDataByIdUser($user);
     var_dump($data_user);
     die();
 
@@ -64,12 +66,17 @@ function contacter()
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         die();
     }
+    if (filter_var($_POST['mail'],FILTER_VALIDATE_EMAIL) == false){
+        $_SESSION['message'] = "Le mail renseigné semble incorrect, vérifié le SVP.";
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        die();
+    }
     if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['mail']) && isset($_POST['subject']) && isset($_POST['content']))
     {
         ini_set("SMTP", "smtp.maximethierry.xyz");
-        $to = 'maximethi@hotmail.fr';
+        $to = 'contact@maximethierry.xyz';
         $subject = $_POST['subject'];
-        $message = ucfirst($_POST['fistname']) . ' ' . ucfirst($_POST['lastname']) . ' a envoye le message suivant : ' . "\r\n" . $_POST['content'];
+        $message = ucfirst($_POST['firstname']) . ' ' . ucfirst($_POST['lastname']) . ' a envoye le message suivant : ' . "\r\n" . $_POST['content'];
         $headers = 'From: ' . $_POST['mail'] . "\r\n" .
             'Reply-To: contact@maximethierry.xyz' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
