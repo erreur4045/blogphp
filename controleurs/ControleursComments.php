@@ -22,6 +22,7 @@
  */
 function comment()
 {
+    //todo verrifier http://maximethierry.xyz/index.php?idpost=46&action=comment
     if (isset($_SESSION['username'])) {
         $idpost = array(
             'postid' => htmlspecialchars(stripcslashes(trim($_GET['idpost']))),
@@ -37,7 +38,7 @@ function comment()
         $datapost = $getdatapostmanager->selectAuthorByNumberPost($getdatapost);
         $com = new Comment($idpost);
         $com_manager = new CommentManager($com);
-        if ($datapost[0]->getAuthor() == $_SESSION{'username'}) {
+        if ($datapost->getAuthor() == $_SESSION{'username'}) {
             $com_manager->addCommentLessVerrif($com);
             $_SESSION['message'] = 'Votre commentaire a été ajouté.';
             header('Location: index.php?id=' . $com->getPostid() . '&action=post');

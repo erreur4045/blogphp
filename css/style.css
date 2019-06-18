@@ -16,7 +16,10 @@ body {
 btn-group-vertical-var{
   display: inline-block;
 }
-
+.error_co{
+  margin-bottom: 20%;
+  padding: 10%;
+}
 p{
   word-break: break-word;
 }

@@ -58,7 +58,7 @@ function supprPost()
         $post = new Post($data);
         $managepost = new PostManager($post);
         $datapost = $managepost->selectAuthorByNumberPost($post);
-        if ($_SESSION['username'] == $datapost[0]->getAuthor()) {
+        if ($_SESSION['username'] == $datapost->getAuthor()) {
             $managepost->suppr($post);
             $_SESSION['message'] = "Votre article a été supprimé";
             header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -210,6 +210,7 @@ function modifpost()
  */
 function post()
 {
+    //todo : revoir le if pour voir les post si pas connecter
     if (isset($_SESSION['username'])) {
         /*preparation du tableau pour contruction de OBJ post et creation OBJ*/
         $donnees = array(

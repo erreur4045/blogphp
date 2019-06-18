@@ -61,6 +61,7 @@ function testfunction()
 
 function contacter()
 {
+    //todo : convertir UTF8 tout les contenu
     if (empty($_POST['firstname']) or empty($_POST['lastname'])  or empty($_POST['mail'])  or empty($_POST['subject'])  or empty($_POST['content'])){
         $_SESSION['message'] = "Il manque des information pour me contacter, tout les champs doivent être renseigné.";
         header('Location: ' . $_SERVER['HTTP_REFERER']);

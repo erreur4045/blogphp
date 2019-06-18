@@ -236,7 +236,8 @@ function validincription()
         $_SESSION['message'] = "Le mail choisi est déjà utilisé, veuillez vous inscrire en utilisant un autre mail.";
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
-        $_SESSION['message'] = "Votre inscription a été prise en compte, vous pouvez maintenant vous connecter.";
+        $_SESSION['message'] = "Votre inscription a été prise en compte, vous pouvez maintenant vous connecter.\n
+                            Vous pourrez publier des articles après validation de votre profil par l'administrateur";
         header('Location: index.php');
     }
 }

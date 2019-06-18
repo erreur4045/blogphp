@@ -43,7 +43,7 @@
                     <div class="col-lg-5 ml-auto section-title">
                         <span class="sub-title mb-2 d-block">Compétences</span>
                         <h2 class="title text-primary mb-3">Developpement en PHP</h2>
-                        <p class="mb-4"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eos ex, illum iure magnam maiores neque nobis sunt! Animi assumenda molestiae placeat quam quibusdam quis quo repellat rerum. Perferendis, saepe.</span></p>
+                        <p class="mb-4"><span>PHP: Hypertext Preprocessor, plus connu sous son sigle PHP, est un langage de programmation libre, principalement utilisé pour produire des pages Web dynamiques via un serveur HTTP, mais pouvant également fonctionner comme n'importe quel langage interprété de façon locale. </span></p>
 
 
                         <div class="d-flex">
@@ -78,11 +78,8 @@
                                 <div class="pr-lg-5">
                                     <h3>Maxime THIERRY</h3>
                                     <span class="mb-4 d-block">Développeur PHP</span>
-                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae suscipit soluta odio itaque,
-                                        consequuntur excepturi architecto, omnis iure repellat, ipsum consectetur praesentium accusantium
-                                        quibusdam temporibus quasi. Ipsa quisquam rem illo.</p>
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus suscipit dolores illum, deleniti
-                                        quod officiis labore ipsam? Nulla, ab perspiciatis!</p>
+                                    <p>Parisien né en 1992, j’ai commencé a développé d’abord en C puis en PHP il y a 3 ans.</p>
+                                    <p>J'ai commencé le parcours Développeur d'application - PHP/Symfony en septembre 2018. Je suis actuellement au projet 5 "Créez votre premier blog en PHP". Vous êtes actuellement sur le rendu de ce projet.</p>
 
                                     <p>Retrouvez moi sur les reseaux sociaux :</p>
                                     <p class="d-flex align-items-center">
@@ -104,7 +101,7 @@
                 <div class="row mb-5">
                     <div class="col-lg-6 section-title">
                         <span class="sub-title mb-2 d-block">Ce que je fais</span>
-                        <h2 class="title text-primary">Voici un bref aperçu des possibilitées que je peux mener à bien pour votre projet</h2>
+                        <h2 class="title text-primary">Voici un aperçu des solutions que je peux mener à bien pour votre projet</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -175,7 +172,9 @@
                     </div>
                     <div class="col-lg-5 h-100 jm-sticky-top ml-auto">
                         <h3>Maquette de site pour un festival de film</h3>
-                        <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                        <p class="mb-4">Initulé du projet:</p>
+                        <p class="mb-4">L'agence "Chalets et caviar" à Courchevel vous a missionné pour créer son site web. Elle possède une quinzaine de chalets de luxe à la vente ainsi que d'autres chalets de luxe en location.
+                            Elle souhaite un design "clair, épuré, qui respire la ligne luxe de l'agence". A vous de le trouver, de l'installer et de le configurer. Vous devez personnaliser le thème de telle sorte que l'agence se sente "chez elle" et qu'on n'ait pas l'impression d'avoir un thème en anglais à moitié intégré. Veillez donc tout particulièrement aux détails.</p>
                         <p class="mb-5"><strong class="text-black">Rôles:</strong> Design, Web</p>
                         <p class="mb-4"><a href="http://bluemorpho.xyz/maquette/" class="readmore">Visitez le</a></p>
                     </div>
@@ -188,12 +187,28 @@
                     </div>
                     <div class="col-lg-5 h-100 jm-sticky-top mr-auto order-2 order-lg-1">
                         <h3>Projet pour une agence immobilières à Courchevel</h3>
-                        <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                        <p class="mb-4">Initulé du projet:</p>
+                        <p class="mb-4">Jennifer Viala est l'organisatrice du Festival des Films de Plein Air. Elle ambitionne de sélectionner et projeter des films d'auteur en plein air du 5 au 8 août au parc Monceau à Paris. Son association vient juste d'être créée et elle dispose d'un budget limité. Elle a besoin de communiquer en ligne sur son festival, d'annoncer les films projetés et de recueillir les réservations.</p>
                         <p class="mb-5"><strong class="text-black">Rôles:</strong> Design, CMS Wordpress, Mise en ligne, Nom de dommaine</p>
                         <p class="mb-4"><a href="http://bluemorpho.xyz/wordpress/" class="readmore">Visitez le</a></p>
                     </div>
                 </div>
-
+                <div class="row mb-5">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <img src="images/projet44.jpg" alt="Image" class="img-fluid" class="img-fluid">
+                        <img src="images/projet441.png" alt="Image" class="img-fluid" class="img-fluid">
+                    </div>
+                    <div class="col-lg-5 h-100 jm-sticky-top ml-auto">
+                        <h3>Concevez la solution technique d'une application de restauration en ligne, Express Food</h3>
+                        <p class="mb-4">Initulé du projet:</p>
+                        <p class="mb-4">Vous venez d'être recruté(e) par la toute jeune startup ExpressFood. Elle ambitionne de livrer des plats de qualité à domicile en moins de 20 minutes grâce à un réseau de livreurs à vélo.
+                            Chaque jour, ExpressFood élabore 2 plats et 2 desserts à son QG avec l'aide de chefs expérimentés. Ces plats sont conditionnés à froid puis transmis à des livreurs à domicile qui "maraudent" ensuite dans les rues en attendant une livraison. Dès qu'un client a commandé, l'un des livreurs (qui possède déjà les plats dans un sac) est missionné pour livrer en moins de 20 minutes.
+                            Sur son application, ExpressFood propose à ses clients de commander un ou plusieurs plats et desserts. Les frais de livraison sont gratuits. Les plats changent chaque jour.
+                            Une fois la commande passée, le client a accès à une page lui indiquant si un livreur a pris sa commande et le temps estimé avant livraison.</p>
+                        <p class="mb-5"><strong class="text-black">Rôles:</strong> UML, Conception architecture logiciel</p>
+                        <p class="mb-4"><a href="http://bluemorpho.xyz/projet4/" class="readmore">Visitez le</a></p>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -236,7 +251,7 @@
                 <div class="d-flex justify-content-center">
                 <div class="row">
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-md">Send Message</button>
+                        <button type="submit" class="btn btn-primary btn-md">Envoyer</button>
                     </div>
                 </div>
                 </div>

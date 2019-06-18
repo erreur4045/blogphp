@@ -37,7 +37,7 @@
                     <div class="d-flex justify-content-center">
                     <div class="row">
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-md">Send Message</button>
+                            <button type="submit" class="btn btn-primary btn-md">Envoyer</button>
                         </div>
                     </div>
                     </div>
