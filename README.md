@@ -15,6 +15,6 @@ Pour utiliser ce blog, il faut suivre les étapes suivantes :
 * Pour le formulaire de Contact, entrez votre email dans le fichier controleurs/controller.php dans la function contacter() variable $to
 * Enjoy !
 
-## Copyright and License of the Clean Blog Theme
+## Copyright and License of the Accent Blog Theme
 
-Copyright © 2019 All rights reserved | This template is made with  by Colorlib 
+Copyright © 2019 All rights reserved | This template is made with by Colorlib 
