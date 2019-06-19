@@ -15,46 +15,6 @@
 
 require 'models/Comment.php';
 
-/**
- * Permet de faire une function test
- *
- * @return void
- *
- * @since 1.0.1
- */
-function testfunction()
-{
-    //pour la classe post
-/*
-    echo 'coucou';
-    ini_set("SMTP", "smtp.maximethierry.xyz");
-    echo 'coucou';
-    $to      = 'maximethi@hotmail.fr';
-    $subject = 'le sujet';
-    $message = 'Bonjour !';
-    $headers = 'From: contact@maximethierry.xyz' . "\r\n" .
-        'Reply-To: maximethi@hotmail.fr' . "\r\n" .
-        'X-Mailer: PHP/' . phpversion();
-/*
-    var_dump(mail($to, $subject, $message, $headers));*/
-/*    $data = array(
-        'pseudo' => 'maxime',
-    );
-    $user = new User($data);
-    $manage_user = new UserManager($user);
-    var_dump($manage_user->GradeUser($user));*/
-    $data = array(
-        'id' => 15,
-    );
-    echo '<pre>';
-    $user = new User($data);
-    $manage_user = new UserManager($user);
-    $data_user = $manage_user->getDataByIdUser($user);
-    var_dump($data_user);
-    die();
-
-}
-
 function contacter()
 {
     if (empty($_POST['firstname']) or empty($_POST['lastname'])  or empty($_POST['mail'])  or empty($_POST['subject'])  or empty($_POST['content'])){

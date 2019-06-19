@@ -18,7 +18,7 @@
                                         <input  name="mdp" type="password" id="form25" class="form-control">
                                     </div>
                                     <div class="text-center py-4">
-                                        <button class="btn btn-primary btn-md">Envoyer<i class="fas fa-paper-plane"></i>
+                                        <button class="btn btn-primary btn-md">Envoyer <i class="fas fa-paper-plane"></i>
                                         </button>
                                     </div>
                                 </form>

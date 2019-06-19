@@ -15,7 +15,7 @@
                         <h1 class="my-0 site-logo"><a href="index.php">Domeneo<span class="text-primary">.</span> </a></h1>
                     </div>
                     <div class="col-6 col-md-8">
-                        <nav class="site-navigation text-right" role="navigation">
+                        <nav class="site-navigation text-right">
                             <div class="container">
 
                                 <div class="d-inline-block d-lg-block ml-md-0 mr-auto py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-black">

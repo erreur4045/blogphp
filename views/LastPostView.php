@@ -4,7 +4,7 @@
         <div class="d-flex justify-content-center">
             <h1 class="title text-primary mb-3">Derniers articles du blog :</h1>
         </div>
-        <div class="site-section bg-light" id="">
+        <div class="site-section bg-light">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 ml-auto">

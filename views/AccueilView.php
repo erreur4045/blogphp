@@ -1,7 +1,6 @@
 <?php $title = 'Mon blog'; ?>
 <?php ob_start(); ?>
     <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
     <div class="site-wrap">
         <div class="site-blocks-cover" id="home-section">
             <div class="img-wrap">
@@ -255,11 +254,8 @@
                     </div>
                 </div>
                 </div>
-
             </form>
         </div>
     </div> <!-- END .site-section -->
-
-
 <?php $content = ob_get_clean(); ?>
 <?php require('template.php'); ?>

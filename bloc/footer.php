@@ -1,14 +1,13 @@
-<footer>
-                <script type="text/javascript">
-                    var elems = document.getElementsByClassName('confirmation');
-                    var confirmIt = function (e) {
-                        if (!confirm('Etes vous sur de vouloir supprimer?')) e.preventDefault();
-                    };
-                    for (var i = 0, l = elems.length; i < l; i++) {
-                        elems[i].addEventListener('click', confirmIt, false);
-                    }
-                </script>
-    <footer class="site-footer">
+<script>
+    var elems = document.getElementsByClassName('confirmation');
+    var confirmIt = function (e) {
+        if (!confirm('Etes vous sur de vouloir supprimer?')) e.preventDefault();
+    };
+    for (var i = 0, l = elems.length; i < l; i++) {
+        elems[i].addEventListener('click', confirmIt, false);
+    }
+</script>
+<footer class="site-footer">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-5 mb-lg-0">

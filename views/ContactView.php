@@ -31,7 +31,7 @@
                     </div>
                     <div class="row mb-4">
                         <div class="col-12">
-                            <textarea required="required" class="form-control" name="content" id="" cols="30" rows="10" placeholder="Message"></textarea>
+                            <textarea required="required" class="form-control" name="content" cols="30" rows="10" placeholder="Message"></textarea>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">
@@ -46,8 +46,6 @@
         </div>
     </div>
     </div>
-    </div>
-
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

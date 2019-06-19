@@ -13,7 +13,7 @@
                     <?php endif; ?>
                     <div class="contact-form">
                         <h3 class="title text-primary mb-3"><?= ucfirst(htmlspecialchars($post->getTitle())) ?></h3>
-                        <em><h5><?= 'Le ' . date('d/m/Y',strtotime($post->getDate())) . ' par ' . $post->getAuthor() ?></h5></em>
+                        <h5><?= 'Le ' . date('d/m/Y',strtotime($post->getDate())) . ' par ' . $post->getAuthor() ?></h5>
                         <p><?php echo nl2br(htmlspecialchars($post->getContent())); ?></p>
                     </div>
                 </div>

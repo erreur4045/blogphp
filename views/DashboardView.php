@@ -11,7 +11,7 @@
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active" href="index.php?action=dashboard"">Vos articles</a>
+                                <a class="nav-link active" href="index.php?action=dashboard">Vos articles</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="index.php?action=dashboardcom">Vos Commentaires</a>
