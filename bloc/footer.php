@@ -1,7 +1,7 @@
 <script>
     var elems = document.getElementsByClassName('confirmation');
     var confirmIt = function (e) {
-        if (!confirm('Etes vous sur de vouloir supprimer?')) e.preventDefault();
+        if (!confirm('Êtes-vous sûr de vouloir supprimer?')) e.preventDefault();
     };
     for (var i = 0, l = elems.length; i < l; i++) {
         elems[i].addEventListener('click', confirmIt, false);
@@ -41,7 +41,6 @@
                         <a href="https://twitter.com/mapethierry" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
                         <a href="https://www.linkedin.com/in/maxime-thierry-93870a97/" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
                     </div>
-
                     <p>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright &copy;
@@ -49,9 +48,7 @@
                         with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
-
                 </div>
-
             </div>
         </div>
         <script src="js/jquery-3.3.1.min.js"></script>

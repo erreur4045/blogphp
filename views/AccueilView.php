@@ -41,14 +41,14 @@
                     </div>
                     <div class="col-lg-5 ml-auto section-title">
                         <span class="sub-title mb-2 d-block">Compétences</span>
-                        <h2 class="title text-primary mb-3">Developpement en PHP</h2>
+                        <h2 class="title text-primary mb-3">Développement en PHP</h2>
                         <p class="mb-4"><span>PHP: Hypertext Preprocessor, plus connu sous son sigle PHP, est un langage de programmation libre, principalement utilisé pour produire des pages Web dynamiques via un serveur HTTP, mais pouvant également fonctionner comme n'importe quel langage interprété de façon locale. </span></p>
 
 
                         <div class="d-flex">
                             <ul class="list-unstyled ul-check success mr-5">
                                 <li>Design CSS 4</li>
-                                <li>Development PHP 7</li>
+                                <li>Dévelopment PHP 7</li>
                                 <li>Back-end</li>
                                 <li>Front-end</li>
                                 <li>Programmation orientée objet (POO)</li>
@@ -77,10 +77,10 @@
                                 <div class="pr-lg-5">
                                     <h3>Maxime THIERRY</h3>
                                     <span class="mb-4 d-block">Développeur PHP</span>
-                                    <p>Parisien né en 1992, j’ai commencé a développé d’abord en C puis en PHP il y a 3 ans.</p>
-                                    <p>J'ai commencé le parcours Développeur d'application - PHP/Symfony en septembre 2018. Je suis actuellement au projet 5 "Créez votre premier blog en PHP". Vous êtes actuellement sur le rendu de ce projet.</p>
+                                    <p>Parisien, né en 1992, j’ai commencé a développer d’abord en C, puis en PHP il y a 3 ans.</p>
+                                    <p>J'ai commencé le parcours Développeur d'application - PHP/Symfony en septembre 2018. Je suis actuellement au projet 5 "Créez votre premier blog en PHP". Vous êtes sur le rendu de ce projet.</p>
 
-                                    <p>Retrouvez moi sur les reseaux sociaux :</p>
+                                    <p>Retrouvez-moi sur les réseaux sociaux :</p>
                                     <p class="d-flex align-items-center">
                                         <a href="https://twitter.com/mapethierry" class="twitter pr-2 pt-2 pb-2 pl-0"><span class="icon-twitter"></span></a>
                                         <a href="https://www.facebook.com/yrreiht.emixam?ref=bookmarks" class="facebook p-2"><span class="icon-facebook"></span></a>
@@ -93,8 +93,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="site-section" id="what-we-do-section">
             <div class="container">
                 <div class="row mb-5">
@@ -153,9 +151,6 @@
                 </div>
             </div>
         </div> <!-- END .site-section -->
-
-
-
         <div class="site-section bg-light" id="portfolio-section">
             <div class="container">
                 <div class="row mb-5 ">
@@ -185,7 +180,7 @@
                         <img src="images/project_123.jpg" alt="Image" class="img-fluid" class="img-fluid">
                     </div>
                     <div class="col-lg-5 h-100 jm-sticky-top mr-auto order-2 order-lg-1">
-                        <h3>Projet pour une agence immobilières à Courchevel</h3>
+                        <h3>Projet pour une agence immobilière à Courchevel</h3>
                         <p class="mb-4">Initulé du projet:</p>
                         <p class="mb-4">Jennifer Viala est l'organisatrice du Festival des Films de Plein Air. Elle ambitionne de sélectionner et projeter des films d'auteur en plein air du 5 au 8 août au parc Monceau à Paris. Son association vient juste d'être créée et elle dispose d'un budget limité. Elle a besoin de communiquer en ligne sur son festival, d'annoncer les films projetés et de recueillir les réservations.</p>
                         <p class="mb-5"><strong class="text-black">Rôles:</strong> Design, CMS Wordpress, Mise en ligne, Nom de dommaine</p>
@@ -209,10 +204,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
     <div class="site-section " id="contact-section">
         <div class="container">
             <form action="index.php?action=contacter" class="contact-form" method="post">

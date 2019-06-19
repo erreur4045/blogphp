@@ -160,7 +160,7 @@ function validupdatepost()
             header($str);
         }
         else {
-            $_SESSION['message'] = "Vous n'avez pas le droit de modifier cette article.";
+            $_SESSION['message'] = "Vous n'avez pas le droit de modifier cet article.";
             header('Location: index.php');
         }
     } else {
@@ -191,7 +191,7 @@ function modifpost()
             $data_view = $manager->selectPostById($post);
             include 'views/UpdatepostView.php';
         } else {
-            $_SESSION['message'] = "Vous n'avez pas le droit de modifier cette article.";
+            $_SESSION['message'] = "Vous n'avez pas le droit de modifier cet article.";
             header('Location: index.php');
         }
     } else {

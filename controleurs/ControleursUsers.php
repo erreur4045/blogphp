@@ -218,7 +218,7 @@ function validincription()
     $mdp = $_POST['mdp'];
     $mail = htmlspecialchars(stripcslashes(trim($_POST['mail'])));
     if (empty($username) or empty($mdp) or empty($mail)){
-        $_SESSION['message'] = "Il manque des information pour votre inscription, tout les champs doivent être renseigné.";
+        $_SESSION['message'] = "Il manque des informations pour votre inscription, tous les champs doivent être renseignés.";
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         die();
     }
@@ -256,7 +256,7 @@ function connectionuser()
     $username = htmlspecialchars(stripcslashes(trim($_POST['username'])));
     $mdp = htmlspecialchars(stripcslashes(trim($_POST['mdp'])));
     if (empty($username) or empty($mdp)){
-        $_SESSION['message'] = "Il manque des information pour votre connexion, tout les champs doivent être renseigné.";
+        $_SESSION['message'] = "Il manque des informations pour votre connexion, tout les champs doivent être renseigné.";
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         die();
     }

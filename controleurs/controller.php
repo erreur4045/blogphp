@@ -18,12 +18,12 @@ require 'models/Comment.php';
 function contacter()
 {
     if (empty($_POST['firstname']) or empty($_POST['lastname'])  or empty($_POST['mail'])  or empty($_POST['subject'])  or empty($_POST['content'])){
-        $_SESSION['message'] = "Il manque des information pour me contacter, tout les champs doivent être renseigné.";
+        $_SESSION['message'] = "Il manque des informations pour me contacter, tous les champs doivent être renseignés.";
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         die();
     }
     if (filter_var($_POST['mail'],FILTER_VALIDATE_EMAIL) == false){
-        $_SESSION['message'] = "Le mail renseigné semble incorrect, vérifié le SVP.";
+        $_SESSION['message'] = "Le mail renseigné semble incorrect, vérifiez le SVP.";
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         die();
     }
