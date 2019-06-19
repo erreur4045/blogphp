@@ -16,7 +16,6 @@
                             <label for="content" class="content_post">Contenue de l'article:</label><br>
                             <textarea name="content" class="form-control"
                                       required><?= $data_view->getContent()  ?></textarea>
-                            <br>
                             <input type="submit" value="Envoyer" class="btn btn-info btn-block rounded-0 py-2">
                         </div>
                 </form>
@@ -26,7 +25,7 @@
 <?php else: ?>
     <div class="container">
         <div class="row">
-            <h1 class="">Vous devez etre connecte pour ajouter un article</h1>
+            <h1 class="">Vous devez être connecté pour ajouter un article.</h1>
         </div>
     </div>
     </div>

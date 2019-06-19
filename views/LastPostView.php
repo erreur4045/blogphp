@@ -20,7 +20,7 @@
                                                     strtotime($post_data->getDate())) ?></em><em>
                                                 Écrit
                                                 par <?= ucfirst($post_data->getAuthor()) ?></em></h4>
-                                        <h6 class="font-italic">chapo :</h6>
+                                        <h6 class="font-italic">Chapo :</h6>
                                         <p class="articleindex">
                                             <?= substr(nl2br(htmlspecialchars($post_data->getContent())), 0, 90); ?>
                                         </p>

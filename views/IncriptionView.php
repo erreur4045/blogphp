@@ -4,7 +4,7 @@
         <div class="container ">
             <div class="site-section" id="contact-section">
                     <form action="index.php?action=validinscription" method="post" class="contact-form">
-                                    <h3 class="text-center indigo-text font-bold py-4"><strong>S'inscrire</strong>
+                                    <h3 class="text-center indigo-text font-bold py-4"><strong>S'inscrire :</strong>
                                     </h3>
                                     <div class="md-form">
                                         <i class="fa fa-user prefix white-text"></i>
@@ -22,7 +22,7 @@
                                         <input type="email" name="mail" id="form35" class="form-control" required="required">
                                     </div>
                                     <div class="text-center py-4">
-                                        <button class="btn btn-primary btn-md">Envoyer <i class="fas fa-paper-plane"></i>
+                                        <button class="btn btn-primary btn-md">Envoyer :<i class="fas fa-paper-plane"></i>
                                         </button>
                                     </div>
                                 </form>

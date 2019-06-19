@@ -17,8 +17,7 @@
                                 <a class="nav-link" href="index.php?action=dashboardcom">Vos Commentaires</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="index.php?action=dashboardcomtovalidated">Vos commentaires
-                                    a valider</a>
+                                <a class="nav-link " href="index.php?action=dashboardcomtovalidated">Vos commentaires à valider</a>
                             </li>
                         </ul>
                     </div>

@@ -18,11 +18,12 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="index.php?action=dashboardcomtovalidated">Vos
-                                    commentaires a valider</a>
+                                    commentaires à valider</a>
                             </li>
                         </ul>
                     </div>
                     <div class="card-body">
+                        <!--todo : regarder le 1 == 1-->
                         <?php foreach ($result_com as $com_data) : ?>
                             <?php if (!isset($_SESSION['username'])) : ?>
                                 <em></em>

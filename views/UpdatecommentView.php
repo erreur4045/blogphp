@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h3>Vous devez etre connecter pour utilisez cette fonctionalite</h3>
+                <h3>Vous devez être connecté pour utiliser cette fonctionnalité.</h3>
             </div>
         </div>
     </div>
