@@ -13,7 +13,7 @@
                     <?php endif; ?>
                     <div class="contact-form">
                         <h3 class="title text-primary mb-3"><?= ucfirst(htmlspecialchars($post->getTitle())) ?></h3>
-                        <em><h5><?= 'Le ' . $post->getDate() . ' par ' . $post->getAuthor() ?></h5></em>
+                        <em><h5><?= 'Le ' . date('d/m/Y',strtotime($post->getDate())) . ' par ' . $post->getAuthor() ?></h5></em>
                         <p><?php echo nl2br(htmlspecialchars($post->getContent())); ?></p>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                         <div class="card mb-4 box-shadow h-md-250">
                             <div class="card-body align-items-start ">
                                 <p><strong><?= 'Par ' . ucfirst(htmlspecialchars($comment_data->getAutor())) ?></strong><em>
-                                        le <?= $comment_data->getComment_date() ?>
+                                        le <?= date('d/m/Y',strtotime($comment_data->getComment_date())) ?>
                                     </em></p>
                                 <p><?= nl2br(htmlspecialchars($comment_data->getText())) ?></p>
                                 <?php if (isset($_SESSION['username']) && ($_SESSION['username'] == $comment_data->getAutor())) : ?>
@@ -67,7 +67,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h3 class="title text-primary mb-3">Pour ajoutez un commentaire connectez vous</h3>
-                    <em><a class="btn btn-outline-info text-primary mb-3" href="index.php?action=connection">Connection</a></em>
+                    <em><a class="btn btn-info text-primary mb-3" href="index.php?action=connection">Connection</a></em>
                 </div>
             </div>
         </div>

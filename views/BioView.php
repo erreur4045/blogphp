@@ -23,7 +23,7 @@
                                     licence.
                                     J'ai découvert ce domaine très intéressant que j'ai pu le découvrir en alternance chez AREVA
                                     ,domaine de l'énergie nucléaire qui me passionne tout particulièrement au vu des enjeux très
-                                    important qu’il génère.
+                                    important qu’il génère.</p>
                                     <br>
 
                                     Une fois ma licence acquise, j'ai voulu assouvir une de mes nombreuses autres passions,
@@ -35,6 +35,7 @@
                                     enseignement novateur qui m'a beaucoup plu et je me suis donc inscrite pour le concours.
                                     le concept de cette école : pas de prof, autonomie totale des élèves dans leur apprentissage en
                                     valorisant l'entraide et “peer to peer” des connaissances entre élèves.
+                                    </p>
                                     <br>
 
                                     J’ai donc passé les premiers tests sur internet pour savoir si j'ai été admissible au concours, et à
