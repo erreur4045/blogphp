@@ -21,7 +21,7 @@
                     <p><?php echo $old_com_for_view->getText() ?></p>
                     <textarea class="form-control" name="comments"
                               placeholder="Votre nouveau commentaire"></textarea>
-                    <input class="btn btn-outline-warning" type="submit" value="Submit">
+                    <input class="btn btn-outline-warning" type="submit" value="Modifier">
                 </form>
             </div>
             </div>

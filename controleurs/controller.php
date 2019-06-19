@@ -13,11 +13,7 @@
  * @link     Exemple
  */
 
-//todo : verif les controlleurs
-require 'models/PostManager.php';
-require 'models/UserManager.php';
 require 'models/Comment.php';
-require 'models/Post.php';
 
 /**
  * Permet de faire une function test

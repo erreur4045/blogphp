@@ -246,6 +246,9 @@ class PostManager
             $isempty = $req->rowCount();
             if ($isempty >= 1) {
                 $post = $req->fetch();
+                if ($post == false)
+                    return 0;
+                else
                 return new Post($post);
             } else {
                 false;

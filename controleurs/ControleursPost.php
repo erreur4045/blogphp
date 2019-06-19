@@ -209,10 +209,7 @@ function modifpost()
  * @since 1.0.1
  */
 function post()
-{
-    //todo : revoir le if pour voir les post si pas connecter
-    if (isset($_SESSION['username'])) {
-        /*preparation du tableau pour contruction de OBJ post et creation OBJ*/
+{        /*preparation du tableau pour contruction de OBJ post et creation OBJ*/
         $donnees = array(
             'number' => htmlspecialchars(stripcslashes(trim($_GET['id'])))
         );
@@ -231,10 +228,10 @@ function post()
             /* Passage des commentaire a la vue */
             $comments = $com_manager->getComments($comment_for_data);
             include 'views/PostViewco.php';
-        } else {
+        }
+        elseif ($post == 0)
+            include 'views/Co_error.php';
+        else {
             include 'views/Co_error.php';
         }
-    } else {
-        include 'views/Co_error.php';
-    }
 }
