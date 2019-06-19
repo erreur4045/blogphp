@@ -23,11 +23,7 @@
                         </ul>
                     </div>
                     <div class="card-body">
-                        <!--todo : regarder le 1 == 1-->
                         <?php foreach ($result_com as $com_data) : ?>
-                            <?php if (!isset($_SESSION['username'])) : ?>
-                                <em></em>
-                            <?php elseif (1 == 1): ?>
                                 <div class="card flex-md-row mb-4 box-shadow h-md-250">
                                     <div class="card-body d-flex flex-column align-items-start ">
                                         <p> le <?= $com_data->getComment_date() ?></p>
@@ -53,7 +49,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
                 </div>

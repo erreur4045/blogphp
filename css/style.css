@@ -16,6 +16,9 @@ body {
 btn-group-vertical-var{
   display: inline-block;
 }
+.dashboard{
+  min-height: 15em;
+}
 .error_co{
   margin-bottom: 20%;
   padding: 10%;
