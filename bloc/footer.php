@@ -14,8 +14,8 @@
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <div class="row mb-5">
                         <div class="col-12">
-                            <h3 class="footer-heading mb-4">About Us</h3>
-                            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                            <h3 class="footer-heading mb-4">À propos</h3>
+                            <p>Développeur PHP/Synfony 4 formation en cours chez OPENCLASSROOMS.</p>
                         </div>
                     </div>
                 </div>
