@@ -57,7 +57,6 @@ function testfunction()
 
 function contacter()
 {
-    //todo : convertir UTF8 tout les contenu
     if (empty($_POST['firstname']) or empty($_POST['lastname'])  or empty($_POST['mail'])  or empty($_POST['subject'])  or empty($_POST['content'])){
         $_SESSION['message'] = "Il manque des information pour me contacter, tout les champs doivent être renseigné.";
         header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -74,7 +73,7 @@ function contacter()
         $to = 'contact@maximethierry.xyz';
         $subject = $_POST['subject'];
         $message = ucfirst($_POST['firstname']) . ' ' . ucfirst($_POST['lastname']) . ' a envoye le message suivant : ' . "\r\n" . $_POST['content'];
-        $headers = 'From: ' . $_POST['mail'] . "\r\n" .
+        $headers = 'From: ' . $_POST['mail'] . "\r\n" . "Content-type: text/html; charset= utf8\n" .
             'Reply-To: contact@maximethierry.xyz' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
         mail($to, $subject, $message, $headers);

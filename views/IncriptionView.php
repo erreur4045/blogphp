@@ -22,7 +22,7 @@
                                         <input type="email" name="mail" id="form35" class="form-control" required="required">
                                     </div>
                                     <div class="text-center py-4">
-                                        <button class="btn btn-primary btn-md">Envoyer :<i class="fas fa-paper-plane"></i>
+                                        <button class="btn btn-primary btn-md">Envoyer <i class="fas fa-paper-plane"></i>
                                         </button>
                                     </div>
                                 </form>

@@ -258,32 +258,4 @@ class PostManager
         }
 
     }
-
-    /**
-     * MAJ d'un post avec titre content et auteur
-     *
-     * @param Post $post object Post
-     *
-     * @return void
-     */
-    //todo : renvoyer new post
-    public function selectPostByAuthorSession( Post $post)
-    {
-        try {
-            $req = DatabaseConnection::dbConnect()->prepare(
-                'SELECT * FROM blogphp_posts 
-                                WHERE author = :author 
-                                ORDER BY date DESC'
-            );
-            $req->execute(
-                array(
-                ':author' => $post->getAuthor()
-                     )
-            );
-            $result = $req->fetchAll();
-            return $req;
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
-    }
 }
