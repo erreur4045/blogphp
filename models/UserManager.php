@@ -149,7 +149,6 @@ class UserManager
     }
     /**
      * Connect un utilisateur
-     * todo $result peu etre mieux
      *
      * @param User $user object User
      *
@@ -171,7 +170,8 @@ class UserManager
             );
 
             $result = $recup->fetch();
-            return password_verify($user->getPass(), $result['pass']);
+            $pass = new User($result);
+            return password_verify($user->getPass(), $pass->getPass());
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
@@ -274,7 +274,9 @@ class UserManager
                 ':id' => $user->getId()
                     )
             );
-            $data = $recup->fetch();
+            $data = $recup->fetch(PDO::FETCH_ASSOC);
+            if ($data == false)
+                return 0;
             return new User($data);
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());

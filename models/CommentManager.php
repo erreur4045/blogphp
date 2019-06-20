@@ -32,8 +32,7 @@ class CommentManager
      *
      * @return array Un array d'objets Comment
      */
-    // todo function doit recevoir un obj post
-    public function getComments(Comment $comment)
+    public function getComments(Post $data)
     {
         try {
             $all_comments = [];
@@ -45,7 +44,7 @@ class CommentManager
              WHERE postid = :idpost 
                AND approved = 1 ORDER BY comment_date ASC '
             );
-            $comments->execute(array(':idpost' => $comment->getPostid()));
+            $comments->execute(array(':idpost' => $data->getNumber()));
 
             while ($donnees = $comments->fetch(PDO::FETCH_ASSOC)) {
                 $all_comments[] = new Comment($donnees);

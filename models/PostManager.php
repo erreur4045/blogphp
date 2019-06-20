@@ -189,9 +189,6 @@ class PostManager
                     )
             );
             $donnees = $req->fetch(PDO::FETCH_ASSOC);
-            if ($donnees == false)
-                return 0;
-            else
                 return new Post($donnees);
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
