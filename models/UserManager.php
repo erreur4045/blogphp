@@ -171,6 +171,8 @@ class UserManager
 
             $result = $recup->fetch();
             $pass = new User($result);
+            if ($pass == false)
+                return 0;
             return password_verify($user->getPass(), $pass->getPass());
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
@@ -273,6 +275,35 @@ class UserManager
                 array(
                 ':id' => $user->getId()
                     )
+            );
+            $data = $recup->fetch(PDO::FETCH_ASSOC);
+            if ($data == false)
+                return 0;
+            return new User($data);
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
+    /**
+     * Récupere toutes les infos de la table blogphp_membres
+     *
+     * @param User $user object User
+     *
+     * @return Obj un Obj User
+     */
+    public function getDataByPseudoUser(User $user)
+    {
+        try {
+            $db = DatabaseConnection::dbConnect();
+            $recup = $db->prepare(
+                'SELECT * 
+                              FROM blogphp_membres 
+                              WHERE pseudo = :psuedo'
+            );
+            $recup->execute(
+                array(
+                    ':pseudo' => $user->getPseudo()
+                )
             );
             $data = $recup->fetch(PDO::FETCH_ASSOC);
             if ($data == false)

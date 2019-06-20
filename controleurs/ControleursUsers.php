@@ -272,6 +272,11 @@ function connectionuser()
         );
         $user = new User($data);
         $manage_user = new UserManager($user);
+        if ($manage_user->getDataByPseudoUser($user) == 0)
+        {
+            $_SESSION['message'] = "Error MDP ou pseudo";
+            header('Location: index.php?action=connection');
+        }
         $grade = $manage_user->gradeUser($user);
         if ($manage_user->connectionUser($user) == true && $grade->getGrade() == 1) {
             $_SESSION['username'] = $user->getPseudo();
