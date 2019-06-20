@@ -95,9 +95,14 @@ function suppuser()
             $user = new User($data);
             $manage_user = new UserManager($user);
             $data_user = $manage_user->getDataByIdUser($user);
-            $manage_user->suppUser($data_user);
-            $_SESSION['message'] = "L'utilisateur a été supprimé.";
-            header('Location: index.php?action=adminusertobevalided');
+            //todo pk ca fonctionne pas !is_object($data_user)
+            if (is_object($data_user)) {
+                $manage_user->suppUser($data_user);
+                $_SESSION['message'] = "L'utilisateur a été supprimé.";
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+            } elseif (!is_object($data_user)) {
+                include 'views/Co_error.php';
+            }
         }
     } else {
         include 'views/Co_error.php';

@@ -22,6 +22,9 @@
  */
 function comment()
 {
+    if (!isset($_SESSION['username'])){
+        include 'views/Co_error.php';
+    }
     if (isset($_SESSION['username'])) {
         $idpost = array(
             'postid' => htmlspecialchars(stripcslashes(trim($_GET['idpost']))),
@@ -35,7 +38,7 @@ function comment()
         $getdatapost = new Post($data);
         $getdatapostmanager = new PostManager($getdatapost);
         $datapost = $getdatapostmanager->selectAuthorByNumberPost($getdatapost);
-        if ($datapost == 0)
+        if (!is_object($datapost))
             include 'views/Co_error.php';
         $com = new Comment($idpost);
         $com_manager = new CommentManager($com);
@@ -113,15 +116,13 @@ function updatecomm()
     $com = new Comment($data);
     $com_manager = new CommentManager($post);
     $authorcom = $com_manager->getAuthorByIdCom($com);
-    if (isset($_SESSION['username']) && $author == $_SESSION['username'] or $authorcom->getAutor() == $_SESSION['username'] ) {
-        $new_com_to_add = htmlspecialchars(stripcslashes(trim($_POST['comments'])));
+    if (isset($_SESSION['username']) && $authorpost == $_SESSION['username'] or $authorcom->getAutor() == $_SESSION['username'] ) {
         $data_to_add = array(
             'postid' => htmlspecialchars(stripcslashes(trim($_GET['idpost']))),
             'id' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
             'autor' => $_SESSION['username'],
-            'text' => $new_com_to_add
+            'text' => htmlspecialchars(stripcslashes(trim($_POST['comments'])))
         );
-
         $new_com = new Comment($data_to_add);
         $com_manager = new CommentManager($new_com);
         $com_manager->updateComment($new_com);

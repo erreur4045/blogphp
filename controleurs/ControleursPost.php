@@ -57,13 +57,17 @@ function supprPost()
         );
         $post = new Post($data);
         $managepost = new PostManager($post);
-        $datapost = $managepost->selectAuthorByNumberPost($post);
-        if ($_SESSION['username'] == $datapost->getAuthor()) {
-            $managepost->suppr($post);
-            $_SESSION['message'] = "Votre article a été supprimé";
-            header('Location: ' . $_SERVER['HTTP_REFERER']);
-        }
-        else {
+        $postexist = $managepost->selectPostById($post);
+        if (is_object($postexist)) {
+            $datapost = $managepost->selectAuthorByNumberPost($post);
+            if ($_SESSION['username'] == $datapost->getAuthor()) {
+                $managepost->suppr($post);
+                $_SESSION['message'] = "Votre article a été supprimé";
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+            } else {
+                include 'views/Co_error.php';
+            }
+        } elseif (!is_object($postexist)) {
             include 'views/Co_error.php';
         }
     } else {
@@ -103,7 +107,12 @@ function validpost()
 {
     $title = htmlspecialchars(stripcslashes(trim($_POST['title'])));
     $content = htmlspecialchars(stripcslashes(trim($_POST['content'])));
-    $author = htmlspecialchars(stripcslashes(trim($_SESSION['username'])));
+    $author = $_SESSION['username'];
+    if (empty($title) or empty($content)) {
+        $_SESSION['message'] = "Tous les champs sont obligatoire ";
+        header('Location: index.php?action=addnewpost');
+        die();
+    }
     if (isset($_SESSION['username'])) {
         $donnees = array(
             'title' => $title,
@@ -142,6 +151,11 @@ function validupdatepost()
     $content = htmlspecialchars((trim($_POST['content'])));
     $author = htmlspecialchars(stripcslashes(trim($_SESSION['username'])));
     $id = htmlspecialchars(stripcslashes(trim($_GET['id'])));
+    if (empty($title) or empty($content) or empty($id)) {
+        $_SESSION['message'] = "Tous les champs sont obligatoire ";
+        header('Location: http://localhost/accent/index.php?action=addnewpost');
+        die();
+    }
     if (isset($_SESSION['username'])) {
         $donnees = array(
             'content' => $content,
@@ -152,14 +166,16 @@ function validupdatepost()
         $post = new Post($donnees);
         $manager = new PostManager($post);
         $objauthor = $manager->selectAuthorByNumberPost($post);
+        if (!is_object($objauthor)) {
+            include 'views/Co_error.php';
+        }
         $author = $objauthor->getAuthor();
         if ($_SESSION['username'] == $author) {
             $manager->updatePost($post);
             $_SESSION['message'] = "Votre article a été modifié";
             $str = 'Location: index.php?id=' . $_GET['id'] . '&action=post';
             header($str);
-        }
-        else {
+        } else {
             $_SESSION['message'] = "Vous n'avez pas le droit de modifier cet article.";
             header('Location: index.php');
         }
@@ -185,18 +201,23 @@ function modifpost()
         );
         $post = new Post($donnees);
         $manager = new PostManager($post);
-        $objauthor = $manager->selectAuthorByNumberPost($post);
-        $author = $objauthor->getAuthor();
-        if ($_SESSION['username'] == $author) {
-            $data_view = $manager->selectPostById($post);
-            include 'views/UpdatepostView.php';
-        } else {
-            $_SESSION['message'] = "Vous n'avez pas le droit de modifier cet article.";
-            header('Location: index.php');
+        $objpost = $manager->selectPostById($post);
+        if (is_object($objpost)) {
+            $objauthor = $manager->selectAuthorByNumberPost($post);
+            $author = $objauthor->getAuthor();
+            if ($_SESSION['username'] == $author) {
+                $data_view = $manager->selectPostById($post);
+                include 'views/UpdatepostView.php';
+            } else {
+                $_SESSION['message'] = "Vous n'avez pas le droit de modifier cet article.";
+                header('Location: index.php');
+            }
+        } elseif (!is_object($objpost)) {
+            include 'views/Co_error.php';
         }
     } else {
-    include 'views/Co_error.php';
-}
+        include 'views/Co_error.php';
+    }
 }
 
 /**
@@ -210,28 +231,27 @@ function modifpost()
  */
 function post()
 {        /*preparation du tableau pour contruction de OBJ post et creation OBJ*/
-        $donnees = array(
-            'number' => htmlspecialchars(stripcslashes(trim($_GET['id'])))
-        );
-        $post_for_data = new Post($donnees);
-        /*creation post_manager avec OBJ post*/
-        $post_manager = new PostManager($post_for_data);
-        /*Creation OBJ post pour recuperer toutes
-        les donees du post lier a l'ID du post envoyer*/
-        $post = $post_manager->selectPostById($post_for_data);
-        if (is_object($post)) {
-            /*Preparation des donnees pour creation de OBJ Comment*/
-            $data_for_com = array('postid' => htmlspecialchars(stripcslashes(trim($_GET['id']))));
-            $comment_for_data = new Comment($data_for_com);
-            /*Creation de OBJ manager*/
-            $com_manager = new CommentManager($comment_for_data);
-            /* Passage des commentaire a la vue */
-            $comments = $com_manager->getComments($comment_for_data);
-            include 'views/PostViewco.php';
-        }
-        elseif ($post == 0)
-            include 'views/Co_error.php';
-        else {
-            include 'views/Co_error.php';
-        }
+    $donnees = array(
+        'number' => htmlspecialchars(stripcslashes(trim($_GET['id'])))
+    );
+    $post_for_data = new Post($donnees);
+    /*creation post_manager avec OBJ post*/
+    $post_manager = new PostManager($post_for_data);
+    /*Creation OBJ post pour recuperer toutes
+    les donees du post lier a l'ID du post envoyer*/
+    $post = $post_manager->selectPostById($post_for_data);
+    if (is_object($post)) {
+        /*Preparation des donnees pour creation de OBJ Comment*/
+        $data_for_com = array('number' => htmlspecialchars(stripcslashes(trim($_GET['id']))));
+        $comment_for_data = new Post($data_for_com);
+        /*Creation de OBJ manager*/
+        $com_manager = new CommentManager($comment_for_data);
+        /* Passage des commentaire a la vue */
+        $comments = $com_manager->getComments($comment_for_data);
+        include 'views/PostViewco.php';
+    } elseif (!is_object($post)) {
+        include 'views/Co_error.php';
+    } else {
+        include 'views/Co_error.php';
+    }
 }
