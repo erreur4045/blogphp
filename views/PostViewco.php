@@ -27,7 +27,7 @@
                         <div class="card mb-4 box-shadow h-md-250">
                             <div class="card-body align-items-start ">
                                 <p><strong><?= 'Par ' . ucfirst(htmlspecialchars($comment_data->getAutor())) ?></strong><em>
-                                        le <?= date('d/m/Y',strtotime($comment_data->getComment_date())) ?>
+                                        le <?= $comment_data->getComment_date() ?>
                                     </em></p>
                                 <p><?= nl2br(htmlspecialchars($comment_data->getText())) ?></p>
                                 <?php if (isset($_SESSION['username']) && ($_SESSION['username'] == $comment_data->getAutor())) : ?>
