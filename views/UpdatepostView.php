@@ -10,6 +10,7 @@
                     <div class="contact-form">
                         <h3><i class="fa fa-align-left"></i> Modifier un article</h3>
                         <div class="form_in">
+                            <!--todo : largeur du titre trop petite http://localhost/accent/index.php?action=modifpost&id=52-->
                             <label for="title" class="title_post">Titre:</label><br>
                             <input name="title" id="title" class="title_post" value="<?= $data_view->getTitle() ?>"></div>
                         <div class="form_in">

@@ -88,6 +88,9 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action'] == 'testmail') {
         testmail();
     }
+    else{
+        accueil();
+    }
 } else {
     accueil();
 }

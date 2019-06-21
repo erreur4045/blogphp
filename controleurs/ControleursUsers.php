@@ -95,7 +95,6 @@ function suppuser()
             $user = new User($data);
             $manage_user = new UserManager($user);
             $data_user = $manage_user->getDataByIdUser($user);
-            //todo pk ca fonctionne pas !is_object($data_user)
             if (is_object($data_user)) {
                 $manage_user->suppUser($data_user);
                 $_SESSION['message'] = "L'utilisateur a été supprimé.";
@@ -261,7 +260,7 @@ function connectionuser()
     $username = htmlspecialchars(stripcslashes(trim($_POST['username'])));
     $mdp = htmlspecialchars(stripcslashes(trim($_POST['mdp'])));
     if (empty($username) or empty($mdp)){
-        $_SESSION['message'] = "Il manque des informations pour votre connexion, tout les champs doivent être renseigné.";
+        $_SESSION['message'] = "Il manque des informations pour votre connexion, tous les champs doivent être renseignés.";
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         die();
     }

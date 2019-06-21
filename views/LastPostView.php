@@ -43,7 +43,7 @@
             <div class="container">
                 <div class="row">
                     <div class=" p-2">
-                        <a class="btn btn-primary btn-md" href="index.php?action=listAllPosts">Voir tout les articles</a>
+                        <a class="btn btn-primary btn-md" href="index.php?action=listAllPosts">Voir tous les articles</a>
                     </div>
                     <?php if (!isset($_SESSION['username'])) : ?>
                         <em></em>

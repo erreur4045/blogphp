@@ -57,7 +57,7 @@
                         <div class="d-flex justify-content-center">
                             <textarea class="form-control" name="comments" placeholder="Votre message"></textarea>
                         </div>
-                        <input class="btn btn-info" type="submit" value="Submit" id="btnviewpost">
+                        <input class="btn btn-info" type="submit" value="Envoyer" id="btnviewpost">
                     </form>
                 </div>
             </div>

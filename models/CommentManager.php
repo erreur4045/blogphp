@@ -107,7 +107,6 @@ class CommentManager
             while ($donnees = $comments->fetch(PDO::FETCH_ASSOC)) {
                 $get_comments_to_approve[] = new Comment($donnees);
             }
-
             return $get_comments_to_approve;
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
