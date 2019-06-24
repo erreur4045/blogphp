@@ -26,6 +26,8 @@ function comment()
         include 'views/Co_error.php';
     }
     if (isset($_SESSION['username'])) {
+        if (empty($_GET['idpost']) or empty($_POST['comments'])){
+            echo 'je passe par là';include 'views/Co_error.php';}
         $idpost = array(
             'postid' => htmlspecialchars(stripcslashes(trim($_GET['idpost']))),
             'author' => $_SESSION['idusername'],
@@ -73,11 +75,11 @@ function modifcomment()
     $author = $com_manager->getAuthorByIdCom($com);
     if (!is_object($author))
         require 'views/Co_error.php';
-    if (isset($_SESSION['username']) && $author->getAutor() == $_SESSION['username']) {
+    if (isset($_SESSION['username']) && $author->getAuthor() == $_SESSION['idusername']) {
         $data = array(
             'id' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
             'postid' => htmlspecialchars(stripcslashes(trim($_GET['idpost']))),
-            'autor' => $_SESSION['username']
+            'author' => $_SESSION['idusername']
         );
         $old_com = new Comment($data);
         $com_manager = new CommentManager($old_com);
@@ -103,20 +105,22 @@ function modifcomment()
  */
 function updatecomm()
 {
+    if (empty(($_GET['idpost']) or ($_GET['id']) or $_POST['comments']))
+        include 'views/Co_error.php';
     $data = array(
-        'number' => htmlspecialchars(stripcslashes(trim($_GET['idpost'])))
+        'id' => htmlspecialchars(stripcslashes(trim($_GET['idpost'])))
     );
     $post = new Post($data);
     $post_manager = new PostManager($post);
     $author = $post_manager->selectAuthorByNumberPost($post);
-    $authorpost = $author->getAuthor();
+    $authorpost = $author->getAuthorpost();
     $data = array(
         'id' => htmlspecialchars(stripcslashes(trim($_GET['id'])))
     );
     $com = new Comment($data);
     $com_manager = new CommentManager($post);
     $authorcom = $com_manager->getAuthorByIdCom($com);
-    if (isset($_SESSION['username']) && $authorpost == $_SESSION['username'] or $authorcom->getAutor() == $_SESSION['username'] ) {
+    if (isset($_SESSION['username']) && $authorpost == $_SESSION['username'] or $authorcom->getAuthor() == $_SESSION['idusername'] ) {
         $data_to_add = array(
             'postid' => htmlspecialchars(stripcslashes(trim($_GET['idpost']))),
             'id' => htmlspecialchars(stripcslashes(trim($_GET['id']))),

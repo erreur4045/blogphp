@@ -22,69 +22,69 @@ require 'models/CommentManager.php';
 
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'listPosts') {
-        listPosts();
+        listPosts();//ok
     } elseif ($_GET['action'] == 'post') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
-            post();
+            post();//ok
         } else {
             echo 'Erreur : aucun identifiant de billet envoyé';
         }
     } elseif ($_GET['action'] == 'listAllPosts') {
-        allPost();
+        allPost();//ok
     } elseif ($_GET['action'] == 'contacter') {
         contacter();
     } elseif ($_GET['action'] == 'comment') {
-        comment();
+        comment();//ok
     } elseif ($_GET['action'] == 'modifcomment') {
-        modifcomment();
+        modifcomment();//ok
     } elseif ($_GET['action'] == 'modifpost') {
-        modifpost();
+        modifpost();//ok
     } elseif ($_GET['action'] == 'validupdatepost') {
-        validupdatepost();
+        validupdatepost();//ok
     } elseif ($_GET['action'] == 'connection') {
-        connection();
+        connection();//ok
     } elseif ($_GET['action'] == 'connectionuser') {
-        connectionuser();
+        connectionuser();//ok
     } elseif ($_GET['action'] == 'contact') {
-        contact();
+        contact();//ok
     } elseif ($_GET['action'] == 'updatecomment') {
-        updatecomm();
+        updatecomm();//ok
     } elseif ($_GET['action'] == 'adminusertobevalided') {
-        adminusertobevalided();
+        adminusertobevalided();//ok
     } elseif ($_GET['action'] == 'adminuserlist') {
-        adminuserlist();
+        adminuserlist();//ok
     } elseif ($_GET['action'] == 'accceptuser') {
-        accceptuser();
+        accceptuser();//ok
     } elseif ($_GET['action'] == 'suppuser') {
-        suppuser();
+        suppuser();//ok
     } elseif ($_GET['action'] == 'CV' OR $_GET['action'] == 'cv') {
-        CV();
+        CV();//ok
     } elseif ($_GET['action'] == 'inscription') {
-        incription();
+        incription();//ok
     } elseif ($_GET['action'] == 'deconnection') {
-        deconnection();
+        deconnection();//ok
     } elseif ($_GET['action'] == 'dashboard') {
-        dashboard();
+        dashboard();//ok
     } elseif ($_GET['action'] == 'dashboardcom') {
-        dashboard2();
+        dashboard2();//ok
     } elseif ($_GET['action'] == 'dashboardcomtovalidated') {
-        dashboard3();
+        dashboard3();//ok
     } elseif ($_GET['action'] == 'addnewpost') {
-        addnewpost();
+        addnewpost();//ok
     } elseif ($_GET['action'] == 'supprpost') {
-        supprpost();
+        supprpost();//ok
     } elseif ($_GET['action'] == 'validpost') {
-        validpost();
+        validpost();//ok
     } elseif ($_GET['action'] == 'validcomment') {
-        validcomment();
+        validcomment();//ok
     } elseif ($_GET['action'] == 'supprcom') {
-        supprcom();
+        supprcom();//ok
     } elseif ($_GET['action'] == 'validinscription') {
-        validincription();
+        validincription();//ok
     } elseif ($_GET['action'] == 'testfunction') {
         testfunction();
     } elseif ($_GET['action'] == 'bio') {
-        bio();
+        bio();//ok
     } elseif ($_GET['action'] == 'testmail') {
         testmail();
     }

@@ -110,7 +110,7 @@ function validpost()
     $author = $_SESSION['idusername'];
     if (empty($title) or empty($content)) {
         $_SESSION['message'] = "Tous les champs sont obligatoire ";
-        header('Location: index.php?action=addnewpost');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
         die();
     }
     if (isset($_SESSION['username'])) {
@@ -149,19 +149,19 @@ function validupdatepost()
 {
     $title = htmlspecialchars(stripcslashes(trim($_POST['title'])));
     $content = htmlspecialchars((trim($_POST['content'])));
-    $author = htmlspecialchars(stripcslashes(trim($_SESSION['username'])));
+    $author = htmlspecialchars(stripcslashes(trim($_SESSION['idusername'])));
     $id = htmlspecialchars(stripcslashes(trim($_GET['id'])));
     if (empty($title) or empty($content) or empty($id)) {
         $_SESSION['message'] = "Tous les champs sont obligatoire ";
-        header('Location: http://localhost/accent/index.php?action=addnewpost');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
         die();
     }
     if (isset($_SESSION['username'])) {
         $donnees = array(
             'content' => $content,
             'title' => $title,
-            'number' => $id,
-            'author' => $author
+            'id' => $id,
+            'authorpost' => $author
         );
         $post = new Post($donnees);
         $manager = new PostManager($post);
@@ -169,8 +169,8 @@ function validupdatepost()
         if (!is_object($objauthor)) {
             include 'views/Co_error.php';
         }
-        $author = $objauthor->getAuthor();
-        if ($_SESSION['username'] == $author) {
+        $author = $objauthor->getAuthorpost();
+        if ($_SESSION['idusername'] == $author) {
             $manager->updatePost($post);
             $_SESSION['message'] = "Votre article a été modifié";
             $str = 'Location: index.php?id=' . $_GET['id'] . '&action=post';

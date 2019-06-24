@@ -106,15 +106,15 @@ class PostManager
                             SET title = :newtitle, 
                                 content = :newcontent, 
                                 date = NOW() 
-                            WHERE `blogphp_posts`.`number` = :number 
-                            AND author = :author'
+                            WHERE `blogphp_posts`.`id` = :id 
+                            AND authorpost = :author'
             );
             $result = $recup->execute(
                 array(
                 ':newtitle' => $post->getTitle(),
-                ':number' => $post->getNumber(),
-                'newcontent' => $post->getContent(),
-                'author' => $post->getAuthor()
+                ':id' => $post->getId(),
+                ':newcontent' => $post->getContent(),
+                ':author' => $post->getAuthorpost()
                     )
             );
         } catch (Exception $e) {

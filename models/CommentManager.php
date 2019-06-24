@@ -212,26 +212,27 @@ WHERE author != :id
      */
     public function getComment(Comment $comment)
     {
+
         try {
             $db = DatabaseConnection::dbConnect();
             $thecomment = $db->prepare(
                 'SELECT text FROM blogphp_commentaire 
                               WHERE postid = :idpost 
-                                AND id= :id 
-                                AND autor = :author'
+                                AND id = :id 
+                                AND author = :author'
             );
             $thecomment->execute(
                 array(
                 ':idpost' => $comment->getPostid(),
                 ':id' => $comment->getId(),
-                'author' => $comment->getAutor()
+                'author' => $comment->getAuthor()
                     )
             );
             $com = $thecomment->fetch();
             if ($com == false)
                 return 0;
             else
-            return new Comment($com);
+                return new Comment($com);
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
@@ -313,8 +314,7 @@ WHERE author != :id
             if ($author == false)
                 return 0;
             else
-                var_dump(new Comment($author));
-            return new Comment($author);
+                return new Comment($author);
 
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());

@@ -23,6 +23,10 @@ btn-group-vertical-var{
   margin-bottom: 20%;
   padding: 10%;
 }
+.title_post{
+  width: -webkit-fill-available;
+  background-color: #eee;
+}
 p{
   word-break: break-word;
 }
