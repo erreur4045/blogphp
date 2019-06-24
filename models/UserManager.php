@@ -38,13 +38,14 @@ class UserManager
             $all_post = [];
             $db = DatabaseConnection::dbConnect();
             $recup = $db->prepare(
-                'SELECT * 
-                            FROM blogphp_posts 
-                            WHERE author = :username'
+                'SELECT blogphp_posts.id, title, content, date, pseudo, grade, authorpost
+FROM blogphp_posts
+  JOIN blogphp_membres ON blogphp_posts.authorpost = blogphp_membres.id
+WHERE blogphp_membres.id = :id'
             );
             $recup->execute(
                 array(
-                ':username' => $user->getPseudo()
+                ':id' => $user->getId()
                     )
             );
             while ($donnees = $recup->fetch(PDO::FETCH_ASSOC)) {
@@ -64,19 +65,18 @@ class UserManager
      *
      * @return Obj un Obj de new User
      */
-    function gradeUser(User $user)
+    function dataUser(User $user)
     {
-        $pseudo = $user->getPseudo();
         try {
             $db = DatabaseConnection::dbConnect();
             $recup = $db->prepare(
-                'SELECT grade 
+                'SELECT * 
                             FROM blogphp_membres 
                             WHERE pseudo = :pseudo'
             );
             $recup->execute(
                 array(
-                ':pseudo' => $pseudo
+                ':pseudo' => $user->getPseudo()
                      )
             );
             $donnees = $recup->fetch();
@@ -298,7 +298,7 @@ class UserManager
             $recup = $db->prepare(
                 'SELECT * 
                               FROM blogphp_membres 
-                              WHERE pseudo = :psuedo'
+                              WHERE pseudo = :pseudo'
             );
             $recup->execute(
                 array(
@@ -322,6 +322,7 @@ class UserManager
      */
     public function suppUser(User $user)
     {
+//todo regarder pk il faut cliauer deux fois sur le bouton pour supprimer
         try {
             $db = DatabaseConnection::dbConnect();
             $recup = $db->prepare(
@@ -337,11 +338,11 @@ class UserManager
             $recup = $db->prepare(
                 'DELETE 
                             FROM blogphp_posts 
-                            WHERE author = :author'
+                            WHERE authorpost = :author'
             );
             $recup->execute(
                 array(
-                ':author' => $user->getPseudo()
+                ':author' => $user->getId()
                     )
             );
         } catch (Exception $e) {

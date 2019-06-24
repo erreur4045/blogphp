@@ -50,7 +50,7 @@ function contacter()
  */
 function testmail()
 {
-    var_dump($_SESSION['grade']);
+    var_dump($_SESSION);
     die();
     include 'view/testview.php';
 }

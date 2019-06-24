@@ -24,7 +24,7 @@
                                           placeholder="Votre article" required="required"></textarea>
                             </div>
                             <div class="text-center">
-                                <button class="btn btn-primary btn-md">Envoyer</button>
+                                <button class="btn btn-primary btn-md">Envoyer <i class="fas fa-paper-plane"></i></button>
                             </div>
                         </form>
                 </div>

@@ -2,10 +2,11 @@
 class Comment
 {
     private $id;
-    private $postid;
-    private $autor;
     private $text;
     private $comment_date;
+    private $author;
+    private $postid;
+    private $approved;
 
     public function __construct($donnees)
     {
@@ -24,9 +25,10 @@ class Comment
     }
 
     /*---------------------------------------getteurs-------------------------------/*
-        /**
-         * @return mixed
-         */
+
+    /**
+    * @return mixed
+    */
     public function getId()
     {
         return $this->id;
@@ -43,9 +45,16 @@ class Comment
     /**
      * @return mixed
      */
-    public function getAutor()
+    public function getApproved()
     {
-        return $this->autor;
+        return $this->approved;
+    }
+    /**
+     * @return mixed
+     */
+    public function getAuthor()
+    {
+        return $this->author;
     }
 
     /**
@@ -81,11 +90,18 @@ class Comment
     }
 
     /**
-     * @param mixed $autor
+     * @param mixed $approved
      */
-    public function setAutor($autor)
+    public function setApproved($approved)
     {
-        $this->autor = $autor;
+        $this->approved = $approved;
+    }
+    /**
+     * @param mixed $author
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
     }
 
     /**

@@ -19,11 +19,11 @@
 
 class Post
 {
-    private $number;
+    private $id;
     private $title;
     private $content;
     private $date;
-    private $author;
+    private $authorpost;
 
     public function __construct($donnees)
     {
@@ -43,7 +43,13 @@ class Post
 
     /*------------------------------getters-------------------------------------------*/
 
-
+    /**
+     * @return mixed
+     */
+    public function getAuthorpost()
+    {
+        return $this->authorpost;
+    }
     /**
      * @return mixed
      */
@@ -63,9 +69,9 @@ class Post
     /**
      * @return mixed
      */
-    public function getNumber()
+    public function getId()
     {
-        return $this->number;
+        return $this->id;
     }
 
     /**
@@ -75,14 +81,6 @@ class Post
     {
         return $this->title;
     }
-    /**
-     * @return mixed
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
 
     /*------------------------------setters-------------------------------------------*/
     /**
@@ -96,26 +94,24 @@ class Post
     /**
      * @param mixed $date
      */
-    private function setDate($date)
+    public function setDate($date)
     {
         $this->date = $date;
     }
 
     /**
-     * @param mixed $content
+     * @param mixed $id
      */
-    private function setNumber($number)
+    public function setId($id)
     {
-        $this->number = $number;
+        $this->id = $id;
     }
     /**
-     * @param mixed $author
+     * @param mixed $authorpost
      */
-    public function setAuthor($author)
+    public function setAuthorpost($authorpost)
     {
-        if (is_string($author) && strlen($author) <= 255) {
-            $this->author = (string)$author;
-        }
+            $this->authorpost = $authorpost;
     }
 
     /**

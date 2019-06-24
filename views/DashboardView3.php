@@ -29,7 +29,7 @@
                                         <p> le <?= $com_data->getComment_date() ?></p>
                                         <p> le contenu de l'article : </p>
                                         <?php foreach ($result_post as $com_dataa) : ?>
-                                            <?php if ($com_data->getPostid() == $com_dataa->getNumber()) : ?>
+                                            <?php if ($com_data->getPostid() == $com_dataa->getId()) : ?>
                                                 <p><?= nl2br(htmlspecialchars($com_dataa->getContent())) ?></p>
                                             <?php endif; ?>
                                         <?php endforeach; ?>

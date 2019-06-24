@@ -39,13 +39,13 @@ class PostManager
             $db = DatabaseConnection::dbConnect();
             $deletepost = $db->prepare(
                 'DELETE FROM blogphp_posts 
-                            WHERE number = :id 
-                                  AND author = :author'
+                            WHERE id = :id 
+                                  AND authorpost = :author'
             );
             $deletepost->execute(
                 array(
-                ':id' => $post->getNumber(),
-                ':author' => $post->getAuthor()
+                ':id' => $post->getId(),
+                ':author' => $post->getAuthorpost()
                     )
             );
             $deletecom = $db->prepare(
@@ -54,7 +54,7 @@ class PostManager
             );
             $deletecom->execute(
                 array(
-                ':id' => $post->getNumber()
+                ':id' => $post->getId()
                     )
             );
         } catch (Exception $e) {
@@ -75,14 +75,14 @@ class PostManager
             $db = DatabaseConnection::dbConnect();
             $recup = $db->prepare(
                 'INSERT INTO `blogphp_posts` 
-                            (`title`, `content`, `date`, `author`) 
-                            VALUES (:title, :content, NOW(), :author)'
+                            (`title`, `content`, `date`, `authorpost`) 
+                            VALUES (:title, :content, NOW(), :authorpost)'
             );
             $recup->execute(
                 array(
                 ':title' => $post->getTitle(),
                 ':content' => $post->getContent(),
-                ':author' => $post->getAuthor()
+                ':authorpost' => $post->getAuthorpost()
                     )
             );
         } catch (Exception $e) {
@@ -156,7 +156,7 @@ class PostManager
             $lastpost = [];
 
             $q = DatabaseConnection::dbConnect()->query(
-                'SELECT number, title, content, date, author 
+                'SELECT id, title, content, date, authorpost 
                                 FROM blogphp_posts 
                                     ORDER BY date DESC LIMIT 0, 6'
             );
@@ -181,11 +181,11 @@ class PostManager
     {
         try {
             $req = DatabaseConnection::dbConnect()->prepare(
-                'SELECT * FROM `blogphp_posts` WHERE number = :idpost'
+                'SELECT * FROM `blogphp_posts` WHERE id = :id'
             );
             $req->execute(
                 array(
-                ':idpost' => $post->getNumber()
+                ':id' => $post->getId()
                     )
             );
             $donnees = $req->fetch(PDO::FETCH_ASSOC);
@@ -206,7 +206,7 @@ class PostManager
             $allpost = [];
 
             $q = DatabaseConnection::dbConnect()->query(
-                'SELECT number, title, content, date, author 
+                'SELECT id, title, content, date, authorpost
                             FROM blogphp_posts ORDER BY date DESC'
             );
 
@@ -231,13 +231,14 @@ class PostManager
     {
         try {
             $req = DatabaseConnection::dbConnect()->prepare(
-                'SELECT number, title, content, author, date 
-                              FROM blogphp_posts 
-                              WHERE number = :number'
+                'SELECT blogphp_posts.id, title, content, authorpost, blogphp_membres.pseudo  as author, date
+FROM blogphp_posts
+  JOIN blogphp_membres ON blogphp_posts.authorpost = blogphp_membres.id
+WHERE blogphp_posts.id = :id'
             );
             $req->execute(
                 array(
-                ':number' => $post->getNumber()
+                ':id' => $post->getId()
                     )
             );
             $isempty = $req->rowCount();

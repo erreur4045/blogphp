@@ -52,15 +52,15 @@ function supprPost()
 {
     if (isset($_SESSION['username'])) {
         $data = array(
-            'number' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
-            'author' => htmlspecialchars(stripcslashes(trim($_GET['author'])))
+            'id' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
+            'authorpost' => htmlspecialchars(stripcslashes(trim($_GET['author'])))
         );
         $post = new Post($data);
         $managepost = new PostManager($post);
         $postexist = $managepost->selectPostById($post);
         if (is_object($postexist)) {
             $datapost = $managepost->selectAuthorByNumberPost($post);
-            if ($_SESSION['username'] == $datapost->getAuthor()) {
+            if ($_SESSION['idusername'] == $datapost->getAuthorpost()) {
                 $managepost->suppr($post);
                 $_SESSION['message'] = "Votre article a été supprimé";
                 header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -107,7 +107,7 @@ function validpost()
 {
     $title = htmlspecialchars(stripcslashes(trim($_POST['title'])));
     $content = htmlspecialchars(stripcslashes(trim($_POST['content'])));
-    $author = $_SESSION['username'];
+    $author = $_SESSION['idusername'];
     if (empty($title) or empty($content)) {
         $_SESSION['message'] = "Tous les champs sont obligatoire ";
         header('Location: index.php?action=addnewpost');
@@ -117,7 +117,7 @@ function validpost()
         $donnees = array(
             'title' => $title,
             'content' => $content,
-            'author' => $author
+            'authorpost' => $author
         );
         $post = new Post($donnees);
         $donnees_user = array(
@@ -125,7 +125,7 @@ function validpost()
         );
         $user = new User($donnees_user);
         $manager_user = new UserManager($user);
-        $grade = $manager_user->gradeUser($user);
+        $grade = $manager_user->dataUser($user);
         if ($grade->getGrade() == 2 OR $grade->getGrade() == 1) {
             $manager = new PostManager($post);
             $manager->addPost($post);
@@ -197,15 +197,15 @@ function modifpost()
 {
     if (isset($_SESSION['username'])) {
         $donnees = array(
-            'number' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
+            'id' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
         );
         $post = new Post($donnees);
         $manager = new PostManager($post);
         $objpost = $manager->selectPostById($post);
         if (is_object($objpost)) {
             $objauthor = $manager->selectAuthorByNumberPost($post);
-            $author = $objauthor->getAuthor();
-            if ($_SESSION['username'] == $author) {
+            $author = $objauthor->getAuthorpost();
+            if ($_SESSION['idusername'] == $author) {
                 $data_view = $manager->selectPostById($post);
                 include 'views/UpdatepostView.php';
             } else {
@@ -232,7 +232,7 @@ function modifpost()
 function post()
 {        /*preparation du tableau pour contruction de OBJ post et creation OBJ*/
     $donnees = array(
-        'number' => htmlspecialchars(stripcslashes(trim($_GET['id'])))
+        'id' => htmlspecialchars(stripcslashes(trim($_GET['id'])))
     );
     $post_for_data = new Post($donnees);
     /*creation post_manager avec OBJ post*/
@@ -242,7 +242,7 @@ function post()
     $post = $post_manager->selectPostById($post_for_data);
     if (is_object($post)) {
         /*Preparation des donnees pour creation de OBJ Comment*/
-        $data_for_com = array('number' => htmlspecialchars(stripcslashes(trim($_GET['id']))));
+        $data_for_com = array('id' => htmlspecialchars(stripcslashes(trim($_GET['id']))));
         $comment_for_data = new Post($data_for_com);
         /*Creation de OBJ manager*/
         $com_manager = new CommentManager($comment_for_data);

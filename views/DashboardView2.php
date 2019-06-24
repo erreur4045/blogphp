@@ -26,7 +26,7 @@
                         <?php foreach ($result_com as $com_data) : ?>
                             <?php if (!isset($_SESSION['username'])) : ?>
                                 <em></em>
-                            <?php elseif ($_SESSION['username'] == $com_data->getAutor()): ?>
+                            <?php elseif ($_SESSION['idusername'] == $com_data->getAuthor()): ?>
                                 <div class="card flex-md-row mb-4 box-shadow h-md-250">
                                     <div class="card-body d-flex flex-column align-items-start ">
                                         <div class="">

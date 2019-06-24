@@ -29,10 +29,10 @@ function adminusertobevalided()
     if (!isset($_SESSION['username'])) {
         include 'views/Co_error.php';
     }
-    $data = array('pseudo' => $_SESSION['username'],);
+    $data = array('pseudo' => $_SESSION['username']);
     $user = new User($data);
     $manage_user = new UserManager($user);
-    $grade = $manage_user->gradeUser($user);
+    $grade = $manage_user->dataUser($user);
     if ($grade->getGrade() == 1) {
         $list_user = $manage_user->getUsersNotAccepted();
         include 'views/AdminUser.php';
@@ -59,7 +59,7 @@ function accceptuser()
         $data = array('pseudo' => $_SESSION['username'],);
         $user = new User($data);
         $manage_user = new UserManager($user);
-        $grade = $manage_user->gradeUser($user);
+        $grade = $manage_user->dataUser($user);
         if ($grade->getGrade() == 1) {
             $data = array(
                 'id' => htmlspecialchars(stripcslashes(trim($_GET['id']))),
@@ -69,7 +69,7 @@ function accceptuser()
             $manage_user = new UserManager($user);
             $manage_user->changeGradeUser($user);
             $_SESSION['message'] = "L'utilisateur est accepté.";
-            header('Location: index.php?action=adminusertobevalided');
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
     } else {
         include 'views/Co_error.php';
@@ -87,6 +87,7 @@ function accceptuser()
  */
 function suppuser()
 {
+    //todo verif la supp des article dans l'appel de $manage_user->suppUser
     if (isset($_SESSION['username'])) {
         if ($_SESSION['grade'] == 1) {
             $data = array(
@@ -144,7 +145,7 @@ function dashboard()
         include 'views/Co_error.php';
     } else {
         $data = array(
-            'pseudo' => $_SESSION['username'],
+            'id' => $_SESSION['idusername'],
         );
         $user = new User($data);
         $manage_user = new UserManager($user);
@@ -167,11 +168,11 @@ function dashboard2()
         include 'views/Co_error.php';
     } else {
         $data = array(
-            'autor' => $_SESSION['username'],
+            'id' => $_SESSION['idusername']
         );
-        $com = new Comment($data);
-        $manage_user = new CommentManager($com);
-        $result_com = $manage_user->getCommentsByUser($com);
+        $user = new User($data);
+        $manage_user = new CommentManager($user);
+        $result_com = $manage_user->getCommentsByUser($user);
         include 'views/DashboardView2.php';
     }
 }
@@ -191,18 +192,14 @@ function dashboard3()
         include 'views/Co_error.php';
     } else {
         $data = array(
-            'pseudo' => $_SESSION['username'],
+            'id' => $_SESSION['idusername']
         );
         $user = new User($data);
         $manage_user = new UserManager($user);
         $result_post = $manage_user->getAllPostsByUser($user);
-        $data = array(
-            'autor' => $_SESSION['username'],
-        );
-        $com = new Comment($data);
-        $manage_user = new CommentManager($com);
-        $result_com = $manage_user->getCommentsToBeApproved($com);
 
+        $manage_com = new CommentManager($user);
+        $result_com = $manage_com->getCommentsToBeApproved($user);
         include 'views/DashboardView3.php';
     }
 }
@@ -276,17 +273,19 @@ function connectionuser()
             $_SESSION['message'] = "Error MDP ou pseudo";
             header('Location: index.php?action=connection');
         }
-        $grade = $manage_user->gradeUser($user);
-        if ($manage_user->connectionUser($user) == true && $grade->getGrade() == 1) {
-            $_SESSION['username'] = $user->getPseudo();
+        $usercon = $manage_user->dataUser($user);
+        if ($manage_user->connectionUser($user) == true && $usercon->getGrade() == 1) {
+            $_SESSION['username'] = $usercon->getPseudo();
+            $_SESSION['idusername'] = $usercon->getId();
             $_SESSION['admin'] = true;
-            $_SESSION['grade'] = $grade->getGrade();
+            $_SESSION['grade'] = $usercon->getGrade();
             $_SESSION['message'] = "Vous êtes bien connecté";
             header('Location: index.php');
         } elseif ($manage_user->connectionUser($user) == true) {
-            $_SESSION['username'] = $user->getPseudo();
+            $_SESSION['username'] = $usercon->getPseudo();
+            $_SESSION['idusername'] = $usercon->getId();
             $_SESSION['admin'] = false;
-            $_SESSION['grade'] = $grade->getGrade();
+            $_SESSION['grade'] = $usercon->getGrade();
             $_SESSION['message'] = "Vous êtes bien connecté";
             header('Location: index.php');
         } else {

@@ -28,18 +28,18 @@
                                            as $post_data) : ?>
                                 <?php if (!isset($_SESSION['username'])) : ?>
                                     <em></em>
-                                <?php elseif ($_SESSION['username'] == $post_data->getAuthor()): ?>
+                                <?php elseif ($_SESSION['idusername'] == $post_data->getAuthorpost()): ?>
                                     <div class="card flex-md-row mb-4 box-shadow h-md-250">
                                     <div class="card-body d-flex flex-column align-items-start ">
                                         <p> le <?= $post_data->getDate() ?></p>
                                         <p><?= nl2br(htmlspecialchars($post_data->getContent())) ?></p>
                                         <div class="sameline">
                                             <em><a class="btn btn-outline-warning"
-                                                   href="index.php?action=modifpost&id=<?= $post_data->getNumber() ?>">Modifier</a></em>
+                                                   href="index.php?action=modifpost&id=<?= $post_data->getId() ?>">Modifier</a></em>
                                             <em><a class="btn btn-outline-danger confirmation"
-                                                   href="index.php?action=supprpost&id=<?= $post_data->getNumber() . '&author=' . $post_data->getAuthor() ?>">Supprimer</a></em>
+                                                   href="index.php?action=supprpost&id=<?= $post_data->getId() . '&author=' . $post_data->getAuthorpost() ?>">Supprimer</a></em>
                                             <em><a class="btn btn-outline-info"
-                                                   href="index.php?action=post&id=<?= $post_data->getNumber() ?>">Voir
+                                                   href="index.php?action=post&id=<?= $post_data->getId() ?>">Voir
                                                     l'article et les
                                                     commentaires</a></em>
                                         </div>

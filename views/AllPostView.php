@@ -19,19 +19,19 @@
                                         <h4 class="titlenews"><em>le <?= date('d/m/Y',
                                                     strtotime($post_data->getDate())) ?></em><em>
                                                 Écrit
-                                                par <?= ucfirst($post_data->getAuthor()) ?></em></h4>
+                                                par <?= ucfirst($post_data->getAuthorpost()) ?></em></h4>
                                         <h6 class="font-italic">chapo :</h6>
                                         <p class="articleindex">
                                             <?= substr(nl2br(htmlspecialchars($post_data->getContent())), 0, 90); ?>
                                         </p>
                                         <p><a class="readmore"
-                                              href="index.php?id=<?= $post_data->getNumber() ?>&action=post">Article
+                                              href="index.php?id=<?= $post_data->getId() ?>&action=post">Article
                                                 détaillé</a>
                                             <?php if (!isset($_SESSION['username'])) : ?>
                                                 <em></em>
-                                            <?php elseif (($_SESSION['username']) == $post_data->getAuthor()) : ?>
+                                            <?php elseif (($_SESSION['idusername']) == $post_data->getAuthorpost()) : ?>
                                                 <em><a class="btn btn-outline-danger confirmation"
-                                                       href="index.php?action=supprpost&id=<?= $post_data->getNumber() . '&author=' . $post_data->getAuthor() ?>">Supprimer</a></em>
+                                                       href="index.php?action=supprpost&id=<?= $post_data->getId() . '&author=' . $post_data->getAuthorpost() ?>">Supprimer</a></em>
                                             <?php endif; ?>
                                     </div>
                                 </div>

@@ -28,12 +28,12 @@ function comment()
     if (isset($_SESSION['username'])) {
         $idpost = array(
             'postid' => htmlspecialchars(stripcslashes(trim($_GET['idpost']))),
-            'autor' => $_SESSION['username'],
+            'author' => $_SESSION['idusername'],
             'text' => htmlspecialchars(stripcslashes(trim($_POST['comments'])))
         );
 
         $data = array(
-            'number' => htmlspecialchars(stripcslashes(trim($_GET['idpost'])))
+            'id' => htmlspecialchars(stripcslashes(trim($_GET['idpost'])))
         );
         $getdatapost = new Post($data);
         $getdatapostmanager = new PostManager($getdatapost);
@@ -42,7 +42,7 @@ function comment()
             include 'views/Co_error.php';
         $com = new Comment($idpost);
         $com_manager = new CommentManager($com);
-        if ($datapost->getAuthor() == $_SESSION{'username'}) {
+        if ($datapost->getAuthorpost() == $_SESSION{'idusername'}) {
             $com_manager->addCommentLessVerrif($com);
             $_SESSION['message'] = 'Votre commentaire a été ajouté.';
             header('Location: index.php?id=' . $com->getPostid() . '&action=post');
@@ -141,6 +141,7 @@ function updatecomm()
  */
 function supprcom()
 {
+    echo '<pre>';
     try {
         if (isset($_SESSION['username'])) {
             $datacom = array(
@@ -148,7 +149,7 @@ function supprcom()
                 'postid' => htmlspecialchars($_GET['idpost'])
             );
             $datapost= array(
-                'number' => htmlspecialchars($_GET['idpost'])
+                'id' => htmlspecialchars($_GET['idpost'])
             );
             $com = new Comment($datacom);
             $managecom = new CommentManager($com);
@@ -158,7 +159,7 @@ function supprcom()
             $authorpost = $managepost->selectAuthorByNumberPost($post);
             if (!is_object($authorpost) or !is_object($authorcom))
                 include 'views/Co_error.php';
-            if (($_SESSION['username'] == $authorcom->getAutor() or $_SESSION['username'] == $authorpost->getAuthor())) {
+            if (($_SESSION['idusername'] == $authorcom->getAuthor() or $_SESSION['idusername'] == $authorpost->getAuthorpost())) {
                 $managecom->supprCom($com);
                 $_SESSION['message'] = "Le commentaire a été supprimé";
                 header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -190,14 +191,15 @@ function validcomment()
                 'postid' => htmlspecialchars(stripcslashes(trim($_GET['idpost'])))
             );
             $datapost = array(
-                'number' => htmlspecialchars(stripcslashes(trim($_GET['idpost'])))
+                'id' => htmlspecialchars(stripcslashes(trim($_GET['idpost'])))
             );
             $com = new Comment($datacom);
             $post = new Post($datapost);
             $managecom = new CommentManager($com);
             $managepost = new PostManager($post);
             $datapost = $managepost->selectAuthorByNumberPost($post);
-            if ($datapost->getAuthor() == $_SESSION['username']) {
+            //todo finir la verif authorpost et idusernem
+            if ($datapost->getAuthorpost() == $_SESSION['idusername']) {
                 $managecom->validCom($com);
                 $_SESSION['message'] = "Le commentaire a été validé";
                 header('Location: ' . $_SERVER['HTTP_REFERER']);
