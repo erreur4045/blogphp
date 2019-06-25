@@ -1,7 +1,7 @@
 # Projet 5 OpenClassrooms - Créez votre premier blog en PHP 
 ## Parcours Développeur d'application - PHP / Symfony
 
-<a href="https://codeclimate.com/github/erreur4045/blogphp/maintainability"><img src="https://api.codeclimate.com/v1/badges/61aa16266a4b72f4ad57/maintainability" /></a>
+[![Maintainability](https://api.codeclimate.com/v1/badges/61aa16266a4b72f4ad57/maintainability)](https://codeclimate.com/github/erreur4045/blogphp/maintainability)
 
 J'ai utilisé le thème Accent disponible sur le site https://colorlib.com/ pour realiser le design du site
 
