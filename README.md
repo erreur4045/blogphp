@@ -1,7 +1,7 @@
 # Projet 5 OpenClassrooms - Créez votre premier blog en PHP 
 ## Parcours Développeur d'application - PHP / Symfony
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/d29413b8-767c-4f21-ae6b-6a627d402643/mini.png)](https://insight.sensiolabs.com/projects/d29413b8-767c-4f21-ae6b-6a627d402643)
+[![Codeclimate](<a href="https://codeclimate.com/github/erreur4045/blogphp/maintainability"><img src="https://api.codeclimate.com/v1/badges/61aa16266a4b72f4ad57/maintainability" /></a>)](https://codeclimate.com/github/erreur4045/blogphp)
 
 J'ai utilisé le thème Accent disponible sur le site https://colorlib.com/ pour realiser le design du site
 
