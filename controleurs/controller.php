@@ -41,19 +41,7 @@ function contacter()
         header('Location: index.php');
     }
 }
-/**
- * Permet de faire une function test
- *
- * @return void
- *
- * @since 1.0.1
- */
-function testmail()
-{
-    var_dump($_SESSION);
-    die();
-    include 'view/testview.php';
-}
+
 /**
  * Permet de faire une function test
  *

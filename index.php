@@ -81,14 +81,9 @@ if (isset($_GET['action'])) {
         supprcom();//ok
     } elseif ($_GET['action'] == 'validinscription') {
         validincription();//ok
-    } elseif ($_GET['action'] == 'testfunction') {
-        testfunction();
     } elseif ($_GET['action'] == 'bio') {
         bio();//ok
-    } elseif ($_GET['action'] == 'testmail') {
-        testmail();
-    }
-    else{
+    }else{
         accueil();
     }
 } else {

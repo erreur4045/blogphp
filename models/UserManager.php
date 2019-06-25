@@ -322,18 +322,17 @@ WHERE blogphp_membres.id = :id'
      */
     public function suppUser(User $user)
     {
-//todo regarder pk il faut cliauer deux fois sur le bouton pour supprimer
         try {
             $db = DatabaseConnection::dbConnect();
             $recup = $db->prepare(
                 'DELETE 
-                            FROM blogphp_membres 
-                            WHERE blogphp_membres.id = :id;'
+                            FROM blogphp_commentaire 
+                            WHERE author = :author'
             );
             $recup->execute(
                 array(
-                ':id' => $user->getId()
-                    )
+                    ':author' => $user->getId()
+                )
             );
             $recup = $db->prepare(
                 'DELETE 
@@ -342,9 +341,20 @@ WHERE blogphp_membres.id = :id'
             );
             $recup->execute(
                 array(
-                ':author' => $user->getId()
+                    ':author' => $user->getId()
+                )
+            );
+            $recup = $db->prepare(
+                'DELETE 
+                            FROM blogphp_membres 
+                            WHERE blogphp_membres.id = :id'
+            );
+            $recup->execute(
+                array(
+                ':id' => $user->getId()
                     )
             );
+
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
