@@ -2,6 +2,7 @@
 ## Parcours Développeur d'application - PHP / Symfony
 
 [![Codeclimate](<a href="https://codeclimate.com/github/erreur4045/blogphp/maintainability"><img src="https://api.codeclimate.com/v1/badges/61aa16266a4b72f4ad57/maintainability" /></a>)](https://codeclimate.com/github/erreur4045/blogphp)
+<a href="https://codeclimate.com/github/erreur4045/blogphp/maintainability"><img src="https://api.codeclimate.com/v1/badges/61aa16266a4b72f4ad57/maintainability" /></a>
 
 J'ai utilisé le thème Accent disponible sur le site https://colorlib.com/ pour realiser le design du site
 
