@@ -5,6 +5,7 @@ class Comment
     private $text;
     private $comment_date;
     private $author;
+    private $authorstring;
     private $postid;
     private $approved;
 
@@ -56,7 +57,13 @@ class Comment
     {
         return $this->author;
     }
-
+    /**
+     * @return mixed
+     */
+    public function getAuthorstring()
+    {
+        return $this->authorstring;
+    }
     /**
      * @return mixed
      */
@@ -103,7 +110,13 @@ class Comment
     {
         $this->author = $author;
     }
-
+    /**
+     * @param mixed $authorstring
+     */
+    public function setAuthorstring($authorstring)
+    {
+        $this->authorstring = $authorstring;
+    }
     /**
      * @param mixed $text
      */

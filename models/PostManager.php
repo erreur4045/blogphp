@@ -156,9 +156,10 @@ class PostManager
             $lastpost = [];
 
             $q = DatabaseConnection::dbConnect()->query(
-                'SELECT id, title, content, date, authorpost 
-                                FROM blogphp_posts 
-                                    ORDER BY date DESC LIMIT 0, 6'
+                'SELECT blogphp_posts.id, title, content, date, authorpost, blogphp_membres.pseudo as authorpoststring
+FROM blogphp_posts
+  JOIN blogphp_membres ON blogphp_posts.authorpost = blogphp_membres.id
+ORDER BY date DESC LIMIT 0, 6'
             );
 
             while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
@@ -206,8 +207,10 @@ class PostManager
             $allpost = [];
 
             $q = DatabaseConnection::dbConnect()->query(
-                'SELECT id, title, content, date, authorpost
-                            FROM blogphp_posts ORDER BY date DESC'
+                'SELECT blogphp_posts.id, title, content, date, authorpost, pseudo as authorpoststring
+FROM blogphp_posts 
+JOIN blogphp_membres ON blogphp_posts.authorpost = blogphp_membres.id
+ORDER BY date DESC'
             );
 
             while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
@@ -231,7 +234,7 @@ class PostManager
     {
         try {
             $req = DatabaseConnection::dbConnect()->prepare(
-                'SELECT blogphp_posts.id, title, content, authorpost, blogphp_membres.pseudo  as author, date
+                'SELECT blogphp_posts.id, title, content, authorpost, blogphp_membres.pseudo  as authorpoststring, date
 FROM blogphp_posts
   JOIN blogphp_membres ON blogphp_posts.authorpost = blogphp_membres.id
 WHERE blogphp_posts.id = :id'

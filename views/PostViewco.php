@@ -13,7 +13,7 @@
                     <?php endif; ?>
                     <div class="contact-form">
                         <h3 class="title text-primary mb-3"><?= ucfirst(htmlspecialchars($post->getTitle())) ?></h3>
-                        <h5><?= 'Le ' . date('d/m/Y',strtotime($post->getDate())) . ' par ' . $post->getAuthorpost() ?></h5>
+                        <h5><?= 'Le ' . date('d/m/Y',strtotime($post->getDate())) . ' par ' . ucfirst($post->getAuthorpoststring()) ?></h5>
                         <p><?php echo nl2br(htmlspecialchars($post->getContent())); ?></p>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                         <div class="card mb-4 box-shadow h-md-250">
                             <div class="card-body align-items-start ">
 <!--                                // todo changer le author numeriaue par auteur string-->
-                                <p><strong><?= 'Par ' . ucfirst(htmlspecialchars($comment_data->getAuthor())) ?></strong><em>
+                                <p><strong><?= 'Par ' . ucfirst(htmlspecialchars($comment_data->getAuthorstring())) ?></strong><em>
                                         le <?= $comment_data->getComment_date() ?>
                                     </em></p>
                                 <p><?= nl2br(htmlspecialchars($comment_data->getText())) ?></p>

@@ -24,6 +24,7 @@ class Post
     private $content;
     private $date;
     private $authorpost;
+    private $authorpoststring;
 
     public function __construct($donnees)
     {
@@ -42,7 +43,13 @@ class Post
     }
 
     /*------------------------------getters-------------------------------------------*/
-
+    /**
+     * @return mixed
+     */
+    public function getAuthorpoststring()
+    {
+        return $this->authorpoststring;
+    }
     /**
      * @return mixed
      */
@@ -113,7 +120,13 @@ class Post
     {
             $this->authorpost = $authorpost;
     }
-
+    /**
+     * @param mixed $authorpoststring
+     */
+    public function setAuthorpoststring($authorpoststring)
+    {
+        $this->authorpoststring = $authorpoststring;
+    }
     /**
      * @param mixed $title
      */

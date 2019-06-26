@@ -41,7 +41,7 @@ class CommentManager
                 'SELECT
   blogphp_commentaire.id,                              
   blogphp_posts.id,                                    
- blogphp_membres.pseudo,
+ blogphp_membres.pseudo as authorstring,
   approved                                           ,
   author,
   postid,

@@ -20,7 +20,7 @@
                                                     strtotime($post_data->getDate())) ?></em><em>
                                                 Écrit
                                                 <!--//todo : changer author int par string-->
-                                                par <?= ucfirst($post_data->getAuthorpost()) ?></em></h4>
+                                                par <?= ucfirst($post_data->getAuthorpoststring()) ?></em></h4>
                                         <h6 class="font-italic">Chapo :</h6>
                                         <p class="articleindex">
                                             <?= substr(nl2br(htmlspecialchars($post_data->getContent())), 0, 90); ?>
