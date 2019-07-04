@@ -29,7 +29,6 @@
                                                 détaillé</a>
                                             <?php if (!isset($_SESSION['username'])) : ?>
                                                 <em></em>
-                                                <!--//todo : changer author int par string-->
                                             <?php elseif (($_SESSION['username']) == $post_data->getAuthorpost()) : ?>
                                                 <em><a class="btn btn-outline-danger confirmation"
                                                        href="index.php?action=supprpost&id=<?= $post_data->getId() . '&author=' . $post_data->getBlogphp_membres_id() ?>">Supprimer</a></em>
