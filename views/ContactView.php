@@ -1,4 +1,4 @@
-<?php $title = 'Mon blog'; ?>
+<?php $title = 'Contact'; ?>
 
 <?php ob_start(); ?>
     <div class="main bg-light">

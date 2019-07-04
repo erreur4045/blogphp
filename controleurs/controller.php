@@ -79,17 +79,6 @@ function accueil()
  *
  * @since 1.0.1
  */
-function mention()
-{
-    include 'views/MentionsView.php';
-}
-/**
- * Permet de faire une function test
- *
- * @return void
- *
- * @since 1.0.1
- */
 function CV()
 {
     include 'views/CvView.php';

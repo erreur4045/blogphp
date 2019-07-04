@@ -1,4 +1,4 @@
-<?php $title = 'Mon blog'; ?>
+<?php $title = 'Connection'; ?>
 <?php ob_start(); ?>
     <div class="main">
         <div class="container ">

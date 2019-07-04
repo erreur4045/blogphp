@@ -1,4 +1,4 @@
-<?php $title = 'Mon blog'; ?>
+<?php $title = 'Ajouter un article'; ?>
 <?php ob_start(); ?>
     <div class="main">
         <div class="site-section bg-light" id="contact-section">

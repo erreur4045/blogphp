@@ -1,4 +1,4 @@
-<?php $title = 'Mon blog'; ?>
+<?php $title = 'Tout les articles'; ?>
 <?php ob_start(); ?>
     <div class="main">
             <div class="d-flex justify-content-center">

@@ -1,4 +1,4 @@
-<?php $title = 'Mon blog'; ?>
+<?php $title = 'Modifier'; ?>
 <?php ob_start(); ?>
     <div class="main">
 <?php if (!isset($_SESSION['username'])) : ?>
