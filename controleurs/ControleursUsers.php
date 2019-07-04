@@ -87,7 +87,6 @@ function accceptuser()
  */
 function suppuser()
 {
-    //todo verif la supp des article dans l'appel de $manage_user->suppUser
     if (isset($_SESSION['username'])) {
         if ($_SESSION['grade'] == 1) {
             $data = array(

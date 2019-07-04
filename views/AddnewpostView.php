@@ -3,10 +3,8 @@
     <div class="main">
         <div class="site-section bg-light" id="contact-section">
         <div class="container">
-
             <div class="row">
                 <div class="col-md-12">
-
                     <div class="contact-form">
                     <h3 class="title text-primary mb-3"> Ajouter un article :</h3>
                     <form action="index.php?action=validpost" class="form_control" method="post">

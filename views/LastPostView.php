@@ -19,7 +19,6 @@
                                         <h4 class="titlenews"><em>le <?= date('d/m/Y',
                                                     strtotime($post_data->getDate())) ?></em><em>
                                                 Écrit
-                                                <!--//todo : changer author int par string-->
                                                 par <?= ucfirst($post_data->getAuthorpoststring()) ?></em></h4>
                                         <h6 class="font-italic">Chapo :</h6>
                                         <p class="articleindex">

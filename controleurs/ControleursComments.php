@@ -27,7 +27,8 @@ function comment()
     }
     if (isset($_SESSION['username'])) {
         if (empty($_GET['idpost']) or empty($_POST['comments'])){
-            echo 'je passe par là';include 'views/Co_error.php';}
+            include 'views/Co_error.php';
+        }
         $idpost = array(
             'postid' => htmlspecialchars(stripcslashes(trim($_GET['idpost']))),
             'author' => $_SESSION['idusername'],
@@ -145,7 +146,6 @@ function updatecomm()
  */
 function supprcom()
 {
-    echo '<pre>';
     try {
         if (isset($_SESSION['username'])) {
             $datacom = array(
@@ -202,7 +202,6 @@ function validcomment()
             $managecom = new CommentManager($com);
             $managepost = new PostManager($post);
             $datapost = $managepost->selectAuthorByNumberPost($post);
-            //todo finir la verif authorpost et idusernem
             if ($datapost->getAuthorpost() == $_SESSION['idusername']) {
                 $managecom->validCom($com);
                 $_SESSION['message'] = "Le commentaire a été validé";

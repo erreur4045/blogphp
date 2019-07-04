@@ -26,7 +26,6 @@
                     <?php foreach ($comments as $comment_data) : ?>
                         <div class="card mb-4 box-shadow h-md-250">
                             <div class="card-body align-items-start ">
-<!--                                // todo changer le author numeriaue par auteur string-->
                                 <p><strong><?= 'Par ' . ucfirst(htmlspecialchars($comment_data->getAuthorstring())) ?></strong><em>
                                         le <?= $comment_data->getComment_date() ?>
                                     </em></p>
