@@ -9,7 +9,7 @@
         <div class="row">
 
             <div class="col-md-12 readmore">
-                <a href="src/cv.pdf" download="CV">Télécharger le CV au format PDF</a>
+                <a href="images/cv.pdf" download="CV">Télécharger le CV au format PDF</a>
             </div>
             </div>
         </div>

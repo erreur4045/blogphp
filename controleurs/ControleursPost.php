@@ -176,7 +176,8 @@ function validupdatepost()
             $str = 'Location: index.php?id=' . $_GET['id'] . '&action=post';
             header($str);
         } else {
-            $_SESSION['message'] = "Vous n'avez pas le droit de modifier cet article.";
+            $_SESSION['message']
+                = "Vous n'avez pas le droit de modifier cet article.";
             header('Location: index.php');
         }
     } else {
@@ -209,7 +210,8 @@ function modifpost()
                 $data_view = $manager->selectPostById($post);
                 include 'views/UpdatepostView.php';
             } else {
-                $_SESSION['message'] = "Vous n'avez pas le droit de modifier cet article.";
+                $_SESSION['message']
+                    = "Vous n'avez pas le droit de modifier cet article.";
                 header('Location: index.php');
             }
         } elseif (!is_object($objpost)) {
@@ -230,7 +232,8 @@ function modifpost()
  * @since 1.0.1
  */
 function post()
-{        /*preparation du tableau pour contruction de OBJ post et creation OBJ*/
+{
+    /*preparation du tableau pour contruction de OBJ post et creation OBJ*/
     $donnees = array(
         'id' => htmlspecialchars(stripcslashes(trim($_GET['id'])))
     );
@@ -242,7 +245,8 @@ function post()
     $post = $post_manager->selectPostById($post_for_data);
     if (is_object($post)) {
         /*Preparation des donnees pour creation de OBJ Comment*/
-        $data_for_com = array('id' => htmlspecialchars(stripcslashes(trim($_GET['id']))));
+        $data_for_com = array(
+            'id' => htmlspecialchars(stripcslashes(trim($_GET['id']))));
         $comment_for_data = new Post($data_for_com);
         /*Creation de OBJ manager*/
         $com_manager = new CommentManager($comment_for_data);
